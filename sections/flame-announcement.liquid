@@ -1,0 +1,27 @@
+{%- comment -%} Lumisca — slim premium announcement bar (auto-rotating) {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} { position: relative; z-index: 60; }
+  .flame-announce { background: var(--bg-deep); border-bottom: 1px solid rgba(201,162,75,.28); }
+  .flame-announce__inner { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: .6rem 1.5rem; position: relative; }
+  .flame-announce__item {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 1rem;
+    font-family: var(--flame-sans); font-size: 1.15rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--text-cream); opacity: 0; transition: opacity .6s var(--ease); text-align: center; padding: 0 1.5rem;
+  }
+  .flame-announce__item.is-active { opacity: 1; }
+  .flame-announce__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ember); flex: 0 0 auto; }
+  /* static fallback when JS off: stack won't work with absolute; show first via :first-child */
+  .no-js .flame-announce__item:first-child { opacity: 1; }
+{%- endstyle -%}
+
+<div class="flame-announce flame-section" data-flame-announce>
+  <div class="flame-announce__inner">
+    <span class="flame-announce__item is-active"><span class="flame-announce__dot"></span> Free UK &amp; Ireland Shipping <span class="flame-announce__dot"></span></span>
+    <span class="flame-announce__item"><span class="flame-announce__dot"></span> 30-Day Money-Back Guarantee <span class="flame-announce__dot"></span></span>
+    <span class="flame-announce__item"><span class="flame-announce__dot"></span> Loved by 900+ Homes Across the UK &amp; IE <span class="flame-announce__dot"></span></span>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Flame Announcement", "settings": [], "enabled_on": { "groups": ["header"] } }
+{% endschema %}
