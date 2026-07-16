@@ -1,7 +1,6 @@
 {%- comment -%}
-  Lumisca — shared buy button. Resolves the store's flame diffuser product
-  automatically (one-product store) and links to it. No customizer setup needed.
-  Params: label (string), class (extra css classes, optional)
+  Lumisca — shared premium CTA. Resolves the store's diffuser automatically.
+  Params: label (string), class (extra classes), style ('ghost' for outline)
 {%- endcomment -%}
 {%- liquid
   assign fp = collections.all.products.first
@@ -11,6 +10,6 @@
       break
     endif
   endfor
-  assign href = fp.url | default: '/products'
+  assign href = fp.url | default: '/collections/all'
 -%}
-<a href="{{ href }}" class="button{% if class %} {{ class }}{% endif %}">{{ label | default: 'Shop Now' | escape }}</a>
+<a href="{{ href }}" class="flame-btn{% if style == 'ghost' %} flame-btn--ghost{% endif %}{% if class %} {{ class }}{% endif %}">{{ label | default: 'Shop Now' | escape }}</a>
