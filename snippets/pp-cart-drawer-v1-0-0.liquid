@@ -1,0 +1,103 @@
+<div
+	id="pp-cart-drawer"
+	class="pp-cart-drawer pp-fixed pp-gap-3 pp-top-0 pp-h-full pp-bg-white pp-shadow-lg pp-transition-transform pp-duration-300 pp-ease-in-out"
+  >
+	<div class="pp-w-ful pp-h-full pp-flex pp-flex-col">
+	  <div class="pp-cart-drawer__header pp-flex pp-items-center pp-p-5 pp-border-b pp-border-gray-200">
+		<svg
+		  class="pp-animate-spin pp-hidden -pp-ml-1 pp-mr-3 pp-h-5 pp-w-5 pp-text-black"
+		  xmlns="http://www.w3.org/2000/svg"
+		  fill="none"
+		  viewBox="0 0 24 24"
+		>
+		  <circle class="pp-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+		  <path class="pp-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+		</svg>
+  
+		<h2 class="pp-text-xl">{{ cart_drawer_title | default: 'Your cart' }}</h2>
+		<button
+		  class="pp-cart-drawer__close pp-ml-auto pp-bg-none pp-border-none pp-text-2xl pp-cursor-pointer"
+		  aria-label="Close cart"
+		>
+		  &times;
+		</button>
+	  </div>
+  
+	  <div
+		class="pp-cart-drawer__items pp-h-full pp-max-h-full pp-flex-1 pp-flex pp-flex-col pp-gap-6 pp-p-5 pp-overflow-y-scroll pp-no-scrollbar"
+		style="overflow-y: scroll; padding-bottom: 200px;"
+	  ></div>
+  
+	  <div class="pp-cart-drawer__footer pp-absolute pp-bottom-0 pp-left-0 pp-right-0 pp-p-5 pp-bg-white pp-border-t pp-border-gray-200">
+		<div class="pp-cart-drawer__subtotal pp-flex pp-justify-between pp-mb-4 pp-font-medium">
+		  <span class="pp-text-lg">{{ cart_drawer_total_text | default: 'Total' }}</span>
+		  <span class="pp-text-lg pp-cart-subtotal">$0.00</span>
+		</div>
+		<button class="pp-button--primary !pp-max-w-full pp-checkout-button pp-w-full pp-p-4 pp-bg-black pp-text-white pp-border-none pp-rounded pp-cursor-pointer pp-font-medium">
+		  {{ checkout_button_text | default: 'Checkout' }}
+		</button>
+	  </div>
+	</div>
+  </div>
+  
+  <div
+	id="pp-cart-drawer-overlay"
+	class="pp-cart-drawer__overlay pp-hidden pp-fixed pp-top-0 pp-left-0 pp-right-0 pp-bottom-0 pp-bg-black/50"
+  ></div>
+  
+  <style>
+	.pp-cart-drawer {
+		width: 500px;
+		right: -500px;
+		z-index: 10000;
+	}
+  
+	.pp-cart-drawer.active {
+		transform: translateX(-500px);
+	}
+  
+	.pp-cart-drawer__overlay {
+		z-index: 9999;
+	}
+  
+	.pp-cart-drawer__overlay.active {
+		display: block;
+	}
+  
+	.pp-quantity-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+  
+	.pp-cart-empty {
+		text-align: center;
+		padding: 40px 20px;
+		color: #666;
+	}
+  
+	.pp-loading .pp-animate-spin {
+		display: inline-block !important;
+	}
+  
+	@media (max-width: 576px) {
+		.pp-cart-drawer {
+			width: 90%;
+			right: -90%;
+		}
+  
+		.pp-cart-drawer.active {
+			transform: translateX(-100%);
+		}
+	}
+  </style>
+
+  <script id="pp-product-variants" type="application/json">
+	{{ product.variants | json }}
+  </script>
+  
+  <script id="pp-cart-drawer-empty-text" type="text/plain">
+	{{ cart_drawer_empty_text | default: 'Your cart is empty' }}
+  </script>
+
+  <script src="https://cdn-shopify.pagepilot.ai/js/pp-cart-drawer.min.js" defer="defer"></script>
+  
