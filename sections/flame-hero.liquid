@@ -1,5 +1,7 @@
 {%- comment -%}
-  Lumisca — Flame Hero. Fully hardcoded. Uses the real product image + auto-resolved product link.
+  Lumisca — cinematic hero. Full-height deep-dark, ember glow, glowing framed
+  product, optional full-bleed video/image (upload 'hero-flame.mp4' or
+  'hero-flame.jpg' to Files). Fully hardcoded.
 {%- endcomment -%}
 {%- liquid
   assign fp = collections.all.products.first
@@ -9,64 +11,64 @@
       break
     endif
   endfor
+  assign hero_video = 'hero-flame.mp4' | file_url
+  assign hero_image = 'hero-flame.jpg' | file_url
 -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-hero {
-    position: relative; overflow: hidden; isolation: isolate;
-    background: radial-gradient(120% 120% at 50% 0%, #241a15 0%, #0E0C0B 60%);
-  }
-  #shopify-section-{{ section.id }} .flame-hero__grid {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-    gap: 2.4rem; padding: 3.6rem 0 4.4rem;
-  }
-  #shopify-section-{{ section.id }} .flame-hero__media {
-    width: 100%; max-width: 320px;
-  }
-  #shopify-section-{{ section.id }} .flame-hero__media img {
-    width: 100%; height: auto; display: block;
-    border-radius: 18px;
-    box-shadow: 0 24px 60px rgba(200,98,46,.28), 0 8px 24px rgba(0,0,0,.4);
-  }
-  #shopify-section-{{ section.id }} .flame-hero__content { max-width: 620px; color: #F7F3EE; }
-  #shopify-section-{{ section.id }} .flame-hero__eyebrow {
-    letter-spacing: .32em; text-transform: uppercase; font-size: 1.2rem; opacity: .8; margin: 0 0 1.4rem;
-  }
-  #shopify-section-{{ section.id }} .flame-hero__title { font-size: 3.2rem; line-height: 1.08; margin: 0 0 1.4rem; text-wrap: balance; }
-  #shopify-section-{{ section.id }} .flame-hero__subtitle { font-size: 1.65rem; line-height: 1.5; margin: 0 auto 2.2rem; max-width: 46ch; opacity: .92; }
-  #shopify-section-{{ section.id }} .flame-hero__cta { min-width: 260px; font-size: 1.7rem; padding: 1.4rem 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-hero__trust { margin: 1.8rem 0 0; font-size: 1.35rem; opacity: .92; }
-  #shopify-section-{{ section.id }} .flame-hero__stars { color: #F5B841; letter-spacing: .1em; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-hero__grid {
-      flex-direction: row-reverse; text-align: left; gap: 4rem; padding: 6rem 0;
-      align-items: center; justify-content: space-between;
-    }
-    #shopify-section-{{ section.id }} .flame-hero__media { max-width: 420px; flex: 0 0 auto; }
-    #shopify-section-{{ section.id }} .flame-hero__subtitle { margin-left: 0; }
-    #shopify-section-{{ section.id }} .flame-hero__title { font-size: 5.2rem; }
-    #shopify-section-{{ section.id }} .flame-hero__subtitle { font-size: 1.9rem; }
+  #shopify-section-{{ section.id }} .flame-hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; isolation: isolate; background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-hero__cover { position: absolute; inset: 0; z-index: 0; }
+  #shopify-section-{{ section.id }} .flame-hero__cover img, #shopify-section-{{ section.id }} .flame-hero__cover video { width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .flame-hero__vignette { position: absolute; inset: 0; z-index: 1; background: radial-gradient(120% 90% at 70% 40%, rgba(11,9,8,.15), rgba(11,9,8,.82) 70%), linear-gradient(180deg, rgba(11,9,8,.6), rgba(11,9,8,.35) 40%, rgba(11,9,8,.9)); }
+  #shopify-section-{{ section.id }} .flame-hero__glow { position: absolute; z-index: 1; width: 70vw; max-width: 780px; aspect-ratio: 1; right: -8%; top: 46%; transform: translateY(-50%); background: var(--ember-glow); filter: blur(20px); opacity: .85; }
+  #shopify-section-{{ section.id }} .flame-hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; width: 100%; padding-block: 12rem 9rem; }
+  #shopify-section-{{ section.id }} .flame-hero__media { order: -1; justify-self: center; width: min(74vw, 340px); position: relative; }
+  #shopify-section-{{ section.id }} .flame-hero__media::after { content: ''; position: absolute; inset: -14%; z-index: -1; background: var(--ember-glow); filter: blur(14px); }
+  #shopify-section-{{ section.id }} .flame-hero__media img { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 60px rgba(212,104,46,.28); }
+  #shopify-section-{{ section.id }} .flame-hero__content { color: var(--text-cream); max-width: 620px; }
+  #shopify-section-{{ section.id }} .flame-hero__title { font-family: var(--flame-serif); font-weight: 500; font-size: clamp(3.4rem, 6.6vw, 5rem); line-height: 1.03; letter-spacing: -.02em; margin: 0 0 2rem; text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-hero__sub { font-size: clamp(1.6rem, 2vw, 1.9rem); line-height: 1.6; color: var(--text-muted); margin: 0 0 3rem; max-width: 48ch; }
+  #shopify-section-{{ section.id }} .flame-hero__trust { display: flex; align-items: center; gap: 1rem; margin-top: 2.6rem; font-size: 1.35rem; color: var(--text-muted); flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .flame-hero__stars { color: var(--gold); letter-spacing: .12em; font-size: 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-hero__cue { position: absolute; z-index: 2; left: 50%; bottom: 3rem; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .8rem; color: var(--text-muted); font-size: 1.05rem; letter-spacing: .25em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .flame-hero__cue span { width: 1px; height: 44px; background: linear-gradient(var(--gold), transparent); animation: flameCue 2s var(--ease) infinite; }
+  @keyframes flameCue { 0%,100% { opacity: .3; transform: scaleY(.7); } 50% { opacity: 1; transform: scaleY(1); } }
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .flame-hero__grid { grid-template-columns: 1.05fr .95fr; gap: 5rem; padding-block: 14rem; }
+    #shopify-section-{{ section.id }} .flame-hero__media { order: 0; justify-self: end; width: min(38vw, 460px); }
   }
 {%- endstyle -%}
 
-<div class="flame-hero">
-  <div class="page-width flame-hero__grid">
-    <div class="flame-hero__media">
+<div class="flame-hero flame-section flame-grain">
+  <div class="flame-hero__cover">
+    {%- if hero_video != blank -%}
+      <video autoplay muted loop playsinline {% if hero_image != blank %}poster="{{ hero_image }}"{% endif %}>
+        <source src="{{ hero_video }}" type="video/mp4">
+      </video>
+    {%- elsif hero_image != blank -%}
+      <img src="{{ hero_image }}" alt="" width="1920" height="1080" fetchpriority="high">
+    {%- endif -%}
+  </div>
+  <div class="flame-hero__glow"></div>
+  <div class="flame-hero__vignette"></div>
+
+  <div class="flame-wrap flame-hero__grid">
+    <div class="flame-hero__content flame-reveal">
+      <p class="flame-kicker">Home Fragrance, Reimagined</p>
+      <h1 class="flame-hero__title">Turn Any Room Into a Cosy, Fire-Lit Escape</h1>
+      <p class="flame-hero__sub">The calming glow of a real flame — with none of the smoke, soot or danger. Just soothing light, gentle mist, and your favourite scents.</p>
+      {% render 'flame-buy-button', label: 'Shop the Collection' %}
+      <div class="flame-hero__trust"><span class="flame-hero__stars">★★★★★</span> Loved by 900+ homes · Free UK &amp; Ireland shipping</div>
+    </div>
+    <div class="flame-hero__media flame-reveal" data-delay="2">
       {%- if fp.featured_image != blank -%}
-        {{ fp.featured_image | image_url: width: 840 | image_tag:
-            loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 750px) 420px, 320px',
-            widths: '320, 420, 640, 840', alt: fp.featured_image.alt | default: 'Mini Flame Aroma Diffuser' | escape }}
+        {{ fp.featured_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '340, 460, 680, 900', sizes: '(min-width: 990px) 460px, 74vw', alt: fp.featured_image.alt | default: 'Mini Flame Aroma Diffuser' | escape }}
       {%- else -%}
-        <img src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="420" height="420" loading="eager" fetchpriority="high">
+        <img src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="460" height="460" loading="eager">
       {%- endif -%}
     </div>
-    <div class="flame-hero__content">
-      <p class="flame-hero__eyebrow">Lumisca</p>
-      <h1 class="flame-hero__title">Turn Any Room Into a Cosy, Fire-Lit Escape</h1>
-      <p class="flame-hero__subtitle">The calming glow of a real flame — with none of the smoke, soot or danger. Just soothing light, gentle mist, and your favourite scents.</p>
-      {% render 'flame-buy-button', label: 'Shop Now — 40% Off', class: 'flame-hero__cta' %}
-      <p class="flame-hero__trust"><span class="flame-hero__stars">★★★★★</span> Loved by 900+ happy customers · Free UK/IE shipping</p>
-    </div>
   </div>
+
+  <div class="flame-hero__cue" aria-hidden="true">Scroll<span></span></div>
 </div>
 
 {% schema %}

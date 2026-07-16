@@ -1,41 +1,51 @@
-{%- comment -%} Lumisca — Comparison Table (hardcoded) {%- endcomment -%}
+{%- comment -%} Lumisca — Comparison (premium, ember-highlighted column) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-cmp { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-cmp__title { font-size: 2.8rem; text-align: center; margin: 0 0 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-cmp__table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(14,12,11,.10); }
-  #shopify-section-{{ section.id }} .flame-cmp__table th, #shopify-section-{{ section.id }} .flame-cmp__table td { padding: 1.4rem 1rem; text-align: center; border-bottom: 1px solid rgba(138,128,120,.22); font-size: 1.4rem; }
-  #shopify-section-{{ section.id }} .flame-cmp__table thead th { font-weight: 700; background: rgba(200,98,46,.10); }
-  #shopify-section-{{ section.id }} .flame-cmp__table th:first-child, #shopify-section-{{ section.id }} .flame-cmp__table td:first-child { text-align: left; font-weight: 600; }
-  #shopify-section-{{ section.id }} .flame-cmp__brand { background: #C8622E; color: #fff; }
-  #shopify-section-{{ section.id }} .flame-cmp__yes { color: #1f8a4c; font-size: 1.9rem; font-weight: 700; }
-  #shopify-section-{{ section.id }} .flame-cmp__no { color: #b23b3b; font-size: 1.9rem; font-weight: 700; }
-  #shopify-section-{{ section.id }} .flame-cmp__table tr:last-child td { border-bottom: none; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-cmp { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-cmp__title { font-size: 3.6rem; }
-    #shopify-section-{{ section.id }} .flame-cmp__table th, #shopify-section-{{ section.id }} .flame-cmp__table td { padding: 1.7rem 1.6rem; font-size: 1.6rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-cmp { background: var(--bg-dark); }
+  #shopify-section-{{ section.id }} .flame-cmp__head { text-align: center; margin-bottom: 4rem; }
+  #shopify-section-{{ section.id }} .flame-cmp__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-cmp__wrap { max-width: 760px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid rgba(244,238,230,.1); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} table { width: 100%; border-collapse: collapse; }
+  #shopify-section-{{ section.id }} th, #shopify-section-{{ section.id }} td { padding: 1.8rem 1.4rem; text-align: center; font-size: 1.5rem; }
+  #shopify-section-{{ section.id }} thead th { font-family: var(--flame-serif); font-size: 1.7rem; color: var(--text-cream); font-weight: 500; padding-block: 2.4rem; }
+  #shopify-section-{{ section.id }} th:first-child, #shopify-section-{{ section.id }} td:first-child { text-align: left; color: var(--text-cream); font-weight: 500; }
+  #shopify-section-{{ section.id }} tbody tr { border-top: 1px solid rgba(244,238,230,.07); transition: background .3s var(--ease); }
+  #shopify-section-{{ section.id }} tbody tr:hover { background: rgba(244,238,230,.03); }
+  /* ember-highlighted Lumisca column */
+  #shopify-section-{{ section.id }} .flame-cmp__brandcol { position: relative; background: linear-gradient(180deg, rgba(212,104,46,.16), rgba(212,104,46,.05)); box-shadow: inset 0 0 0 1px rgba(212,104,46,.35); }
+  #shopify-section-{{ section.id }} thead .flame-cmp__brandcol { color: var(--ember); }
+  #shopify-section-{{ section.id }} .flame-cmp__other { color: var(--text-muted); }
+  #shopify-section-{{ section.id }} .flame-ic-yes { color: var(--ember); }
+  #shopify-section-{{ section.id }} .flame-ic-no { color: #6b5f56; }
+  #shopify-section-{{ section.id }} .flame-ic-yes svg, #shopify-section-{{ section.id }} .flame-ic-no svg { width: 22px; height: 22px; vertical-align: middle; }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-cmp">
-    <h2 class="flame-cmp__title">Why Lumisca Wins</h2>
-    <table class="flame-cmp__table">
-      <thead>
-        <tr>
-          <th scope="col">Feature</th>
-          <th scope="col" class="flame-cmp__brand">Lumisca</th>
-          <th scope="col">Ordinary Diffusers</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Realistic Flame Effect</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
-        <tr><td>Aromatherapy</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
-        <tr><td>Whisper-Quiet</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
-        <tr><td>Auto Shut-Off</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
-        <tr><td>Cosy Ambience</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
-      </tbody>
-    </table>
+{%- capture yes -%}<span class="flame-ic-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>{%- endcapture -%}
+{%- capture no -%}<span class="flame-ic-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>{%- endcapture -%}
+
+<div class="flame-cmp flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-cmp__head flame-reveal">
+      <p class="flame-kicker flame-kicker--center">Why Lumisca</p>
+      <h2 class="flame-cmp__title">Why Lumisca Wins</h2>
+    </div>
+    <div class="flame-cmp__wrap flame-reveal" data-delay="1">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col" class="flame-cmp__brandcol">Lumisca</th>
+            <th scope="col" class="flame-cmp__other">Ordinary Diffusers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Realistic Flame Effect</td><td class="flame-cmp__brandcol">{{ yes }}</td><td class="flame-cmp__other">{{ no }}</td></tr>
+          <tr><td>Aromatherapy</td><td class="flame-cmp__brandcol">{{ yes }}</td><td class="flame-cmp__other">{{ no }}</td></tr>
+          <tr><td>Whisper-Quiet</td><td class="flame-cmp__brandcol">{{ yes }}</td><td class="flame-cmp__other">{{ no }}</td></tr>
+          <tr><td>Auto Shut-Off</td><td class="flame-cmp__brandcol">{{ yes }}</td><td class="flame-cmp__other">{{ no }}</td></tr>
+          <tr><td>Cosy Ambience</td><td class="flame-cmp__brandcol">{{ yes }}</td><td class="flame-cmp__other">{{ no }}</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

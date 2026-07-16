@@ -1,24 +1,38 @@
-{%- comment -%} Lumisca — Trust Bar (hardcoded) {%- endcomment -%}
+{%- comment -%} Lumisca — premium trust bar (line icons, gold dividers) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-trustbar {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem .8rem; padding: 2rem 1.5rem;
-  }
-  #shopify-section-{{ section.id }} .flame-trustbar__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .5rem; }
-  #shopify-section-{{ section.id }} .flame-trustbar__icon { font-size: 2.4rem; line-height: 1; }
-  #shopify-section-{{ section.id }} .flame-trustbar__label { font-size: 1.25rem; line-height: 1.3; font-weight: 600; }
+  #shopify-section-{{ section.id }} .flame-tb { background: var(--bg-dark); border-block: 1px solid rgba(201,162,75,.16); }
+  #shopify-section-{{ section.id }} .flame-tb__grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+  #shopify-section-{{ section.id }} .flame-tb__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 3rem 1.4rem; position: relative; }
+  #shopify-section-{{ section.id }} .flame-tb__item + .flame-tb__item::before { content: ''; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px; background: linear-gradient(transparent, rgba(201,162,75,.35), transparent); }
+  #shopify-section-{{ section.id }} .flame-tb__icon { color: var(--gold); }
+  #shopify-section-{{ section.id }} .flame-tb__icon svg { width: 30px; height: 30px; }
+  #shopify-section-{{ section.id }} .flame-tb__label { font-size: 1.15rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text-cream); }
   @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-trustbar { grid-template-columns: repeat(4, 1fr); padding: 2.4rem 1.5rem; gap: 1rem; }
-    #shopify-section-{{ section.id }} .flame-trustbar__item { flex-direction: row; gap: .9rem; }
-    #shopify-section-{{ section.id }} .flame-trustbar__label { font-size: 1.4rem; text-align: left; }
+    #shopify-section-{{ section.id }} .flame-tb__grid { grid-template-columns: repeat(4, 1fr); }
+    #shopify-section-{{ section.id }} .flame-tb__item { flex-direction: row; gap: 1.2rem; padding: 3.4rem 1.6rem; }
+    #shopify-section-{{ section.id }} .flame-tb__item + .flame-tb__item::before { top: 28%; bottom: 28%; }
+    #shopify-section-{{ section.id }} .flame-tb__label { font-size: 1.2rem; }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-2 gradient">
-  <div class="page-width flame-trustbar">
-    <div class="flame-trustbar__item"><span class="flame-trustbar__icon" aria-hidden="true">🚚</span><span class="flame-trustbar__label">Free UK/IE Shipping</span></div>
-    <div class="flame-trustbar__item"><span class="flame-trustbar__icon" aria-hidden="true">🔥</span><span class="flame-trustbar__label">No Real Flame — 100% Safe</span></div>
-    <div class="flame-trustbar__item"><span class="flame-trustbar__icon" aria-hidden="true">⏱</span><span class="flame-trustbar__label">5-Hour Runtime</span></div>
-    <div class="flame-trustbar__item"><span class="flame-trustbar__icon" aria-hidden="true">↩️</span><span class="flame-trustbar__label">30-Day Guarantee</span></div>
+<div class="flame-tb flame-section">
+  <div class="flame-wrap flame-tb__grid flame-reveal">
+    <div class="flame-tb__item">
+      <span class="flame-tb__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v10H1zM14 8h4l3 3v3h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="18" cy="17" r="1.6"/></svg></span>
+      <span class="flame-tb__label">Free UK &amp; IE Shipping</span>
+    </div>
+    <div class="flame-tb__item">
+      <span class="flame-tb__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4 5 9a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5.2 1.4 1 2 1.7 2C10.4 8 12 6 12 3z"/></svg></span>
+      <span class="flame-tb__label">No Real Flame · 100% Safe</span>
+    </div>
+    <div class="flame-tb__item">
+      <span class="flame-tb__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></span>
+      <span class="flame-tb__label">5-Hour Runtime</span>
+    </div>
+    <div class="flame-tb__item">
+      <span class="flame-tb__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 20v-5h5"/></svg></span>
+      <span class="flame-tb__label">30-Day Guarantee</span>
+    </div>
   </div>
 </div>
 

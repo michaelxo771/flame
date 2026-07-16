@@ -1,52 +1,41 @@
-{%- comment -%} Lumisca — FAQ accordion (hardcoded, native details/summary) {%- endcomment -%}
+{%- comment -%} Lumisca — FAQ (premium accordion) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-faq { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-faq__title { font-size: 2.8rem; text-align: center; margin: 0 0 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-faq__list { max-width: 720px; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .flame-faq__item { border-bottom: 1px solid rgba(138,128,120,.26); }
-  #shopify-section-{{ section.id }} .flame-faq__q { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; padding: 1.8rem 0; font-size: 1.7rem; font-weight: 600; }
-  #shopify-section-{{ section.id }} .flame-faq__q::-webkit-details-marker { display: none; }
-  #shopify-section-{{ section.id }} .flame-faq__icon { flex: 0 0 auto; width: 2rem; height: 2rem; position: relative; }
-  #shopify-section-{{ section.id }} .flame-faq__icon::before, #shopify-section-{{ section.id }} .flame-faq__icon::after { content: ''; position: absolute; background: #C8622E; border-radius: 2px; }
-  #shopify-section-{{ section.id }} .flame-faq__icon::before { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
-  #shopify-section-{{ section.id }} .flame-faq__icon::after { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); transition: opacity .2s ease; }
-  #shopify-section-{{ section.id }} .flame-faq__item[open] .flame-faq__icon::after { opacity: 0; }
-  #shopify-section-{{ section.id }} .flame-faq__a { padding: 0 0 1.8rem; font-size: 1.5rem; line-height: 1.6; opacity: .92; }
-  #shopify-section-{{ section.id }} .flame-faq__a p { margin: 0; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-faq { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-faq__title { font-size: 3.6rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-fq { background: var(--bg-dark); }
+  #shopify-section-{{ section.id }} .flame-fq__head { text-align: center; margin-bottom: 4rem; }
+  #shopify-section-{{ section.id }} .flame-fq__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-fq__list { max-width: 760px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .flame-fq__item { border-top: 1px solid rgba(201,162,75,.22); }
+  #shopify-section-{{ section.id }} .flame-fq__item:last-child { border-bottom: 1px solid rgba(201,162,75,.22); }
+  #shopify-section-{{ section.id }} .flame-fq__q { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1.6rem; padding: 2.4rem .4rem; font-family: var(--flame-serif); font-size: clamp(1.8rem, 2.4vw, 2.1rem); color: var(--text-cream); }
+  #shopify-section-{{ section.id }} .flame-fq__q::-webkit-details-marker { display: none; }
+  #shopify-section-{{ section.id }} .flame-fq__ic { position: relative; flex: 0 0 auto; width: 22px; height: 22px; }
+  #shopify-section-{{ section.id }} .flame-fq__ic::before, #shopify-section-{{ section.id }} .flame-fq__ic::after { content: ''; position: absolute; background: var(--ember); border-radius: 2px; transition: transform .35s var(--ease), opacity .35s var(--ease); }
+  #shopify-section-{{ section.id }} .flame-fq__ic::before { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
+  #shopify-section-{{ section.id }} .flame-fq__ic::after { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); }
+  #shopify-section-{{ section.id }} .flame-fq__item[open] .flame-fq__ic::before { transform: translateY(-50%) rotate(180deg); }
+  #shopify-section-{{ section.id }} .flame-fq__item[open] .flame-fq__ic::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+  #shopify-section-{{ section.id }} .flame-fq__inner { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+  #shopify-section-{{ section.id }} .flame-fq__item[open] .flame-fq__inner { grid-template-rows: 1fr; }
+  #shopify-section-{{ section.id }} .flame-fq__a { overflow: hidden; }
+  #shopify-section-{{ section.id }} .flame-fq__a p { color: var(--text-muted); font-size: 1.55rem; line-height: 1.7; margin: 0; padding: 0 .4rem 2.4rem; }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient" id="faq">
-  <div class="page-width flame-faq">
-    <h2 class="flame-faq__title">Frequently Asked Questions</h2>
-    <div class="flame-faq__list">
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>How does the flame work?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.</p></div>
-      </details>
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>Is it safe to leave on?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>Yes. There's no real flame, and it automatically shuts off when the water runs low — so it's safe to leave running overnight or around kids and pets.</p></div>
-      </details>
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>Do I need essential oils?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>Not at all. It works beautifully with water alone for the flame glow and mist. Add a few drops of your favourite oil whenever you'd like some aromatherapy.</p></div>
-      </details>
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>How long does delivery take (UK/IE)?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>Orders are dispatched within 1–2 business days. Typical delivery is around 7–20 days depending on your location. You'll get tracking as soon as it ships.</p></div>
-      </details>
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>What's the runtime and tank size?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>The ~120ml tank gives around 5 hours of continuous cosy glow and mist per fill.</p></div>
-      </details>
-      <details class="flame-faq__item">
-        <summary class="flame-faq__q"><span>What's your return policy?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
-        <div class="flame-faq__a"><p>You're covered by our 30-day money-back guarantee. If it's not for you, contact us within 30 days for a full refund.</p></div>
-      </details>
+{%- assign qs = "How does the flame work?|Is it safe to leave on?|Do I need essential oils?|How long does delivery take (UK/IE)?|What's the runtime and tank size?|What's your return policy?" | split: '|' -%}
+{%- assign as = "It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.|Yes. There's no real flame, and it automatically shuts off when the water runs low — safe to leave running overnight or around kids and pets.|Not at all. It works beautifully with water alone for the flame glow and mist. Add a few drops of oil whenever you'd like some aromatherapy.|Orders are dispatched within 1–2 business days. Typical delivery is around 7–20 days depending on your location. You'll get tracking as soon as it ships.|The ~120ml tank gives around 5 hours of continuous cosy glow and mist per fill.|You're covered by our 30-day money-back guarantee. If it's not for you, contact us within 30 days for a full refund." | split: '|' -%}
+
+<div class="flame-fq flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-fq__head flame-reveal">
+      <p class="flame-kicker flame-kicker--center">Good to Know</p>
+      <h2 class="flame-fq__title">Frequently Asked Questions</h2>
+    </div>
+    <div class="flame-fq__list flame-reveal" data-delay="1">
+      {%- for q in qs -%}
+        <details class="flame-fq__item">
+          <summary class="flame-fq__q"><span>{{ q }}</span><span class="flame-fq__ic" aria-hidden="true"></span></summary>
+          <div class="flame-fq__inner"><div class="flame-fq__a"><p>{{ as[forloop.index0] }}</p></div></div>
+        </details>
+      {%- endfor -%}
     </div>
   </div>
 </div>

@@ -1,7 +1,6 @@
 {%- comment -%}
-  Lumisca — Featured Product (hardcoded). Auto-resolves the store's diffuser,
-  shows real gallery, live price + compare-at, variant selector, working Add to Cart.
-  No customizer configuration required.
+  Lumisca — Featured Product (premium). Auto-resolves the diffuser, real gallery,
+  live price + compare-at, variant selector, working Add to Cart. Hardcoded.
 {%- endcomment -%}
 {%- liquid
   assign fp = collections.all.products.first
@@ -13,72 +12,68 @@
   endfor
 -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-fp { display: grid; grid-template-columns: 1fr; gap: 2.4rem; padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-fp__main { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; }
-  #shopify-section-{{ section.id }} .flame-fp__thumbs { display: flex; gap: .8rem; margin-top: 1rem; flex-wrap: wrap; }
-  #shopify-section-{{ section.id }} .flame-fp__thumb { border: 2px solid transparent; border-radius: 10px; padding: 0; background: #fff; cursor: pointer; overflow: hidden; line-height: 0; }
-  #shopify-section-{{ section.id }} .flame-fp__thumb.is-active { border-color: #C8622E; }
-  #shopify-section-{{ section.id }} .flame-fp__thumb img { width: 64px; height: 64px; object-fit: cover; display: block; }
-  #shopify-section-{{ section.id }} .flame-fp__stars { color: #F5B841; font-size: 1.5rem; letter-spacing: .06em; margin: 0 0 .8rem; }
-  #shopify-section-{{ section.id }} .flame-fp__stars span { color: var(--color-foreground, #1A1614); opacity: .7; font-size: 1.3rem; margin-left: .4rem; }
-  #shopify-section-{{ section.id }} .flame-fp__title { font-size: 3rem; line-height: 1.1; margin: 0 0 1rem; }
-  #shopify-section-{{ section.id }} .flame-fp__price { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 1.4rem; }
-  #shopify-section-{{ section.id }} .flame-fp__price-now { font-size: 2.6rem; font-weight: 700; color: #C8622E; }
-  #shopify-section-{{ section.id }} .flame-fp__price-was { font-size: 1.7rem; text-decoration: line-through; opacity: .6; }
-  #shopify-section-{{ section.id }} .flame-fp__save { display: inline-block; background: #C8622E; color: #fff; font-size: 1.2rem; font-weight: 700; padding: .3rem .9rem; border-radius: 999px; }
-  #shopify-section-{{ section.id }} .flame-fp__bullets { list-style: none; padding: 0; margin: 0 0 2rem; }
-  #shopify-section-{{ section.id }} .flame-fp__bullets li { font-size: 1.5rem; line-height: 1.5; margin: 0 0 .6rem; padding-left: 2.4rem; position: relative; }
-  #shopify-section-{{ section.id }} .flame-fp__bullets li::before { content: '✔'; color: #C8622E; position: absolute; left: 0; font-weight: 700; }
-  #shopify-section-{{ section.id }} .flame-fp__opt { margin: 0 0 1.4rem; }
-  #shopify-section-{{ section.id }} .flame-fp__opt-name { display: block; font-size: 1.35rem; font-weight: 600; margin-bottom: .6rem; }
-  #shopify-section-{{ section.id }} .flame-fp__select { width: 100%; max-width: 320px; font-size: 1.5rem; padding: 1.1rem 1.2rem; border-radius: 8px; border: 1px solid rgba(138,128,120,.5); background: #fff; color: #1A1614; }
-  #shopify-section-{{ section.id }} .flame-fp__atc { width: 100%; max-width: 420px; font-size: 1.75rem; padding: 1.5rem 2rem; margin-top: .6rem; }
-  #shopify-section-{{ section.id }} .flame-fp__ship { font-size: 1.3rem; opacity: .8; margin: 1.2rem 0 0; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-fp { grid-template-columns: 1fr 1fr; gap: 4rem; padding: 6.4rem 0; align-items: start; }
-    #shopify-section-{{ section.id }} .flame-fp__title { font-size: 3.6rem; }
+  #shopify-section-{{ section.id }} .flame-fp { background: var(--bg-dark); }
+  #shopify-section-{{ section.id }} .flame-fp__grid { display: grid; grid-template-columns: 1fr; gap: 3.4rem; align-items: start; }
+  #shopify-section-{{ section.id }} .flame-fp__media { position: relative; }
+  #shopify-section-{{ section.id }} .flame-fp__media::before { content: ''; position: absolute; inset: 4%; z-index: 0; background: var(--ember-glow); filter: blur(20px); opacity: .7; }
+  #shopify-section-{{ section.id }} .flame-fp__main { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.2); background: #100c0a; box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-fp__thumbs { display: flex; gap: 1rem; margin-top: 1.4rem; flex-wrap: wrap; position: relative; z-index: 1; }
+  #shopify-section-{{ section.id }} .flame-fp__thumb { border: 1px solid rgba(244,238,230,.14); border-radius: 12px; padding: 0; background: #100c0a; cursor: pointer; overflow: hidden; line-height: 0; transition: border-color .3s var(--ease); }
+  #shopify-section-{{ section.id }} .flame-fp__thumb.is-active { border-color: var(--ember); }
+  #shopify-section-{{ section.id }} .flame-fp__thumb img { width: 68px; height: 68px; object-fit: cover; display: block; }
+  #shopify-section-{{ section.id }} .flame-fp__stars { color: var(--gold); font-size: 1.6rem; letter-spacing: .1em; margin: 0 0 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-fp__stars span { color: var(--text-muted); font-size: 1.3rem; letter-spacing: 0; margin-left: .6rem; }
+  #shopify-section-{{ section.id }} .flame-fp__title { font-size: clamp(2.8rem, 4vw, 3.6rem); color: var(--text-cream); margin: 0 0 1.6rem; line-height: 1.1; }
+  #shopify-section-{{ section.id }} .flame-fp__price { display: flex; align-items: baseline; gap: 1.2rem; margin: 0 0 2rem; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .flame-fp__now { font-size: 2.8rem; font-weight: 700; color: var(--ember); font-family: var(--flame-sans); }
+  #shopify-section-{{ section.id }} .flame-fp__was { font-size: 1.8rem; text-decoration: line-through; color: var(--text-muted); }
+  #shopify-section-{{ section.id }} .flame-fp__save { font-size: 1.2rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,162,75,.5); border-radius: 999px; padding: .4rem 1.1rem; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets { list-style: none; padding: 0; margin: 0 0 2.6rem; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets li { font-size: 1.55rem; line-height: 1.5; color: var(--text-cream); margin: 0 0 1rem; padding-left: 3rem; position: relative; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets li::before { content: ''; position: absolute; left: 0; top: .3em; width: 18px; height: 18px; border-radius: 50%; background: rgba(212,104,46,.15); border: 1px solid var(--ember); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23D4682E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+  #shopify-section-{{ section.id }} .flame-fp__optname { display: block; font-size: 1.25rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .8rem; }
+  #shopify-section-{{ section.id }} .flame-fp__select { width: 100%; max-width: 340px; font-size: 1.5rem; padding: 1.3rem 1.4rem; border-radius: 12px; border: 1px solid rgba(244,238,230,.22); background: #100c0a; color: var(--text-cream); margin-bottom: 1.8rem; font-family: var(--flame-sans); }
+  #shopify-section-{{ section.id }} .flame-fp__atc { width: 100%; max-width: 440px; }
+  #shopify-section-{{ section.id }} .flame-fp__ship { font-size: 1.3rem; color: var(--text-muted); margin: 1.6rem 0 0; }
+  @media screen and (min-width: 900px) {
+    #shopify-section-{{ section.id }} .flame-fp__grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-2 gradient">
-  <div class="page-width flame-fp">
-    <div class="flame-fp__media">
+<div class="flame-fp flame-section flame-grain">
+  <div class="flame-wrap flame-pad flame-fp__grid">
+    <div class="flame-fp__media flame-reveal">
       {%- if fp.featured_image != blank -%}
-        <img class="flame-fp__main" id="flameFpMain-{{ section.id }}"
-             src="{{ fp.featured_image | image_url: width: 900 }}"
-             alt="{{ fp.featured_image.alt | default: fp.title | escape }}"
-             width="900" height="900" loading="lazy">
+        <img class="flame-fp__main" id="flameFpMain-{{ section.id }}" src="{{ fp.featured_image | image_url: width: 1000 }}" alt="{{ fp.featured_image.alt | default: fp.title | escape }}" width="1000" height="1000" loading="lazy">
         {%- if fp.images.size > 1 -%}
           <div class="flame-fp__thumbs">
             {%- for img in fp.images limit: 6 -%}
-              <button type="button" class="flame-fp__thumb{% if forloop.first %} is-active{% endif %}"
-                      data-full="{{ img | image_url: width: 900 }}"
-                      onclick="var m=document.getElementById('flameFpMain-{{ section.id }}');m.src=this.dataset.full;this.parentNode.querySelectorAll('.flame-fp__thumb').forEach(function(t){t.classList.remove('is-active')});this.classList.add('is-active');">
-                <img src="{{ img | image_url: width: 140 }}" alt="" width="64" height="64" loading="lazy">
+              <button type="button" class="flame-fp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ img | image_url: width: 1000 }}"
+                onclick="var m=document.getElementById('flameFpMain-{{ section.id }}');m.src=this.dataset.full;this.parentNode.querySelectorAll('.flame-fp__thumb').forEach(function(t){t.classList.remove('is-active')});this.classList.add('is-active');">
+                <img src="{{ img | image_url: width: 150 }}" alt="" width="68" height="68" loading="lazy">
               </button>
             {%- endfor -%}
           </div>
         {%- endif -%}
       {%- else -%}
-        <img class="flame-fp__main" src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="900" height="900" loading="lazy">
+        <img class="flame-fp__main" src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="1000" height="1000" loading="lazy">
       {%- endif -%}
     </div>
 
-    <div class="flame-fp__info">
+    <div class="flame-fp__info flame-reveal" data-delay="1">
+      <p class="flame-kicker">The Diffuser</p>
       <p class="flame-fp__stars">★★★★★ <span>4.8 · 910+ reviews</span></p>
       <h2 class="flame-fp__title">{{ fp.title | default: 'Mini Flame Aroma Diffuser' }}</h2>
 
       <div class="flame-fp__price">
         {%- if fp != blank -%}
-          <span class="flame-fp__price-now">{{ fp.price | money }}</span>
+          <span class="flame-fp__now">{{ fp.price | money }}</span>
           {%- if fp.compare_at_price > fp.price -%}
-            <span class="flame-fp__price-was">{{ fp.compare_at_price | money }}</span>
+            <span class="flame-fp__was">{{ fp.compare_at_price | money }}</span>
             <span class="flame-fp__save">Save {{ fp.compare_at_price | minus: fp.price | times: 100.0 | divided_by: fp.compare_at_price | round }}%</span>
           {%- endif -%}
         {%- else -%}
-          <span class="flame-fp__price-now">£34.95</span>
-          <span class="flame-fp__price-was">£59.95</span>
-          <span class="flame-fp__save">Save 40%</span>
+          <span class="flame-fp__now">£34.95</span><span class="flame-fp__was">£59.95</span><span class="flame-fp__save">Save 40%</span>
         {%- endif -%}
       </div>
 
@@ -92,20 +87,16 @@
       {%- if fp != blank -%}
         {%- form 'product', fp, id: 'flame-fp-form', novalidate: 'novalidate' -%}
           {%- unless fp.has_only_default_variant -%}
-            <div class="flame-fp__opt">
-              <span class="flame-fp__opt-name">Choose your colour</span>
-              <select name="id" class="flame-fp__select" aria-label="Choose a variant">
-                {%- for variant in fp.variants -%}
-                  <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>
-                    {{ variant.title }}{% unless variant.available %} — Sold out{% endunless %} · {{ variant.price | money }}
-                  </option>
-                {%- endfor -%}
-              </select>
-            </div>
+            <span class="flame-fp__optname">Choose your finish</span>
+            <select name="id" class="flame-fp__select" aria-label="Choose a variant">
+              {%- for variant in fp.variants -%}
+                <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>{{ variant.title }}{% unless variant.available %} — Sold out{% endunless %} · {{ variant.price | money }}</option>
+              {%- endfor -%}
+            </select>
           {%- else -%}
             <input type="hidden" name="id" value="{{ fp.selected_or_first_available_variant.id }}">
           {%- endunless -%}
-          <button type="submit" name="add" class="button flame-fp__atc"{% unless fp.available %} disabled{% endunless %}>
+          <button type="submit" name="add" class="flame-btn flame-fp__atc"{% unless fp.available %} disabled{% endunless %}>
             {%- if fp.available -%}Add to Cart — {{ fp.price | money }}{%- else -%}Sold Out{%- endif -%}
           </button>
         {%- endform -%}
@@ -113,7 +104,7 @@
         {% render 'flame-buy-button', label: 'Shop Now — 40% Off', class: 'flame-fp__atc' %}
       {%- endif -%}
 
-      <p class="flame-fp__ship">🚚 Free UK &amp; Ireland shipping · 🛡️ 30-day money-back guarantee</p>
+      <p class="flame-fp__ship">Free UK &amp; Ireland shipping · 30-day money-back guarantee</p>
     </div>
   </div>
 </div>

@@ -1,42 +1,40 @@
-{%- comment -%} Lumisca — Benefits (hardcoded) {%- endcomment -%}
+{%- comment -%} Lumisca — Benefits (premium dark cards, line icons) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-benefits { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-benefits__head { text-align: center; margin-bottom: 3rem; }
-  #shopify-section-{{ section.id }} .flame-benefits__title { font-size: 2.8rem; line-height: 1.15; margin: 0 0 1rem; }
-  #shopify-section-{{ section.id }} .flame-benefits__intro { font-size: 1.6rem; opacity: .9; max-width: 52ch; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .flame-benefits__grid { display: grid; grid-template-columns: 1fr; gap: 2.4rem; }
-  #shopify-section-{{ section.id }} .flame-benefit { text-align: center; padding: 2.6rem 2rem; border-radius: 14px; background: rgba(200,98,46,.06); border: 1px solid rgba(200,98,46,.16); }
-  #shopify-section-{{ section.id }} .flame-benefit__icon { font-size: 3.2rem; line-height: 1; display: block; margin-bottom: 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-benefit__title { font-size: 2rem; margin: 0 0 .8rem; }
-  #shopify-section-{{ section.id }} .flame-benefit__text { font-size: 1.5rem; line-height: 1.55; opacity: .9; margin: 0; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-benefits { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-benefits__title { font-size: 3.6rem; }
-    #shopify-section-{{ section.id }} .flame-benefits__grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  #shopify-section-{{ section.id }} .flame-bn { background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-bn__head { text-align: center; margin-bottom: 5rem; }
+  #shopify-section-{{ section.id }} .flame-bn__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-bn__grid { display: grid; grid-template-columns: 1fr; gap: 2.4rem; }
+  #shopify-section-{{ section.id }} .flame-bn__card { padding: 3.6rem 3rem; text-align: left; }
+  #shopify-section-{{ section.id }} .flame-bn__ic { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(212,104,46,.12); border: 1px solid rgba(212,104,46,.3); color: var(--ember); margin-bottom: 2.2rem; }
+  #shopify-section-{{ section.id }} .flame-bn__ic svg { width: 28px; height: 28px; }
+  #shopify-section-{{ section.id }} .flame-bn__ct { font-size: 2.1rem; color: var(--text-cream); margin: 0 0 1rem; }
+  #shopify-section-{{ section.id }} .flame-bn__cx { font-size: 1.55rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
+  @media screen and (min-width: 850px) {
+    #shopify-section-{{ section.id }} .flame-bn__grid { grid-template-columns: repeat(3, 1fr); gap: 2.8rem; }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-benefits">
-    <div class="flame-benefits__head">
-      <h2 class="flame-benefits__title">Why Homes Love Lumisca</h2>
-      <p class="flame-benefits__intro">One little diffuser, a whole new atmosphere.</p>
+<div class="flame-bn flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-bn__head flame-reveal">
+      <p class="flame-kicker flame-kicker--center">The Difference</p>
+      <h2 class="flame-bn__title">Why Homes Love Lumisca</h2>
     </div>
-    <div class="flame-benefits__grid">
-      <div class="flame-benefit">
-        <span class="flame-benefit__icon" aria-hidden="true">🔥</span>
-        <h3 class="flame-benefit__title">Cosy Ambience</h3>
-        <p class="flame-benefit__text">A realistic 7-colour flame glow transforms any room into a warm, relaxing retreat.</p>
+    <div class="flame-bn__grid">
+      <div class="flame-card flame-bn__card flame-reveal" data-delay="1">
+        <span class="flame-bn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5 6 10a6 6 0 0 1-12 0c0-2.4 1.2-4.2 2.4-5.4C8.6 8.8 10 7.5 10 5c1.2 1 2 2.4 2 4 1-.6 1.6-1.8 0-7z"/></svg></span>
+        <h3 class="flame-bn__ct">Cosy Ambience</h3>
+        <p class="flame-bn__cx">A realistic 7-colour flame glow transforms any room into a warm, relaxing retreat.</p>
       </div>
-      <div class="flame-benefit">
-        <span class="flame-benefit__icon" aria-hidden="true">🌿</span>
-        <h3 class="flame-benefit__title">Calming Aromatherapy</h3>
-        <p class="flame-benefit__text">Add a few drops of essential oil and fill your space with soothing scent — melt stress in minutes.</p>
+      <div class="flame-card flame-bn__card flame-reveal" data-delay="2">
+        <span class="flame-bn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c6-3 8-7 8-11a8 8 0 0 0-8 3 8 8 0 0 0-8-3c0 4 2 8 8 11z"/><path d="M12 21V9"/></svg></span>
+        <h3 class="flame-bn__ct">Calming Aromatherapy</h3>
+        <p class="flame-bn__cx">Add a few drops of essential oil and fill your space with soothing scent — melt stress in minutes.</p>
       </div>
-      <div class="flame-benefit">
-        <span class="flame-benefit__icon" aria-hidden="true">🤫</span>
-        <h3 class="flame-benefit__title">Whisper-Quiet &amp; Safe</h3>
-        <p class="flame-benefit__text">Silent operation, auto shut-off, and zero real flame — safe to leave on overnight or around kids and pets.</p>
+      <div class="flame-card flame-bn__card flame-reveal" data-delay="3">
+        <span class="flame-bn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"/></svg></span>
+        <h3 class="flame-bn__ct">Whisper-Quiet &amp; Safe</h3>
+        <p class="flame-bn__cx">Silent operation, auto shut-off, and zero real flame — safe overnight or around kids and pets.</p>
       </div>
     </div>
   </div>

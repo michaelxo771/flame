@@ -1,82 +1,52 @@
-{%- comment -%} Lumisca — Reviews (hardcoded, real customer photos + UK/IE names) {%- endcomment -%}
+{%- comment -%} Lumisca — Reviews (premium marquee, framed customer photos) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-rev { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-rev__head { text-align: center; margin-bottom: 2.8rem; }
-  #shopify-section-{{ section.id }} .flame-rev__title { font-size: 2.8rem; margin: 0 0 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-rev__badge { display: inline-flex; align-items: center; gap: .8rem; padding: .8rem 1.6rem; border-radius: 999px; background: rgba(200,98,46,.10); border: 1px solid rgba(200,98,46,.28); font-size: 1.45rem; font-weight: 600; }
-  #shopify-section-{{ section.id }} .flame-rev__badge .stars { color: #F5B841; letter-spacing: .08em; }
-  #shopify-section-{{ section.id }} .flame-rev__grid { display: grid; grid-template-columns: 1fr; gap: 1.8rem; }
-  #shopify-section-{{ section.id }} .flame-rev__card { background: rgba(247,243,238,.6); border: 1px solid rgba(138,128,120,.20); border-radius: 14px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-  #shopify-section-{{ section.id }} .flame-rev__card img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; display: block; margin-bottom: .4rem; }
-  #shopify-section-{{ section.id }} .flame-rev__stars { color: #F5B841; font-size: 1.6rem; letter-spacing: .08em; }
-  #shopify-section-{{ section.id }} .flame-rev__text { font-size: 1.5rem; line-height: 1.55; margin: 0; }
-  #shopify-section-{{ section.id }} .flame-rev__name { font-size: 1.4rem; font-weight: 700; margin: 0; }
-  #shopify-section-{{ section.id }} .flame-rev__verified { font-size: 1.2rem; opacity: .7; font-weight: 500; }
-  @media screen and (min-width: 600px) { #shopify-section-{{ section.id }} .flame-rev__grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
-  @media screen and (min-width: 990px) {
-    #shopify-section-{{ section.id }} .flame-rev { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-rev__title { font-size: 3.6rem; }
-    #shopify-section-{{ section.id }} .flame-rev__grid { grid-template-columns: repeat(4, 1fr); gap: 2.4rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-rv { background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-rv__head { text-align: center; margin-bottom: 3.4rem; }
+  #shopify-section-{{ section.id }} .flame-rv__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0 0 2rem; }
+  #shopify-section-{{ section.id }} .flame-rv__stat { display: inline-flex; flex-direction: column; align-items: center; gap: .4rem; }
+  #shopify-section-{{ section.id }} .flame-rv__stat b { font-family: var(--flame-serif); font-size: 4.4rem; color: var(--text-cream); line-height: 1; font-weight: 500; }
+  #shopify-section-{{ section.id }} .flame-rv__stat .s { color: var(--gold); font-size: 1.8rem; letter-spacing: .12em; }
+  #shopify-section-{{ section.id }} .flame-rv__stat small { color: var(--text-muted); font-size: 1.3rem; letter-spacing: .12em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .flame-rv__track { display: flex; gap: 2rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding: 1rem .5rem 2rem; scroll-snap-type: x mandatory; }
+  #shopify-section-{{ section.id }} .flame-rv__track::-webkit-scrollbar { display: none; }
+  #shopify-section-{{ section.id }} .flame-rv__card { flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
+  #shopify-section-{{ section.id }} .flame-rv__fig { position: relative; margin: 0; border-radius: 16px 16px 0 0; overflow: hidden; }
+  #shopify-section-{{ section.id }} .flame-rv__fig img { width: 100%; height: 300px; object-fit: cover; display: block; }
+  #shopify-section-{{ section.id }} .flame-rv__fig figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3rem 1.6rem 1.2rem; background: linear-gradient(transparent, rgba(11,9,8,.92)); }
+  #shopify-section-{{ section.id }} .flame-rv__nm { color: var(--text-cream); font-weight: 700; font-size: 1.4rem; display: flex; align-items: center; gap: .6rem; }
+  #shopify-section-{{ section.id }} .flame-rv__vf { color: var(--gold); font-size: 1.1rem; font-weight: 500; }
+  #shopify-section-{{ section.id }} .flame-rv__st { color: var(--gold); font-size: 1.4rem; letter-spacing: .08em; }
+  #shopify-section-{{ section.id }} .flame-rv__body { background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); border: 1px solid rgba(244,238,230,.09); border-top: 0; border-radius: 0 0 16px 16px; padding: 1.8rem; }
+  #shopify-section-{{ section.id }} .flame-rv__tx { color: var(--text-muted); font-size: 1.45rem; line-height: 1.6; margin: 0; }
 {%- endstyle -%}
 
-{%- assign five = '★★★★★' -%}
-{%- assign four = '★★★★☆' -%}
-<div class="color-scheme-1 gradient" id="reviews">
-  <div class="page-width flame-rev">
-    <div class="flame-rev__head">
-      <h2 class="flame-rev__title">Loved in Homes Across the UK &amp; Ireland</h2>
-      <span class="flame-rev__badge"><span class="stars">★★★★★</span> 4.8 / 5 from 910+ reviews</span>
+<div class="flame-rv flame-section flame-grain" id="reviews">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-rv__head flame-reveal">
+      <p class="flame-kicker flame-kicker--center">Real Homes</p>
+      <h2 class="flame-rv__title">Loved in Homes Across the UK &amp; Ireland</h2>
+      <span class="flame-rv__stat"><span class="s">★★★★★</span><b>4.8 / 5</b><small>from 910+ reviews</small></span>
     </div>
-    <div class="flame-rev__grid">
-      <article class="flame-rev__card">
-        <img src="{{ 'Aee4d9791e187485ab8bb0994fbfe1b0e1.webp' | file_url }}" alt="Lumisca diffuser in a customer's home" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">Absolutely obsessed. The flame looks so real and my living room feels instantly cosy every evening.</p>
-        <p class="flame-rev__name">Emma T. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'Ae03b2df0fba24a109d16c3f7caedbbe1H.webp' | file_url }}" alt="Lumisca diffuser glowing on a bedside table" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">Bought one for the bedroom and ended up ordering two more as gifts. The lavender + glow combo is pure calm.</p>
-        <p class="flame-rev__name">Ciara M. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'Ad90f08724cfb432789d6ef15ef7f71eej.webp' | file_url }}" alt="Lumisca diffuser with warm flame effect" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">Whisper quiet and looks premium. I leave it on while I read and drift right off.</p>
-        <p class="flame-rev__name">Jack R. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'A26bd5cd63b5d4d0da26f688849ca3e2ft.webp' | file_url }}" alt="Lumisca diffuser misting in a living room" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="4 out of 5 stars">{{ four }}</div>
-        <p class="flame-rev__text">Lovely ambience and the mist is gentle. Delivery to Ireland was quicker than expected.</p>
-        <p class="flame-rev__name">Aoife D. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'Acafc1bd913c04fe68150d13bca5bd8d52.webp' | file_url }}" alt="Lumisca diffuser with a red flame glow" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">The kids call it our little campfire. Totally safe, no worries leaving it on in the evenings.</p>
-        <p class="flame-rev__name">Laura B. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'A17ccc66711964f038d56ac4768afe4faH.webp' | file_url }}" alt="Lumisca diffuser on a shelf at night" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">Genuinely surprised by the quality for the price. The 7 colours are gorgeous on the darker settings.</p>
-        <p class="flame-rev__name">Sean K. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'A22f881bbc6b54d7cb4536819a888ea54A.webp' | file_url }}" alt="Lumisca diffuser creating cosy light" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">My little self-care ritual now. Fill it, pick the amber glow, and the whole room softens.</p>
-        <p class="flame-rev__name">Niamh O. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
-      <article class="flame-rev__card">
-        <img src="{{ 'A92c93f11f8d6435b978b85aee2704ef0n.webp' | file_url }}" alt="Lumisca diffuser with mist and flame" width="600" height="600" loading="lazy">
-        <div class="flame-rev__stars" aria-label="5 out of 5 stars">{{ five }}</div>
-        <p class="flame-rev__text">Does exactly what it promises. Cosy, quiet, and the auto shut-off gives real peace of mind.</p>
-        <p class="flame-rev__name">Tom H. <span class="flame-rev__verified">✓ Verified Buyer</span></p>
-      </article>
+  </div>
+  <div class="flame-wrap">
+    <div class="flame-rv__track flame-reveal" data-flame-marquee>
+      {%- assign names = 'Emma T.|Ciara M.|Jack R.|Aoife D.|Laura B.|Sean K.|Niamh O.|Tom H.' | split: '|' -%}
+      {%- assign texts = "Absolutely obsessed. The flame looks so real and my living room feels instantly cosy.|Ordered two more as gifts. The lavender and glow combo is pure calm.|Whisper quiet and looks premium. I leave it on while I read and drift right off.|Lovely ambience and the mist is gentle. Delivery to Ireland was quick.|The kids call it our little campfire. Totally safe leaving it on in the evenings.|Surprised by the quality for the price. The colours are gorgeous at night.|My little self-care ritual now — pick the amber glow and the room softens.|Does exactly what it promises. Cosy, quiet, and the auto shut-off is reassuring." | split: '|' -%}
+      {%- assign photos = 'Aee4d9791e187485ab8bb0994fbfe1b0e1.webp|Ae03b2df0fba24a109d16c3f7caedbbe1H.webp|Ad90f08724cfb432789d6ef15ef7f71eej.webp|A26bd5cd63b5d4d0da26f688849ca3e2ft.webp|Acafc1bd913c04fe68150d13bca5bd8d52.webp|A17ccc66711964f038d56ac4768afe4faH.webp|A22f881bbc6b54d7cb4536819a888ea54A.webp|A92c93f11f8d6435b978b85aee2704ef0n.webp' | split: '|' -%}
+      {%- assign ratings = '5|5|5|4|5|5|5|5' | split: '|' -%}
+      {%- for name in names -%}
+        {%- assign i = forloop.index0 -%}
+        <article class="flame-rv__card">
+          <figure class="flame-rv__fig">
+            <img src="{{ photos[i] | file_url }}" alt="Lumisca diffuser in {{ name }}'s home" width="300" height="300" loading="lazy">
+            <figcaption>
+              <div class="flame-rv__st" aria-label="{{ ratings[i] }} out of 5">{% if ratings[i] == '4' %}★★★★☆{% else %}★★★★★{% endif %}</div>
+              <div class="flame-rv__nm">{{ name }} <span class="flame-rv__vf">✓ Verified</span></div>
+            </figcaption>
+          </figure>
+          <div class="flame-rv__body"><p class="flame-rv__tx">{{ texts[i] }}</p></div>
+        </article>
+      {%- endfor -%}
     </div>
   </div>
 </div>

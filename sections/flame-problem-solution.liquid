@@ -1,32 +1,32 @@
-{%- comment -%} Lumisca — Problem → Solution (hardcoded, real in-home photo) {%- endcomment -%}
+{%- comment -%} Lumisca — Problem/Solution (dark editorial split) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-ps { display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 4.4rem 0; align-items: center; }
-  #shopify-section-{{ section.id }} .flame-ps__media img { width: 100%; height: auto; display: block; border-radius: 14px; }
-  #shopify-section-{{ section.id }} .flame-ps__title { font-size: 2.8rem; line-height: 1.15; margin: 0 0 1.4rem; text-wrap: balance; }
-  #shopify-section-{{ section.id }} .flame-ps__body { font-size: 1.65rem; line-height: 1.6; opacity: .92; }
-  #shopify-section-{{ section.id }} .flame-ps__body p { margin: 0 0 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-ps__cta { margin-top: 1rem; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-ps { grid-template-columns: 1fr 1fr; gap: 4rem; padding: 7rem 0; }
+  #shopify-section-{{ section.id }} .flame-ps { background: var(--bg-dark); }
+  #shopify-section-{{ section.id }} .flame-ps__grid { display: grid; grid-template-columns: 1fr; gap: 3.4rem; align-items: center; }
+  #shopify-section-{{ section.id }} .flame-ps__media { position: relative; justify-self: center; width: 100%; max-width: 520px; }
+  #shopify-section-{{ section.id }} .flame-ps__media::before { content: ''; position: absolute; inset: -12%; z-index: 0; background: var(--ember-glow); filter: blur(16px); opacity: .8; }
+  #shopify-section-{{ section.id }} .flame-ps__media img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.22); box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-ps__title { font-size: clamp(2.8rem, 4.6vw, 4rem); line-height: 1.08; margin: 0 0 2rem; color: var(--text-cream); text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-ps__body p { color: var(--text-muted); font-size: 1.65rem; line-height: 1.75; margin: 0 0 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-ps__cta { margin-top: 1.4rem; }
+  @media screen and (min-width: 900px) {
+    #shopify-section-{{ section.id }} .flame-ps__grid { grid-template-columns: 1fr 1fr; gap: 6rem; }
     #shopify-section-{{ section.id }} .flame-ps__media { order: 2; }
-    #shopify-section-{{ section.id }} .flame-ps__title { font-size: 3.6rem; }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-ps">
-    <div class="flame-ps__media">
-      <img src="{{ 'A330e6b8753c74c97b57d60c5f3de4aa6h.webp' | file_url }}"
-           alt="Mini Flame Aroma Diffuser glowing in a cosy living room"
-           width="800" height="800" loading="lazy" sizes="(min-width: 750px) 50vw, 100vw">
+<div class="flame-ps flame-section flame-grain">
+  <div class="flame-wrap flame-pad flame-ps__grid">
+    <div class="flame-ps__media flame-reveal" data-delay="1">
+      <img src="{{ 'A330e6b8753c74c97b57d60c5f3de4aa6h.webp' | file_url }}" alt="Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room" width="800" height="1000" loading="lazy" sizes="(min-width: 900px) 50vw, 100vw">
     </div>
-    <div class="flame-ps__text">
+    <div class="flame-ps__text flame-reveal">
+      <p class="flame-kicker">The Feeling</p>
       <h2 class="flame-ps__title">Your Home Should Feel Like an Escape</h2>
       <div class="flame-ps__body">
         <p>After a long, stressful day, you deserve to walk into calm. Harsh lighting and stale air keep your nervous system on edge.</p>
         <p>Lumisca transforms any space in seconds — a dancing flame glow and soothing aroma that melt the stress away.</p>
       </div>
-      {% render 'flame-buy-button', label: 'Shop Now', class: 'flame-ps__cta' %}
+      {% render 'flame-buy-button', label: 'Discover Lumisca', class: 'flame-ps__cta' %}
     </div>
   </div>
 </div>

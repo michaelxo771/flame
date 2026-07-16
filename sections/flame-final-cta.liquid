@@ -1,27 +1,36 @@
-{%- comment -%} Lumisca — Final CTA Banner (hardcoded, real in-home photo bg) {%- endcomment -%}
+{%- comment -%}
+  Lumisca — Final CTA. Deep-dark dramatic close. Optional background image:
+  upload 'cta-flame.jpg' to Files; otherwise a clean ember-glow gradient shows.
+{%- endcomment -%}
+{%- liquid
+  assign cta_image = 'cta-flame.jpg' | file_url
+-%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-cta { position: relative; padding: 5.4rem 0; text-align: center; overflow: hidden; isolation: isolate; color: #F7F3EE; }
-  #shopify-section-{{ section.id }} .flame-cta__media { position: absolute; inset: 0; z-index: -2; }
-  #shopify-section-{{ section.id }} .flame-cta__media img { width: 100%; height: 100%; object-fit: cover; }
-  #shopify-section-{{ section.id }} .flame-cta__overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(14,12,11,.55) 0%, rgba(14,12,11,.72) 100%); }
-  #shopify-section-{{ section.id }} .flame-cta__title { font-size: 3rem; line-height: 1.12; margin: 0 0 1.6rem; text-wrap: balance; }
-  #shopify-section-{{ section.id }} .flame-cta__sub { font-size: 1.65rem; margin: 0 auto 2.2rem; max-width: 44ch; opacity: .95; }
-  #shopify-section-{{ section.id }} .flame-cta__btn { min-width: 240px; font-size: 1.75rem; padding: 1.4rem 2.6rem; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-cta { padding: 7.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-cta__title { font-size: 4.4rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-fc { position: relative; overflow: hidden; isolation: isolate; background: var(--bg-deep); text-align: center; }
+  #shopify-section-{{ section.id }} .flame-fc__bg { position: absolute; inset: 0; z-index: 0; }
+  #shopify-section-{{ section.id }} .flame-fc__bg img { width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .flame-fc__overlay { position: absolute; inset: 0; z-index: 1; background: radial-gradient(90% 90% at 50% 40%, rgba(11,9,8,.4), rgba(11,9,8,.86)); }
+  #shopify-section-{{ section.id }} .flame-fc__glow { position: absolute; z-index: 1; left: 50%; top: 42%; transform: translate(-50%,-50%); width: 80vw; max-width: 720px; aspect-ratio: 1; background: var(--ember-glow); filter: blur(26px); opacity: .6; }
+  #shopify-section-{{ section.id }} .flame-fc__inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .flame-fc__title { font-size: clamp(3.2rem, 6vw, 5rem); color: var(--text-cream); line-height: 1.04; margin: 0 0 1.8rem; text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-fc__sub { font-size: clamp(1.6rem, 2vw, 1.9rem); color: var(--text-muted); margin: 0 auto 3rem; max-width: 44ch; }
+  #shopify-section-{{ section.id }} .flame-fc__hair { margin: 0 auto 2.6rem; }
 {%- endstyle -%}
 
-<div class="flame-cta">
-  <div class="flame-cta__media">
-    <img src="{{ 'A11e5b99e17ff4bf599a6700207eccd87c.webp' | file_url }}" alt="Mini Flame Aroma Diffuser glowing in a warm, dim room" width="1600" height="900" loading="lazy">
-  </div>
-  <div class="flame-cta__overlay"></div>
-  <div class="page-width">
-    <h2 class="flame-cta__title">Bring the Cosy Home Tonight</h2>
-    <p class="flame-cta__sub">Limited-time 40% off — free UK &amp; Ireland shipping while it lasts.</p>
-    {% render 'flame-buy-button', label: 'Shop Now — 40% Off', class: 'flame-cta__btn' %}
+<div class="flame-fc flame-section flame-grain">
+  {%- if cta_image != blank -%}
+    <div class="flame-fc__bg"><img src="{{ cta_image }}" alt="" width="1920" height="1080" loading="lazy"></div>
+    <div class="flame-fc__overlay"></div>
+  {%- endif -%}
+  <div class="flame-fc__glow" aria-hidden="true"></div>
+  <div class="flame-wrap flame-pad">
+    <div class="flame-fc__inner flame-reveal">
+      <hr class="flame-hairline flame-fc__hair">
+      <p class="flame-kicker flame-kicker--center">Your Cosy Escape Awaits</p>
+      <h2 class="flame-fc__title">Bring the Cosy Home Tonight</h2>
+      <p class="flame-fc__sub">Limited-time 40% off — with free UK &amp; Ireland shipping and a 30-day money-back guarantee.</p>
+      {% render 'flame-buy-button', label: 'Shop Now — 40% Off' %}
+    </div>
   </div>
 </div>
 

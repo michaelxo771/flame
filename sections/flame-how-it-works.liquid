@@ -1,36 +1,43 @@
-{%- comment -%} Lumisca — How It Works (hardcoded) {%- endcomment -%}
+{%- comment -%} Lumisca — The Ritual (how it works) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-how { padding: 4.4rem 0; text-align: center; }
-  #shopify-section-{{ section.id }} .flame-how__title { font-size: 2.8rem; margin: 0 0 3rem; }
-  #shopify-section-{{ section.id }} .flame-how__grid { display: grid; grid-template-columns: 1fr; gap: 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-how__num { width: 5.4rem; height: 5.4rem; margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #C8622E; color: #fff; font-size: 2.2rem; font-weight: 700; }
-  #shopify-section-{{ section.id }} .flame-how__step-title { font-size: 2rem; margin: 0 0 .6rem; }
-  #shopify-section-{{ section.id }} .flame-how__step-text { font-size: 1.5rem; line-height: 1.5; opacity: .9; margin: 0 auto; max-width: 34ch; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-how { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-how__title { font-size: 3.6rem; }
-    #shopify-section-{{ section.id }} .flame-how__grid { grid-template-columns: repeat(3, 1fr); gap: 3.2rem; }
+  #shopify-section-{{ section.id }} .flame-rt { background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-rt__head { text-align: center; margin-bottom: 5rem; }
+  #shopify-section-{{ section.id }} .flame-rt__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-rt__steps { position: relative; display: grid; grid-template-columns: 1fr; gap: 3.4rem; }
+  #shopify-section-{{ section.id }} .flame-rt__line { display: none; }
+  #shopify-section-{{ section.id }} .flame-rt__step { position: relative; text-align: center; z-index: 1; }
+  #shopify-section-{{ section.id }} .flame-rt__badge { width: 6.4rem; height: 6.4rem; margin: 0 auto 1.8rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: radial-gradient(circle at 50% 35%, var(--ember-hover), var(--ember-deep)); color: #fff; font-family: var(--flame-serif); font-size: 2.4rem; box-shadow: 0 0 0 6px rgba(212,104,46,.12), 0 10px 30px rgba(212,104,46,.35); }
+  #shopify-section-{{ section.id }} .flame-rt__ct { font-size: 2rem; color: var(--text-cream); margin: 0 0 .8rem; }
+  #shopify-section-{{ section.id }} .flame-rt__cx { font-size: 1.5rem; line-height: 1.65; color: var(--text-muted); margin: 0 auto; max-width: 30ch; }
+  @media screen and (min-width: 850px) {
+    #shopify-section-{{ section.id }} .flame-rt__steps { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+    #shopify-section-{{ section.id }} .flame-rt__line { display: block; position: absolute; top: 3.2rem; left: 16%; right: 16%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 1.1s var(--ease) .2s; z-index: 0; }
+    #shopify-section-{{ section.id }} .flame-rt__steps.is-visible .flame-rt__line { transform: scaleX(1); }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-2 gradient">
-  <div class="page-width flame-how">
-    <h2 class="flame-how__title">How It Works</h2>
-    <div class="flame-how__grid">
-      <div class="flame-how__step">
-        <div class="flame-how__num" aria-hidden="true">1</div>
-        <h3 class="flame-how__step-title">Fill</h3>
-        <p class="flame-how__step-text">Add water and a few drops of your favourite essential oil.</p>
+<div class="flame-rt flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-rt__head flame-reveal">
+      <p class="flame-kicker flame-kicker--center">The Ritual</p>
+      <h2 class="flame-rt__title">Three Steps to Calm</h2>
+    </div>
+    <div class="flame-rt__steps flame-reveal">
+      <div class="flame-rt__line" aria-hidden="true"></div>
+      <div class="flame-rt__step">
+        <div class="flame-rt__badge">I</div>
+        <h3 class="flame-rt__ct">Fill</h3>
+        <p class="flame-rt__cx">Add water and a few drops of your favourite essential oil.</p>
       </div>
-      <div class="flame-how__step">
-        <div class="flame-how__num" aria-hidden="true">2</div>
-        <h3 class="flame-how__step-title">Choose Your Glow</h3>
-        <p class="flame-how__step-text">Tap to cycle through 7 warm flame colours — or lock in your favourite.</p>
+      <div class="flame-rt__step">
+        <div class="flame-rt__badge">II</div>
+        <h3 class="flame-rt__ct">Choose Your Glow</h3>
+        <p class="flame-rt__cx">Tap through 7 warm flame colours — or settle on your favourite.</p>
       </div>
-      <div class="flame-how__step">
-        <div class="flame-how__num" aria-hidden="true">3</div>
-        <h3 class="flame-how__step-title">Relax</h3>
-        <p class="flame-how__step-text">Sit back as gentle mist and cosy light fill the room. Auto shut-off keeps it safe.</p>
+      <div class="flame-rt__step">
+        <div class="flame-rt__badge">III</div>
+        <h3 class="flame-rt__ct">Unwind</h3>
+        <p class="flame-rt__cx">Let gentle mist and cosy light fill the room. Auto shut-off keeps it safe.</p>
       </div>
     </div>
   </div>
