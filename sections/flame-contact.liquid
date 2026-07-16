@@ -1,0 +1,62 @@
+{%- comment -%} Lumisca — Contact page (hardcoded intro + working contact form) {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-contact { padding: 4.4rem 0; }
+  #shopify-section-{{ section.id }} .flame-contact__inner { max-width: 620px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .flame-contact__head { text-align: center; margin-bottom: 2.6rem; }
+  #shopify-section-{{ section.id }} .flame-contact__title { font-size: 3rem; line-height: 1.12; margin: 0 0 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-contact__lead { font-size: 1.6rem; line-height: 1.6; opacity: .92; margin: 0; }
+  #shopify-section-{{ section.id }} .flame-contact__lead a { color: #C8622E; font-weight: 600; }
+  #shopify-section-{{ section.id }} .flame-contact__success { background: rgba(31,138,76,.1); border: 1px solid rgba(31,138,76,.4); color: #1f6b3d; border-radius: 10px; padding: 1.4rem 1.6rem; font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-contact__field { margin-bottom: 1.4rem; }
+  #shopify-section-{{ section.id }} .flame-contact__field label { display: block; font-size: 1.35rem; font-weight: 600; margin-bottom: .5rem; }
+  #shopify-section-{{ section.id }} .flame-contact__field input,
+  #shopify-section-{{ section.id }} .flame-contact__field textarea { width: 100%; font-size: 1.5rem; padding: 1.1rem 1.2rem; border-radius: 8px; border: 1px solid rgba(138,128,120,.5); background: #fff; color: #1A1614; font-family: inherit; }
+  #shopify-section-{{ section.id }} .flame-contact__field textarea { min-height: 150px; resize: vertical; }
+  #shopify-section-{{ section.id }} .flame-contact__submit { width: 100%; font-size: 1.7rem; padding: 1.4rem 2rem; margin-top: .6rem; }
+  #shopify-section-{{ section.id }} .flame-contact__error { background: rgba(178,59,59,.1); border: 1px solid rgba(178,59,59,.4); color: #a33; border-radius: 10px; padding: 1.2rem 1.4rem; font-size: 1.4rem; margin-bottom: 1.6rem; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-contact { padding: 6.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-contact__title { font-size: 3.8rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-scheme-1 gradient">
+  <div class="page-width flame-contact">
+    <div class="flame-contact__inner">
+      <div class="flame-contact__head">
+        <h1 class="flame-contact__title">We're Here to Help</h1>
+        <p class="flame-contact__lead">Questions about your order, delivery, or the diffuser itself? Drop us a message below or email <a href="mailto:support@lumisca.co.uk">support@lumisca.co.uk</a> — our team replies within 24 hours, Monday to Friday.</p>
+      </div>
+
+      {%- form 'contact', id: 'flame-contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="flame-contact__success">✅ Thanks for reaching out — we've got your message and will be in touch within 24 hours.</div>
+        {%- elsif form.errors -%}
+          <div class="flame-contact__error">Sorry, something didn't go through. Please check the highlighted fields and try again.</div>
+        {%- endif -%}
+
+        <div class="flame-contact__field">
+          <label for="flameContactName">Name</label>
+          <input type="text" id="flameContactName" name="contact[name]" value="{{ form.name }}" autocomplete="name" required>
+        </div>
+        <div class="flame-contact__field">
+          <label for="flameContactEmail">Email</label>
+          <input type="email" id="flameContactEmail" name="contact[email]" value="{{ form.email }}" autocomplete="email" required>
+        </div>
+        <div class="flame-contact__field">
+          <label for="flameContactPhone">Phone (optional)</label>
+          <input type="tel" id="flameContactPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+        </div>
+        <div class="flame-contact__field">
+          <label for="flameContactBody">How can we help?</label>
+          <textarea id="flameContactBody" name="contact[body]" required>{{ form.body }}</textarea>
+        </div>
+        <button type="submit" class="button flame-contact__submit">Send Message</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Flame Contact", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Contact" } ] }
+{% endschema %}

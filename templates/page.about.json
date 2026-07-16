@@ -1,26 +1,6 @@
 {
   "sections": {
-    "story": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "Our Little Obsession With Cosy", "heading_size": "h1" } },
-        "text": { "type": "text", "settings": { "text": "<p>Lumisca started with a simple feeling: that quiet moment when you dim the lights, breathe out, and your home finally feels like <em>yours</em> again.</p><p>We fell in love with the flicker of a flame — but not the smoke, the soot, or worrying whether we'd blown out the candle. So we set out to bottle the feeling instead of the fire. The Mini Flame Aroma Diffuser gives you the dancing glow, the gentle mist, and your favourite scent — safe to leave glowing while you drift off.</p><p>Today, Lumisca sits on bedside tables and living-room shelves across the UK and Ireland, turning ordinary evenings into little escapes. Thanks for being part of it.</p>", "text_style": "body" } },
-        "button": { "type": "button", "settings": { "button_label": "Shop the Diffuser", "button_link": "", "button_style_secondary": false } }
-      },
-      "block_order": ["heading", "text", "button"],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 40
-      }
-    },
-    "main": {
-      "type": "main-page",
-      "settings": { "padding_top": 0, "padding_bottom": 36 }
-    }
+    "about": { "type": "flame-about" }
   },
-  "order": ["story", "main"]
+  "order": ["about"]
 }
