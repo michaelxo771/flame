@@ -1,57 +1,41 @@
-{%- comment -%} Lumisca — Contact page (hardcoded intro + working contact form) {%- endcomment -%}
+{%- comment -%} Lumisca — Contact (premium dark, working form) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-contact { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-contact__inner { max-width: 620px; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .flame-contact__head { text-align: center; margin-bottom: 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-contact__title { font-size: 3rem; line-height: 1.12; margin: 0 0 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-contact__lead { font-size: 1.6rem; line-height: 1.6; opacity: .92; margin: 0; }
-  #shopify-section-{{ section.id }} .flame-contact__lead a { color: #C8622E; font-weight: 600; }
-  #shopify-section-{{ section.id }} .flame-contact__success { background: rgba(31,138,76,.1); border: 1px solid rgba(31,138,76,.4); color: #1f6b3d; border-radius: 10px; padding: 1.4rem 1.6rem; font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
-  #shopify-section-{{ section.id }} .flame-contact__field { margin-bottom: 1.4rem; }
-  #shopify-section-{{ section.id }} .flame-contact__field label { display: block; font-size: 1.35rem; font-weight: 600; margin-bottom: .5rem; }
-  #shopify-section-{{ section.id }} .flame-contact__field input,
-  #shopify-section-{{ section.id }} .flame-contact__field textarea { width: 100%; font-size: 1.5rem; padding: 1.1rem 1.2rem; border-radius: 8px; border: 1px solid rgba(138,128,120,.5); background: #fff; color: #1A1614; font-family: inherit; }
-  #shopify-section-{{ section.id }} .flame-contact__field textarea { min-height: 150px; resize: vertical; }
-  #shopify-section-{{ section.id }} .flame-contact__submit { width: 100%; font-size: 1.7rem; padding: 1.4rem 2rem; margin-top: .6rem; }
-  #shopify-section-{{ section.id }} .flame-contact__error { background: rgba(178,59,59,.1); border: 1px solid rgba(178,59,59,.4); color: #a33; border-radius: 10px; padding: 1.2rem 1.4rem; font-size: 1.4rem; margin-bottom: 1.6rem; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-contact { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-contact__title { font-size: 3.8rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-ct { background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-ct__inner { max-width: 600px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .flame-ct__head { text-align: center; margin-bottom: 3rem; }
+  #shopify-section-{{ section.id }} .flame-ct__title { font-size: clamp(3rem, 5vw, 4rem); color: var(--text-cream); margin: 0 0 1.4rem; }
+  #shopify-section-{{ section.id }} .flame-ct__lead { font-size: 1.6rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-ct__lead a { color: var(--ember); font-weight: 600; }
+  #shopify-section-{{ section.id }} .flame-ct__ok { background: rgba(201,162,75,.12); border: 1px solid rgba(201,162,75,.4); color: var(--text-cream); border-radius: 12px; padding: 1.6rem; font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-ct__err { background: rgba(178,59,59,.14); border: 1px solid rgba(178,59,59,.45); color: #e8a5a5; border-radius: 12px; padding: 1.3rem; font-size: 1.4rem; margin-bottom: 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-ct__field { margin-bottom: 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-ct__field label { display: block; font-size: 1.2rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .7rem; }
+  #shopify-section-{{ section.id }} .flame-ct__field input, #shopify-section-{{ section.id }} .flame-ct__field textarea { width: 100%; font-size: 1.5rem; padding: 1.3rem 1.4rem; border-radius: 12px; border: 1px solid rgba(244,238,230,.2); background: rgba(244,238,230,.04); color: var(--text-cream); font-family: var(--flame-sans); }
+  #shopify-section-{{ section.id }} .flame-ct__field input:focus, #shopify-section-{{ section.id }} .flame-ct__field textarea:focus { outline: none; border-color: var(--ember); }
+  #shopify-section-{{ section.id }} .flame-ct__field textarea { min-height: 150px; resize: vertical; }
+  #shopify-section-{{ section.id }} .flame-ct__submit { width: 100%; margin-top: .6rem; }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-contact">
-    <div class="flame-contact__inner">
-      <div class="flame-contact__head">
-        <h1 class="flame-contact__title">We're Here to Help</h1>
-        <p class="flame-contact__lead">Questions about your order, delivery, or the diffuser itself? Drop us a message below or email <a href="mailto:support@lumisca.co.uk">support@lumisca.co.uk</a> — our team replies within 24 hours, Monday to Friday.</p>
+<div class="flame-ct flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-ct__inner flame-reveal">
+      <div class="flame-ct__head">
+        <p class="flame-kicker flame-kicker--center">Get in Touch</p>
+        <h1 class="flame-ct__title">We're Here to Help</h1>
+        <p class="flame-ct__lead">Questions about your order, delivery, or the diffuser itself? Drop us a message below or email <a href="mailto:support@lumisca.co.uk">support@lumisca.co.uk</a> — our team replies within 24 hours, Monday to Friday.</p>
       </div>
 
       {%- form 'contact', id: 'flame-contact-form' -%}
         {%- if form.posted_successfully? -%}
-          <div class="flame-contact__success">✅ Thanks for reaching out — we've got your message and will be in touch within 24 hours.</div>
+          <div class="flame-ct__ok">✔ Thanks for reaching out — we've got your message and will be in touch within 24 hours.</div>
         {%- elsif form.errors -%}
-          <div class="flame-contact__error">Sorry, something didn't go through. Please check the highlighted fields and try again.</div>
+          <div class="flame-ct__err">Sorry, something didn't go through. Please check the fields and try again.</div>
         {%- endif -%}
-
-        <div class="flame-contact__field">
-          <label for="flameContactName">Name</label>
-          <input type="text" id="flameContactName" name="contact[name]" value="{{ form.name }}" autocomplete="name" required>
-        </div>
-        <div class="flame-contact__field">
-          <label for="flameContactEmail">Email</label>
-          <input type="email" id="flameContactEmail" name="contact[email]" value="{{ form.email }}" autocomplete="email" required>
-        </div>
-        <div class="flame-contact__field">
-          <label for="flameContactPhone">Phone (optional)</label>
-          <input type="tel" id="flameContactPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
-        </div>
-        <div class="flame-contact__field">
-          <label for="flameContactBody">How can we help?</label>
-          <textarea id="flameContactBody" name="contact[body]" required>{{ form.body }}</textarea>
-        </div>
-        <button type="submit" class="button flame-contact__submit">Send Message</button>
+        <div class="flame-ct__field"><label for="flCtName">Name</label><input type="text" id="flCtName" name="contact[name]" value="{{ form.name }}" autocomplete="name" required></div>
+        <div class="flame-ct__field"><label for="flCtEmail">Email</label><input type="email" id="flCtEmail" name="contact[email]" value="{{ form.email }}" autocomplete="email" required></div>
+        <div class="flame-ct__field"><label for="flCtPhone">Phone (optional)</label><input type="tel" id="flCtPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel"></div>
+        <div class="flame-ct__field"><label for="flCtBody">How can we help?</label><textarea id="flCtBody" name="contact[body]" required>{{ form.body }}</textarea></div>
+        <button type="submit" class="flame-btn flame-ct__submit">Send Message</button>
       {%- endform -%}
     </div>
   </div>

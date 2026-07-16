@@ -1,4 +1,4 @@
-{%- comment -%} Lumisca — About page (hardcoded brand story) {%- endcomment -%}
+{%- comment -%} Lumisca — About (premium dark) {%- endcomment -%}
 {%- liquid
   assign fp = collections.all.products.first
   for p in collections.all.products
@@ -9,56 +9,53 @@
   endfor
 -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-about { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-about__hero { max-width: 720px; margin: 0 auto 3rem; text-align: center; }
-  #shopify-section-{{ section.id }} .flame-about__eyebrow { letter-spacing: .28em; text-transform: uppercase; font-size: 1.2rem; opacity: .7; margin: 0 0 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-about__title { font-size: 3rem; line-height: 1.12; margin: 0 0 1.4rem; text-wrap: balance; }
-  #shopify-section-{{ section.id }} .flame-about__lead { font-size: 1.75rem; line-height: 1.55; opacity: .92; margin: 0; }
-  #shopify-section-{{ section.id }} .flame-about__grid { display: grid; grid-template-columns: 1fr; gap: 2.4rem; align-items: center; max-width: 980px; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .flame-about__img img { width: 100%; height: auto; border-radius: 16px; display: block; box-shadow: 0 18px 44px rgba(14,12,11,.14); }
-  #shopify-section-{{ section.id }} .flame-about__body p { font-size: 1.6rem; line-height: 1.65; opacity: .92; margin: 0 0 1.3rem; }
-  #shopify-section-{{ section.id }} .flame-about__cta { margin-top: 1rem; }
-  #shopify-section-{{ section.id }} .flame-about__values { display: grid; grid-template-columns: 1fr; gap: 1.6rem; max-width: 980px; margin: 3.4rem auto 0; }
-  #shopify-section-{{ section.id }} .flame-about__value { text-align: center; padding: 2rem 1.6rem; border-radius: 14px; background: rgba(200,98,46,.06); border: 1px solid rgba(200,98,46,.16); }
-  #shopify-section-{{ section.id }} .flame-about__value h3 { font-size: 1.8rem; margin: .6rem 0 .4rem; }
-  #shopify-section-{{ section.id }} .flame-about__value p { font-size: 1.4rem; line-height: 1.5; opacity: .9; margin: 0; }
-  #shopify-section-{{ section.id }} .flame-about__value .ic { font-size: 2.6rem; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-about { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-about__title { font-size: 4rem; }
-    #shopify-section-{{ section.id }} .flame-about__grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
-    #shopify-section-{{ section.id }} .flame-about__values { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  #shopify-section-{{ section.id }} .flame-ab { background: var(--bg-dark); }
+  #shopify-section-{{ section.id }} .flame-ab__hero { max-width: 760px; margin: 0 auto 4.4rem; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-ab__title { font-size: clamp(3.2rem, 5.4vw, 4.6rem); color: var(--text-cream); line-height: 1.05; margin: 0 0 1.8rem; }
+  #shopify-section-{{ section.id }} .flame-ab__lead { font-size: clamp(1.7rem, 2.2vw, 2rem); line-height: 1.6; color: var(--text-muted); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-ab__grid { display: grid; grid-template-columns: 1fr; gap: 3.4rem; align-items: center; }
+  #shopify-section-{{ section.id }} .flame-ab__img { position: relative; }
+  #shopify-section-{{ section.id }} .flame-ab__img::before { content: ''; position: absolute; inset: -10%; background: var(--ember-glow); filter: blur(18px); opacity: .75; }
+  #shopify-section-{{ section.id }} .flame-ab__img img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.22); box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-ab__body p { font-size: 1.6rem; line-height: 1.75; color: var(--text-muted); margin: 0 0 1.5rem; }
+  #shopify-section-{{ section.id }} .flame-ab__cta { margin-top: 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-ab__values { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 4.4rem; }
+  #shopify-section-{{ section.id }} .flame-ab__v { padding: 2.6rem; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-ab__v h3 { font-size: 1.9rem; color: var(--text-cream); margin: 0 0 .8rem; }
+  #shopify-section-{{ section.id }} .flame-ab__v p { font-size: 1.45rem; line-height: 1.6; color: var(--text-muted); margin: 0; }
+  #shopify-section-{{ section.id }} .flame-ab__v .ic { color: var(--gold); font-size: 2.4rem; }
+  @media screen and (min-width: 850px) {
+    #shopify-section-{{ section.id }} .flame-ab__grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+    #shopify-section-{{ section.id }} .flame-ab__values { grid-template-columns: repeat(3, 1fr); }
   }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-about">
-    <div class="flame-about__hero">
-      <p class="flame-about__eyebrow">Our Story</p>
-      <h1 class="flame-about__title">Our Little Obsession With Cosy</h1>
-      <p class="flame-about__lead">Lumisca started with a simple feeling: that quiet moment when you dim the lights, breathe out, and your home finally feels like yours again.</p>
+<div class="flame-ab flame-section flame-grain">
+  <div class="flame-wrap flame-pad">
+    <div class="flame-ab__hero flame-reveal">
+      <p class="flame-kicker flame-kicker--center">Our Story</p>
+      <h1 class="flame-ab__title">Our Little Obsession With Cosy</h1>
+      <p class="flame-ab__lead">Lumisca started with a simple feeling: that quiet moment when you dim the lights, breathe out, and your home finally feels like yours again.</p>
     </div>
-
-    <div class="flame-about__grid">
-      <div class="flame-about__img">
+    <div class="flame-ab__grid">
+      <div class="flame-ab__img flame-reveal" data-delay="1">
         {%- if fp.featured_image != blank -%}
-          <img src="{{ fp.featured_image | image_url: width: 800 }}" alt="{{ fp.featured_image.alt | default: 'Mini Flame Aroma Diffuser' | escape }}" width="800" height="800" loading="lazy">
+          <img src="{{ fp.featured_image | image_url: width: 900 }}" alt="{{ fp.featured_image.alt | default: 'Mini Flame Aroma Diffuser' | escape }}" width="900" height="900" loading="lazy">
         {%- else -%}
-          <img src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="800" height="800" loading="lazy">
+          <img src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="900" height="900" loading="lazy">
         {%- endif -%}
       </div>
-      <div class="flame-about__body">
+      <div class="flame-ab__body flame-reveal">
         <p>We fell in love with the flicker of a flame — but not the smoke, the soot, or worrying whether we'd blown out the candle. So we set out to bottle the feeling instead of the fire.</p>
         <p>The Mini Flame Aroma Diffuser gives you the dancing glow, the gentle mist, and your favourite scent — safe to leave glowing while you drift off. No open flame, no danger, just calm.</p>
         <p>Today, Lumisca sits on bedside tables and living-room shelves across the UK and Ireland, turning ordinary evenings into little escapes. Thanks for being part of it.</p>
-        {% render 'flame-buy-button', label: 'Shop the Diffuser', class: 'flame-about__cta' %}
+        {% render 'flame-buy-button', label: 'Shop the Diffuser', class: 'flame-ab__cta' %}
       </div>
     </div>
-
-    <div class="flame-about__values">
-      <div class="flame-about__value"><div class="ic" aria-hidden="true">🔥</div><h3>Cosy, Not Risky</h3><p>Realistic flame glow with zero real fire, smoke or soot.</p></div>
-      <div class="flame-about__value"><div class="ic" aria-hidden="true">🌿</div><h3>Calm on Tap</h3><p>Soothing aroma and soft light to melt the day away.</p></div>
-      <div class="flame-about__value"><div class="ic" aria-hidden="true">💛</div><h3>Loved &amp; Backed</h3><p>900+ happy homes and a 30-day money-back guarantee.</p></div>
+    <div class="flame-ab__values">
+      <div class="flame-card flame-ab__v flame-reveal" data-delay="1"><div class="ic">✶</div><h3>Cosy, Not Risky</h3><p>Realistic flame glow with zero real fire, smoke or soot.</p></div>
+      <div class="flame-card flame-ab__v flame-reveal" data-delay="2"><div class="ic">✶</div><h3>Calm on Tap</h3><p>Soothing aroma and soft light to melt the day away.</p></div>
+      <div class="flame-card flame-ab__v flame-reveal" data-delay="3"><div class="ic">✶</div><h3>Loved &amp; Backed</h3><p>900+ happy homes and a 30-day money-back guarantee.</p></div>
     </div>
   </div>
 </div>

@@ -1,24 +1,21 @@
-{%- comment -%} Lumisca — Track Order (hardcoded) {%- endcomment -%}
+{%- comment -%} Lumisca — Track Order (premium dark) {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .flame-track { padding: 4.4rem 0; }
-  #shopify-section-{{ section.id }} .flame-track__inner { max-width: 640px; margin: 0 auto; text-align: center; }
-  #shopify-section-{{ section.id }} .flame-track__icon { font-size: 3rem; margin-bottom: 1rem; }
-  #shopify-section-{{ section.id }} .flame-track__title { font-size: 2.8rem; margin: 0 0 1.2rem; }
-  #shopify-section-{{ section.id }} .flame-track__body { font-size: 1.6rem; line-height: 1.6; opacity: .92; margin: 0 0 2rem; }
-  #shopify-section-{{ section.id }} .flame-track__btn { min-width: 220px; }
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .flame-track { padding: 6.4rem 0; }
-    #shopify-section-{{ section.id }} .flame-track__title { font-size: 3.6rem; }
-  }
+  #shopify-section-{{ section.id }} .flame-tk { background: var(--bg-deep); position: relative; overflow: hidden; }
+  #shopify-section-{{ section.id }} .flame-tk__glow { position: absolute; z-index: 0; left: 50%; top: 40%; transform: translate(-50%,-50%); width: 70vw; max-width: 640px; aspect-ratio: 1; background: var(--ember-glow); filter: blur(28px); opacity: .5; }
+  #shopify-section-{{ section.id }} .flame-tk__inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-tk__title { font-size: clamp(3rem, 5vw, 4rem); color: var(--text-cream); margin: 0 0 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-tk__body { font-size: 1.65rem; line-height: 1.7; color: var(--text-muted); margin: 0 0 2.8rem; }
+  #shopify-section-{{ section.id }} .flame-tk__body strong { color: var(--text-cream); }
 {%- endstyle -%}
 
-<div class="color-scheme-1 gradient">
-  <div class="page-width flame-track">
-    <div class="flame-track__inner">
-      <div class="flame-track__icon" aria-hidden="true">📦</div>
-      <h1 class="flame-track__title">Track Your Order</h1>
-      <p class="flame-track__body">Pop your tracking number into the box below to see exactly where your Lumisca is. Didn't get a tracking email yet? Orders ship within 1–2 business days — hang tight, it's on the way. Any trouble at all, email <strong>support@lumisca.co.uk</strong> and we'll help right away.</p>
-      <a href="https://t.17track.net/en" class="button flame-track__btn" target="_blank" rel="noopener">Track My Order</a>
+<div class="flame-tk flame-section flame-grain">
+  <div class="flame-tk__glow" aria-hidden="true"></div>
+  <div class="flame-wrap flame-pad">
+    <div class="flame-tk__inner flame-reveal">
+      <p class="flame-kicker flame-kicker--center">Order Status</p>
+      <h1 class="flame-tk__title">Track Your Order</h1>
+      <p class="flame-tk__body">Pop your tracking number into the box below to see exactly where your Lumisca is. Didn't get a tracking email yet? Orders ship within 1–2 business days — hang tight, it's on the way. Any trouble at all, email <strong>support@lumisca.co.uk</strong> and we'll help right away.</p>
+      <a href="https://t.17track.net/en" class="flame-btn" target="_blank" rel="noopener">Track My Order</a>
     </div>
   </div>
 </div>
