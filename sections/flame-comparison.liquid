@@ -1,33 +1,11 @@
-{%- comment -%} Lumisca — Comparison Table (Lumisca vs Ordinary Diffusers) {%- endcomment -%}
+{%- comment -%} Lumisca — Comparison Table (hardcoded) {%- endcomment -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-cmp { padding: 4.4rem 0; }
   #shopify-section-{{ section.id }} .flame-cmp__title { font-size: 2.8rem; text-align: center; margin: 0 0 2.6rem; }
-  #shopify-section-{{ section.id }} .flame-cmp__table {
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(14,12,11,.10);
-  }
-  #shopify-section-{{ section.id }} .flame-cmp__table th,
-  #shopify-section-{{ section.id }} .flame-cmp__table td {
-    padding: 1.4rem 1rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(138,128,120,.22);
-    font-size: 1.4rem;
-  }
-  #shopify-section-{{ section.id }} .flame-cmp__table thead th {
-    font-size: 1.45rem;
-    font-weight: 700;
-    background: rgba(200,98,46,.10);
-  }
-  #shopify-section-{{ section.id }} .flame-cmp__table th:first-child,
-  #shopify-section-{{ section.id }} .flame-cmp__table td:first-child {
-    text-align: left;
-    font-weight: 600;
-  }
+  #shopify-section-{{ section.id }} .flame-cmp__table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(14,12,11,.10); }
+  #shopify-section-{{ section.id }} .flame-cmp__table th, #shopify-section-{{ section.id }} .flame-cmp__table td { padding: 1.4rem 1rem; text-align: center; border-bottom: 1px solid rgba(138,128,120,.22); font-size: 1.4rem; }
+  #shopify-section-{{ section.id }} .flame-cmp__table thead th { font-weight: 700; background: rgba(200,98,46,.10); }
+  #shopify-section-{{ section.id }} .flame-cmp__table th:first-child, #shopify-section-{{ section.id }} .flame-cmp__table td:first-child { text-align: left; font-weight: 600; }
   #shopify-section-{{ section.id }} .flame-cmp__brand { background: #C8622E; color: #fff; }
   #shopify-section-{{ section.id }} .flame-cmp__yes { color: #1f8a4c; font-size: 1.9rem; font-weight: 700; }
   #shopify-section-{{ section.id }} .flame-cmp__no { color: #b23b3b; font-size: 1.9rem; font-weight: 700; }
@@ -35,59 +13,32 @@
   @media screen and (min-width: 750px) {
     #shopify-section-{{ section.id }} .flame-cmp { padding: 6.4rem 0; }
     #shopify-section-{{ section.id }} .flame-cmp__title { font-size: 3.6rem; }
-    #shopify-section-{{ section.id }} .flame-cmp__table th,
-    #shopify-section-{{ section.id }} .flame-cmp__table td { padding: 1.7rem 1.6rem; font-size: 1.6rem; }
+    #shopify-section-{{ section.id }} .flame-cmp__table th, #shopify-section-{{ section.id }} .flame-cmp__table td { padding: 1.7rem 1.6rem; font-size: 1.6rem; }
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="color-scheme-1 gradient">
   <div class="page-width flame-cmp">
-    {%- if section.settings.title != blank -%}<h2 class="flame-cmp__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+    <h2 class="flame-cmp__title">Why Lumisca Wins</h2>
     <table class="flame-cmp__table">
       <thead>
         <tr>
-          <th scope="col">{{ section.settings.feature_col_label | escape }}</th>
-          <th scope="col" class="flame-cmp__brand">{{ section.settings.brand_label | escape }}</th>
-          <th scope="col">{{ section.settings.other_label | escape }}</th>
+          <th scope="col">Feature</th>
+          <th scope="col" class="flame-cmp__brand">Lumisca</th>
+          <th scope="col">Ordinary Diffusers</th>
         </tr>
       </thead>
       <tbody>
-        {%- for block in section.blocks -%}
-          <tr {{ block.shopify_attributes }}>
-            <td>{{ block.settings.feature | escape }}</td>
-            <td class="flame-cmp__yes" aria-label="Yes">✓</td>
-            <td class="flame-cmp__no" aria-label="No">✗</td>
-          </tr>
-        {%- endfor -%}
+        <tr><td>Realistic Flame Effect</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
+        <tr><td>Aromatherapy</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
+        <tr><td>Whisper-Quiet</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
+        <tr><td>Auto Shut-Off</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
+        <tr><td>Cosy Ambience</td><td class="flame-cmp__yes" aria-label="Yes">✓</td><td class="flame-cmp__no" aria-label="No">✗</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 {% schema %}
-{
-  "name": "Flame Comparison",
-  "tag": "section",
-  "class": "flame-section",
-  "settings": [
-    { "type": "text", "id": "title", "label": "Heading", "default": "Why Lumisca Wins" },
-    { "type": "text", "id": "feature_col_label", "label": "Feature column label", "default": "Feature" },
-    { "type": "text", "id": "brand_label", "label": "Brand column label", "default": "Lumisca" },
-    { "type": "text", "id": "other_label", "label": "Competitor column label", "default": "Ordinary Diffusers" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
-  ],
-  "blocks": [
-    { "type": "row", "name": "Comparison row", "settings": [
-      { "type": "text", "id": "feature", "label": "Feature", "default": "Realistic Flame Effect" }
-    ] }
-  ],
-  "max_blocks": 10,
-  "presets": [ { "name": "Flame Comparison", "blocks": [
-    { "type": "row", "settings": { "feature": "Realistic Flame Effect" } },
-    { "type": "row", "settings": { "feature": "Aromatherapy" } },
-    { "type": "row", "settings": { "feature": "Whisper-Quiet" } },
-    { "type": "row", "settings": { "feature": "Auto Shut-Off" } },
-    { "type": "row", "settings": { "feature": "Cosy Ambience" } }
-  ] } ]
-}
+{ "name": "Flame Comparison", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Comparison" } ] }
 {% endschema %}

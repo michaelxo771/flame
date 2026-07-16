@@ -1,4 +1,4 @@
-{%- comment -%} Lumisca — Guarantee / Risk Reversal {%- endcomment -%}
+{%- comment -%} Lumisca — Guarantee / Risk Reversal (hardcoded) {%- endcomment -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-guar { padding: 5rem 0; text-align: center; }
   #shopify-section-{{ section.id }} .flame-guar__inner { max-width: 640px; margin: 0 auto; }
@@ -12,32 +12,17 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="color-scheme-2 gradient">
   <div class="page-width flame-guar">
     <div class="flame-guar__inner">
-      {%- if section.settings.badge != blank -%}<div class="flame-guar__badge" aria-hidden="true">{{ section.settings.badge }}</div>{%- endif -%}
-      {%- if section.settings.title != blank -%}<h2 class="flame-guar__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
-      <div class="flame-guar__body rte">{{ section.settings.body }}</div>
-      {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link | default: '#' }}" class="button flame-guar__cta">{{ section.settings.button_label | escape }}</a>
-      {%- endif -%}
+      <div class="flame-guar__badge" aria-hidden="true">🛡️</div>
+      <h2 class="flame-guar__title">Try Lumisca Risk-Free for 30 Days</h2>
+      <p class="flame-guar__body">If your Lumisca doesn't turn your space into the cosy escape you hoped for, send it back within 30 days for a full refund — no fuss, no awkward questions. That's how confident we are you'll love it.</p>
+      {% render 'flame-buy-button', label: 'Get Mine Now', class: 'flame-guar__cta' %}
     </div>
   </div>
 </div>
 
 {% schema %}
-{
-  "name": "Flame Guarantee",
-  "tag": "section",
-  "class": "flame-section",
-  "settings": [
-    { "type": "text", "id": "badge", "label": "Badge (emoji)", "default": "🛡️" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Try Lumisca Risk-Free for 30 Days" },
-    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>If your Lumisca doesn't turn your space into the cosy escape you hoped for, send it back within 30 days for a full refund — no fuss, no awkward questions. That's how confident we are you'll love it.</p>" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get Mine Now" },
-    { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
-  ],
-  "presets": [ { "name": "Flame Guarantee" } ]
-}
+{ "name": "Flame Guarantee", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Guarantee" } ] }
 {% endschema %}

@@ -1,77 +1,56 @@
-{%- comment -%} Lumisca — FAQ accordion (native details/summary, no JS) {%- endcomment -%}
+{%- comment -%} Lumisca — FAQ accordion (hardcoded, native details/summary) {%- endcomment -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-faq { padding: 4.4rem 0; }
   #shopify-section-{{ section.id }} .flame-faq__title { font-size: 2.8rem; text-align: center; margin: 0 0 2.6rem; }
   #shopify-section-{{ section.id }} .flame-faq__list { max-width: 720px; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .flame-faq__item {
-    border-bottom: 1px solid rgba(138,128,120,.26);
-  }
-  #shopify-section-{{ section.id }} .flame-faq__q {
-    list-style: none;
-    cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center; gap: 1.2rem;
-    padding: 1.8rem 0;
-    font-size: 1.7rem; font-weight: 600;
-  }
+  #shopify-section-{{ section.id }} .flame-faq__item { border-bottom: 1px solid rgba(138,128,120,.26); }
+  #shopify-section-{{ section.id }} .flame-faq__q { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; padding: 1.8rem 0; font-size: 1.7rem; font-weight: 600; }
   #shopify-section-{{ section.id }} .flame-faq__q::-webkit-details-marker { display: none; }
-  #shopify-section-{{ section.id }} .flame-faq__icon {
-    flex: 0 0 auto; width: 2rem; height: 2rem; position: relative; transition: transform .2s ease;
-  }
-  #shopify-section-{{ section.id }} .flame-faq__icon::before,
-  #shopify-section-{{ section.id }} .flame-faq__icon::after {
-    content: ''; position: absolute; background: #C8622E; border-radius: 2px;
-  }
+  #shopify-section-{{ section.id }} .flame-faq__icon { flex: 0 0 auto; width: 2rem; height: 2rem; position: relative; }
+  #shopify-section-{{ section.id }} .flame-faq__icon::before, #shopify-section-{{ section.id }} .flame-faq__icon::after { content: ''; position: absolute; background: #C8622E; border-radius: 2px; }
   #shopify-section-{{ section.id }} .flame-faq__icon::before { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
   #shopify-section-{{ section.id }} .flame-faq__icon::after { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); transition: opacity .2s ease; }
   #shopify-section-{{ section.id }} .flame-faq__item[open] .flame-faq__icon::after { opacity: 0; }
   #shopify-section-{{ section.id }} .flame-faq__a { padding: 0 0 1.8rem; font-size: 1.5rem; line-height: 1.6; opacity: .92; }
-  #shopify-section-{{ section.id }} .flame-faq__a > *:first-child { margin-top: 0; }
+  #shopify-section-{{ section.id }} .flame-faq__a p { margin: 0; }
   @media screen and (min-width: 750px) {
     #shopify-section-{{ section.id }} .flame-faq { padding: 6.4rem 0; }
     #shopify-section-{{ section.id }} .flame-faq__title { font-size: 3.6rem; }
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="color-scheme-1 gradient">
   <div class="page-width flame-faq">
-    {%- if section.settings.title != blank -%}<h2 class="flame-faq__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+    <h2 class="flame-faq__title">Frequently Asked Questions</h2>
     <div class="flame-faq__list">
-      {%- for block in section.blocks -%}
-        <details class="flame-faq__item" {{ block.shopify_attributes }}>
-          <summary class="flame-faq__q">
-            <span>{{ block.settings.question | escape }}</span>
-            <span class="flame-faq__icon" aria-hidden="true"></span>
-          </summary>
-          <div class="flame-faq__a rte">{{ block.settings.answer }}</div>
-        </details>
-      {%- endfor -%}
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>How does the flame work?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.</p></div>
+      </details>
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>Is it safe to leave on?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>Yes. There's no real flame, and it automatically shuts off when the water runs low — so it's safe to leave running overnight or around kids and pets.</p></div>
+      </details>
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>Do I need essential oils?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>Not at all. It works beautifully with water alone for the flame glow and mist. Add a few drops of your favourite oil whenever you'd like some aromatherapy.</p></div>
+      </details>
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>How long does delivery take (UK/IE)?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>Orders are dispatched within 1–2 business days. Typical delivery is around 7–20 days depending on your location. You'll get tracking as soon as it ships.</p></div>
+      </details>
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>What's the runtime and tank size?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>The ~120ml tank gives around 5 hours of continuous cosy glow and mist per fill.</p></div>
+      </details>
+      <details class="flame-faq__item">
+        <summary class="flame-faq__q"><span>What's your return policy?</span><span class="flame-faq__icon" aria-hidden="true"></span></summary>
+        <div class="flame-faq__a"><p>You're covered by our 30-day money-back guarantee. If it's not for you, contact us within 30 days for a full refund.</p></div>
+      </details>
     </div>
   </div>
 </div>
 
 {% schema %}
-{
-  "name": "Flame FAQ",
-  "tag": "section",
-  "class": "flame-section",
-  "settings": [
-    { "type": "text", "id": "title", "label": "Heading", "default": "Frequently Asked Questions" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
-  ],
-  "blocks": [
-    { "type": "faq", "name": "Question", "settings": [
-      { "type": "text", "id": "question", "label": "Question", "default": "How does the flame work?" },
-      { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.</p>" }
-    ] }
-  ],
-  "max_blocks": 12,
-  "presets": [ { "name": "Flame FAQ", "blocks": [
-    { "type": "faq", "settings": { "question": "How does the flame work?", "answer": "<p>It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.</p>" } },
-    { "type": "faq", "settings": { "question": "Is it safe to leave on?", "answer": "<p>Yes. There's no real flame, and it automatically shuts off when the water runs low — so it's safe to leave running overnight or around kids and pets.</p>" } },
-    { "type": "faq", "settings": { "question": "Do I need essential oils?", "answer": "<p>Not at all. It works beautifully with water alone for the flame glow and mist. Add a few drops of your favourite oil whenever you'd like some aromatherapy.</p>" } },
-    { "type": "faq", "settings": { "question": "How long does delivery take (UK/IE)?", "answer": "<p>Orders are dispatched within 1–2 business days. Typical delivery is around 7–20 days depending on your location. You'll get tracking as soon as it ships.</p>" } },
-    { "type": "faq", "settings": { "question": "What's the runtime and tank size?", "answer": "<p>The ~120ml tank gives around 5 hours of continuous cosy glow and mist per fill.</p>" } },
-    { "type": "faq", "settings": { "question": "What's your return policy?", "answer": "<p>You're covered by our 30-day money-back guarantee. If it's not for you, contact us within 30 days for a full refund.</p>" } }
-  ] } ]
-}
+{ "name": "Flame FAQ", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame FAQ" } ] }
 {% endschema %}

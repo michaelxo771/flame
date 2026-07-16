@@ -1,0 +1,123 @@
+{%- comment -%}
+  Lumisca — Featured Product (hardcoded). Auto-resolves the store's diffuser,
+  shows real gallery, live price + compare-at, variant selector, working Add to Cart.
+  No customizer configuration required.
+{%- endcomment -%}
+{%- liquid
+  assign fp = collections.all.products.first
+  for p in collections.all.products
+    if p.title contains 'Diffuser' or p.title contains 'Flame' or p.title contains 'Lumisca'
+      assign fp = p
+      break
+    endif
+  endfor
+-%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-fp { display: grid; grid-template-columns: 1fr; gap: 2.4rem; padding: 4.4rem 0; }
+  #shopify-section-{{ section.id }} .flame-fp__main { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; }
+  #shopify-section-{{ section.id }} .flame-fp__thumbs { display: flex; gap: .8rem; margin-top: 1rem; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .flame-fp__thumb { border: 2px solid transparent; border-radius: 10px; padding: 0; background: #fff; cursor: pointer; overflow: hidden; line-height: 0; }
+  #shopify-section-{{ section.id }} .flame-fp__thumb.is-active { border-color: #C8622E; }
+  #shopify-section-{{ section.id }} .flame-fp__thumb img { width: 64px; height: 64px; object-fit: cover; display: block; }
+  #shopify-section-{{ section.id }} .flame-fp__stars { color: #F5B841; font-size: 1.5rem; letter-spacing: .06em; margin: 0 0 .8rem; }
+  #shopify-section-{{ section.id }} .flame-fp__stars span { color: var(--color-foreground, #1A1614); opacity: .7; font-size: 1.3rem; margin-left: .4rem; }
+  #shopify-section-{{ section.id }} .flame-fp__title { font-size: 3rem; line-height: 1.1; margin: 0 0 1rem; }
+  #shopify-section-{{ section.id }} .flame-fp__price { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 1.4rem; }
+  #shopify-section-{{ section.id }} .flame-fp__price-now { font-size: 2.6rem; font-weight: 700; color: #C8622E; }
+  #shopify-section-{{ section.id }} .flame-fp__price-was { font-size: 1.7rem; text-decoration: line-through; opacity: .6; }
+  #shopify-section-{{ section.id }} .flame-fp__save { display: inline-block; background: #C8622E; color: #fff; font-size: 1.2rem; font-weight: 700; padding: .3rem .9rem; border-radius: 999px; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets { list-style: none; padding: 0; margin: 0 0 2rem; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets li { font-size: 1.5rem; line-height: 1.5; margin: 0 0 .6rem; padding-left: 2.4rem; position: relative; }
+  #shopify-section-{{ section.id }} .flame-fp__bullets li::before { content: '✔'; color: #C8622E; position: absolute; left: 0; font-weight: 700; }
+  #shopify-section-{{ section.id }} .flame-fp__opt { margin: 0 0 1.4rem; }
+  #shopify-section-{{ section.id }} .flame-fp__opt-name { display: block; font-size: 1.35rem; font-weight: 600; margin-bottom: .6rem; }
+  #shopify-section-{{ section.id }} .flame-fp__select { width: 100%; max-width: 320px; font-size: 1.5rem; padding: 1.1rem 1.2rem; border-radius: 8px; border: 1px solid rgba(138,128,120,.5); background: #fff; color: #1A1614; }
+  #shopify-section-{{ section.id }} .flame-fp__atc { width: 100%; max-width: 420px; font-size: 1.75rem; padding: 1.5rem 2rem; margin-top: .6rem; }
+  #shopify-section-{{ section.id }} .flame-fp__ship { font-size: 1.3rem; opacity: .8; margin: 1.2rem 0 0; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-fp { grid-template-columns: 1fr 1fr; gap: 4rem; padding: 6.4rem 0; align-items: start; }
+    #shopify-section-{{ section.id }} .flame-fp__title { font-size: 3.6rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-scheme-2 gradient">
+  <div class="page-width flame-fp">
+    <div class="flame-fp__media">
+      {%- if fp.featured_image != blank -%}
+        <img class="flame-fp__main" id="flameFpMain-{{ section.id }}"
+             src="{{ fp.featured_image | image_url: width: 900 }}"
+             alt="{{ fp.featured_image.alt | default: fp.title | escape }}"
+             width="900" height="900" loading="lazy">
+        {%- if fp.images.size > 1 -%}
+          <div class="flame-fp__thumbs">
+            {%- for img in fp.images limit: 6 -%}
+              <button type="button" class="flame-fp__thumb{% if forloop.first %} is-active{% endif %}"
+                      data-full="{{ img | image_url: width: 900 }}"
+                      onclick="var m=document.getElementById('flameFpMain-{{ section.id }}');m.src=this.dataset.full;this.parentNode.querySelectorAll('.flame-fp__thumb').forEach(function(t){t.classList.remove('is-active')});this.classList.add('is-active');">
+                <img src="{{ img | image_url: width: 140 }}" alt="" width="64" height="64" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <img class="flame-fp__main" src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="Mini Flame Aroma Diffuser" width="900" height="900" loading="lazy">
+      {%- endif -%}
+    </div>
+
+    <div class="flame-fp__info">
+      <p class="flame-fp__stars">★★★★★ <span>4.8 · 910+ reviews</span></p>
+      <h2 class="flame-fp__title">{{ fp.title | default: 'Mini Flame Aroma Diffuser' }}</h2>
+
+      <div class="flame-fp__price">
+        {%- if fp != blank -%}
+          <span class="flame-fp__price-now">{{ fp.price | money }}</span>
+          {%- if fp.compare_at_price > fp.price -%}
+            <span class="flame-fp__price-was">{{ fp.compare_at_price | money }}</span>
+            <span class="flame-fp__save">Save {{ fp.compare_at_price | minus: fp.price | times: 100.0 | divided_by: fp.compare_at_price | round }}%</span>
+          {%- endif -%}
+        {%- else -%}
+          <span class="flame-fp__price-now">£34.95</span>
+          <span class="flame-fp__price-was">£59.95</span>
+          <span class="flame-fp__save">Save 40%</span>
+        {%- endif -%}
+      </div>
+
+      <ul class="flame-fp__bullets">
+        <li>Create a cosy ambience for relaxing evenings</li>
+        <li>Enhance your mood with soothing aromas instantly</li>
+        <li>Gently humidifies and freshens the air</li>
+        <li>Whisper-quiet with automatic safe shut-off</li>
+      </ul>
+
+      {%- if fp != blank -%}
+        {%- form 'product', fp, id: 'flame-fp-form', novalidate: 'novalidate' -%}
+          {%- unless fp.has_only_default_variant -%}
+            <div class="flame-fp__opt">
+              <span class="flame-fp__opt-name">Choose your colour</span>
+              <select name="id" class="flame-fp__select" aria-label="Choose a variant">
+                {%- for variant in fp.variants -%}
+                  <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>
+                    {{ variant.title }}{% unless variant.available %} — Sold out{% endunless %} · {{ variant.price | money }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ fp.selected_or_first_available_variant.id }}">
+          {%- endunless -%}
+          <button type="submit" name="add" class="button flame-fp__atc"{% unless fp.available %} disabled{% endunless %}>
+            {%- if fp.available -%}Add to Cart — {{ fp.price | money }}{%- else -%}Sold Out{%- endif -%}
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        {% render 'flame-buy-button', label: 'Shop Now — 40% Off', class: 'flame-fp__atc' %}
+      {%- endif -%}
+
+      <p class="flame-fp__ship">🚚 Free UK &amp; Ireland shipping · 🛡️ 30-day money-back guarantee</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Flame Featured Product", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Featured Product" } ] }
+{% endschema %}
