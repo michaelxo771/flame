@@ -1,0 +1,54 @@
+{%- comment -%}
+  Lumisca — Track Order
+  Paste a tracking-app widget (e.g. 17TRACK, ParcelPanel) into "Tracking widget embed",
+  or leave it and customers use the carrier button below.
+{%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-track { padding: 4.4rem 0; }
+  #shopify-section-{{ section.id }} .flame-track__inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-track__icon { font-size: 3rem; margin-bottom: 1rem; }
+  #shopify-section-{{ section.id }} .flame-track__title { font-size: 2.8rem; margin: 0 0 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-track__body { font-size: 1.6rem; line-height: 1.6; opacity: .92; margin: 0 0 2rem; }
+  #shopify-section-{{ section.id }} .flame-track__widget { margin: 2rem 0; text-align: left; }
+  #shopify-section-{{ section.id }} .flame-track__btn { min-width: 220px; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-track { padding: 6.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-track__title { font-size: 3.6rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width flame-track">
+    <div class="flame-track__inner">
+      {%- if section.settings.icon != blank -%}<div class="flame-track__icon" aria-hidden="true">{{ section.settings.icon }}</div>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h1 class="flame-track__title">{{ section.settings.title | escape }}</h1>{%- endif -%}
+      <div class="flame-track__body rte">{{ section.settings.body }}</div>
+
+      {%- if section.settings.tracking_embed != blank -%}
+        <div class="flame-track__widget">{{ section.settings.tracking_embed }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button flame-track__btn" target="_blank" rel="noopener">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Track Order",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "📦" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Track Your Order" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Pop your tracking number below to see where your Lumisca is. Didn't get a tracking email yet? Orders ship within 1–2 business days — hang tight, it's on the way. Any trouble, email support@lumisca.co.uk.</p>" },
+    { "type": "liquid", "id": "tracking_embed", "label": "Tracking widget embed", "info": "Paste your tracking app's embed/widget code here (e.g. 17TRACK, ParcelPanel)." },
+    { "type": "text", "id": "button_label", "label": "Fallback button label", "default": "" },
+    { "type": "url", "id": "button_link", "label": "Fallback button link", "info": "e.g. a universal tracking page like https://t.17track.net" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ],
+  "presets": [ { "name": "Flame Track Order" } ]
+}
+{% endschema %}
