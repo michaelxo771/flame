@@ -1,0 +1,84 @@
+{%- comment -%}
+  Lumisca — custom header. Hardcoded nav + text logo + live cart count.
+  Sticky, mobile-first, no admin menu required. Keeps id="cart-icon-bubble"
+  so Dawn's cart drawer JS still hooks it when active.
+{%- endcomment -%}
+{%- liquid
+  assign fp = collections.all.products.first
+  for p in collections.all.products
+    if p.title contains 'Diffuser' or p.title contains 'Flame' or p.title contains 'Lumisca'
+      assign fp = p
+      break
+    endif
+  endfor
+  assign shop_url = fp.url | default: '/collections/all'
+-%}
+{%- style -%}
+  #shopify-section-{{ section.id }} { position: sticky; top: 0; z-index: 100; }
+  .flame-hd { background: #F7F3EE; color: #1A1614; border-bottom: 1px solid rgba(138,128,120,.2); box-shadow: 0 2px 10px rgba(14,12,11,.05); }
+  .flame-hd__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 0; }
+  .flame-hd__logo { font-family: var(--font-heading-family, serif); font-size: 2.4rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #1A1614; text-decoration: none; line-height: 1; }
+  .flame-hd__nav { display: none; }
+  .flame-hd__nav a { color: #1A1614; text-decoration: none; font-size: 1.5rem; font-weight: 500; padding: .6rem .2rem; position: relative; }
+  .flame-hd__nav a:hover { color: #C8622E; }
+  .flame-hd__right { display: flex; align-items: center; gap: 1.2rem; }
+  .flame-hd__cart { position: relative; display: inline-flex; align-items: center; color: #1A1614; text-decoration: none; }
+  .flame-hd__cart svg { width: 26px; height: 26px; }
+  .flame-hd__count { position: absolute; top: -6px; right: -8px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; background: #C8622E; color: #fff; font-size: 1.1rem; line-height: 18px; text-align: center; font-weight: 700; }
+  /* Mobile menu (no JS, uses <details>) */
+  .flame-hd__menu { position: relative; }
+  .flame-hd__menu > summary { list-style: none; cursor: pointer; width: 30px; height: 30px; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+  .flame-hd__menu > summary::-webkit-details-marker { display: none; }
+  .flame-hd__menu > summary span { display: block; height: 2px; background: #1A1614; border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+  .flame-hd__menu[open] > summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .flame-hd__menu[open] > summary span:nth-child(2) { opacity: 0; }
+  .flame-hd__menu[open] > summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .flame-hd__panel { position: absolute; left: 0; top: calc(100% + 1.2rem); width: min(78vw, 320px); background: #F7F3EE; border: 1px solid rgba(138,128,120,.25); border-radius: 12px; box-shadow: 0 16px 40px rgba(14,12,11,.18); padding: 1rem; display: flex; flex-direction: column; }
+  .flame-hd__panel a { color: #1A1614; text-decoration: none; font-size: 1.6rem; font-weight: 500; padding: 1.2rem 1rem; border-radius: 8px; }
+  .flame-hd__panel a:hover { background: rgba(200,98,46,.08); color: #C8622E; }
+  @media screen and (min-width: 990px) {
+    .flame-hd__menu { display: none; }
+    .flame-hd__nav { display: flex; align-items: center; gap: 2.8rem; }
+    .flame-hd__bar { padding: 1.4rem 0; }
+    .flame-hd__logo { font-size: 2.8rem; }
+  }
+{%- endstyle -%}
+
+<div class="flame-hd">
+  <div class="page-width flame-hd__bar">
+    <details class="flame-hd__menu">
+      <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+      <nav class="flame-hd__panel">
+        <a href="{{ routes.root_url }}">Home</a>
+        <a href="{{ shop_url }}">Shop</a>
+        <a href="{{ routes.root_url }}#reviews">Reviews</a>
+        <a href="/pages/track-order">Track Order</a>
+        <a href="/pages/contact">Contact</a>
+      </nav>
+    </details>
+
+    <a href="{{ routes.root_url }}" class="flame-hd__logo">Lumisca</a>
+
+    <nav class="flame-hd__nav">
+      <a href="{{ routes.root_url }}">Home</a>
+      <a href="{{ shop_url }}">Shop</a>
+      <a href="{{ routes.root_url }}#reviews">Reviews</a>
+      <a href="/pages/track-order">Track Order</a>
+      <a href="/pages/contact">Contact</a>
+    </nav>
+
+    <div class="flame-hd__right">
+      <a href="{{ routes.cart_url }}" class="flame-hd__cart" id="cart-icon-bubble" aria-label="Cart ({{ cart.item_count }} items)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M6 7h12l-1 13H7L6 7z" stroke-linejoin="round"/>
+          <path d="M9 7a3 3 0 0 1 6 0" stroke-linecap="round"/>
+        </svg>
+        {%- if cart.item_count > 0 -%}<span class="flame-hd__count">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Flame Header", "settings": [], "enabled_on": { "groups": ["header"] } }
+{% endschema %}

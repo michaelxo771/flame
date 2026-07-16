@@ -6,26 +6,35 @@
       "type": "footer",
       "blocks": {
         "brand": {
-          "type": "brand_information",
-          "settings": { "show_social": true }
-        },
-        "shop_links": {
-          "type": "link_list",
-          "settings": { "heading": "Shop", "menu": "footer" }
-        },
-        "support_links": {
-          "type": "link_list",
-          "settings": { "heading": "Support", "menu": "main-menu" }
-        },
-        "help_text": {
           "type": "text",
           "settings": {
-            "heading": "Need a hand?",
-            "subtext": "<p>Questions about your order or the diffuser? Email <a href=\"mailto:support@lumisca.co.uk\">support@lumisca.co.uk</a> and we'll reply within 24 hours.</p>"
+            "heading": "Lumisca",
+            "subtext": "<p>Turn any room into a cosy, fire-lit escape — the calming glow of a flame with none of the smoke, soot or danger.</p>"
+          }
+        },
+        "shop_links": {
+          "type": "text",
+          "settings": {
+            "heading": "Shop",
+            "subtext": "<p><a href=\"/\">Home</a><br><a href=\"/collections/all\">Shop the Diffuser</a><br><a href=\"/#reviews\">Reviews</a><br><a href=\"/#faq\">FAQ</a></p>"
+          }
+        },
+        "support_links": {
+          "type": "text",
+          "settings": {
+            "heading": "Support",
+            "subtext": "<p><a href=\"/pages/track-order\">Track Order</a><br><a href=\"/pages/contact\">Contact Us</a><br><a href=\"/pages/about\">About Lumisca</a><br><a href=\"mailto:support@lumisca.co.uk\">support@lumisca.co.uk</a></p>"
+          }
+        },
+        "legal_links": {
+          "type": "text",
+          "settings": {
+            "heading": "Policies",
+            "subtext": "<p><a href=\"/policies/refund-policy\">Refund Policy</a><br><a href=\"/policies/shipping-policy\">Shipping Policy</a><br><a href=\"/policies/privacy-policy\">Privacy Policy</a><br><a href=\"/policies/terms-of-service\">Terms of Service</a></p>"
           }
         }
       },
-      "block_order": ["brand", "shop_links", "support_links", "help_text"],
+      "block_order": ["brand", "shop_links", "support_links", "legal_links"],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
@@ -35,7 +44,7 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": true,
-        "show_policy": true,
+        "show_policy": false,
         "margin_top": 0,
         "padding_top": 44,
         "padding_bottom": 36
