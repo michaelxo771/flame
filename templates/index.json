@@ -1,75 +1,166 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "flame_hero": {
+      "type": "flame-hero",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "overlay_opacity": 55,
+        "height_mobile": 560,
+        "height_desktop": 680,
+        "content_position": "bottom",
+        "eyebrow": "Lumisca",
+        "title": "Turn Any Room Into a Cosy, Fire-Lit Escape",
+        "subtitle": "<p>The calming glow of a real flame — with none of the smoke, soot or danger. Just soothing light, gentle mist, and your favourite scents.</p>",
+        "button_label": "Shop Now — 40% Off",
+        "button_link": "",
+        "trust_line": "<p>Loved by 900+ happy customers · Free UK/IE shipping</p>",
+        "color_scheme": "scheme-3"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "flame_trustbar": {
+      "type": "flame-trust-bar",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "🚚", "label": "Free UK/IE Shipping" } },
+        "t2": { "type": "item", "settings": { "icon": "🔥", "label": "No Real Flame — 100% Safe" } },
+        "t3": { "type": "item", "settings": { "icon": "⏱", "label": "5-Hour Runtime" } },
+        "t4": { "type": "item", "settings": { "icon": "↩️", "label": "30-Day Guarantee" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": { "color_scheme": "scheme-2" }
+    },
+    "flame_problem": {
+      "type": "flame-problem-solution",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
+        "image_position": "right",
+        "title": "Your Home Should Feel Like an Escape",
+        "body": "<p>After a long, stressful day, you deserve to walk into calm. Harsh lighting and stale air keep your nervous system on edge.</p><p>Lumisca transforms any space in seconds — a dancing flame glow and soothing aroma that melt the stress away.</p>",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "flame_featured": {
+      "type": "featured-product",
+      "blocks": {
+        "title": { "type": "title", "settings": {} },
+        "rating": { "type": "rating", "settings": {} },
+        "price": { "type": "price", "settings": {} },
+        "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button", "swatch_shape": "circle" } },
+        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": false } },
+        "description": { "type": "text", "settings": { "text": "A few drops of oil, a tap for your favourite glow, and any room becomes a cosy escape.", "text_style": "body" } }
+      },
+      "block_order": ["title", "rating", "price", "variant_picker", "quantity_selector", "buy_buttons", "description"],
+      "settings": {
+        "product": "",
+        "secondary_background": false,
+        "heading": "The Mini Flame Aroma Diffuser",
+        "heading_size": "h1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "color_scheme": "scheme-2",
         "padding_top": 44,
-        "padding_bottom": 36
+        "padding_bottom": 44
+      }
+    },
+    "flame_benefits": {
+      "type": "flame-benefits",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "🔥", "title": "Cosy Ambience", "text": "A realistic 7-colour flame glow transforms any room into a warm, relaxing retreat." } },
+        "b2": { "type": "benefit", "settings": { "icon": "🌿", "title": "Calming Aromatherapy", "text": "Add a few drops of essential oil and fill your space with soothing scent — melt stress in minutes." } },
+        "b3": { "type": "benefit", "settings": { "icon": "🤫", "title": "Whisper-Quiet & Safe", "text": "Silent operation, auto shut-off, and zero real flame — safe to leave on overnight or around kids and pets." } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": { "title": "Why Homes Love Lumisca", "intro": "One little diffuser, a whole new atmosphere.", "color_scheme": "scheme-1" }
+    },
+    "flame_how": {
+      "type": "flame-how-it-works",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "title": "Fill", "text": "Add water and a few drops of your favourite essential oil." } },
+        "s2": { "type": "step", "settings": { "title": "Choose Your Glow", "text": "Tap to cycle through 7 warm flame colours — or lock in your favourite." } },
+        "s3": { "type": "step", "settings": { "title": "Relax", "text": "Sit back as gentle mist and cosy light fill the room. Auto shut-off keeps it safe." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": { "title": "How It Works", "color_scheme": "scheme-2" }
+    },
+    "flame_comparison": {
+      "type": "flame-comparison",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "feature": "Realistic Flame Effect" } },
+        "r2": { "type": "row", "settings": { "feature": "Aromatherapy" } },
+        "r3": { "type": "row", "settings": { "feature": "Whisper-Quiet" } },
+        "r4": { "type": "row", "settings": { "feature": "Auto Shut-Off" } },
+        "r5": { "type": "row", "settings": { "feature": "Cosy Ambience" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": { "title": "Why Lumisca Wins", "feature_col_label": "Feature", "brand_label": "Lumisca", "other_label": "Ordinary Diffusers", "color_scheme": "scheme-1" }
+    },
+    "flame_reviews": {
+      "type": "flame-reviews",
+      "blocks": {
+        "rv1": { "type": "review", "settings": { "rating": 5, "name": "Emma T.", "text": "Absolutely obsessed. The flame looks so real and my living room feels instantly cosy every evening.", "verified": true } },
+        "rv2": { "type": "review", "settings": { "rating": 5, "name": "Ciara M.", "text": "Bought one for the bedroom and ended up ordering two more as gifts. The lavender + glow combo is pure calm.", "verified": true } },
+        "rv3": { "type": "review", "settings": { "rating": 5, "name": "Jack R.", "text": "Whisper quiet and looks premium. Leave it on while I read and drift right off.", "verified": true } },
+        "rv4": { "type": "review", "settings": { "rating": 4, "name": "Aoife D.", "text": "Lovely ambience and the mist is gentle. Delivery to Ireland was quicker than expected.", "verified": true } },
+        "rv5": { "type": "review", "settings": { "rating": 5, "name": "Laura B.", "text": "The kids call it our little campfire. Totally safe, no worries leaving it on in the evenings.", "verified": true } },
+        "rv6": { "type": "review", "settings": { "rating": 5, "name": "Sean K.", "text": "Genuinely surprised by the quality for the price. The 7 colours are gorgeous on the darker settings.", "verified": true } },
+        "rv7": { "type": "review", "settings": { "rating": 5, "name": "Niamh O.", "text": "My little self-care ritual now. Fill it, pick the amber glow, and the whole room softens.", "verified": true } },
+        "rv8": { "type": "review", "settings": { "rating": 5, "name": "Tom H.", "text": "Does exactly what it promises. Cosy, quiet, and the auto shut-off gives real peace of mind.", "verified": true } }
+      },
+      "block_order": ["rv1", "rv2", "rv3", "rv4", "rv5", "rv6", "rv7", "rv8"],
+      "settings": { "title": "Loved in Homes Across the UK & Ireland", "badge_text": "4.8 / 5 from 900+ reviews", "color_scheme": "scheme-1" }
+    },
+    "flame_guarantee": {
+      "type": "flame-guarantee",
+      "settings": {
+        "badge": "🛡️",
+        "title": "Try Lumisca Risk-Free for 30 Days",
+        "body": "<p>If your Lumisca doesn't turn your space into the cosy escape you hoped for, send it back within 30 days for a full refund — no fuss, no awkward questions. That's how confident we are you'll love it.</p>",
+        "button_label": "Get Mine Now",
+        "button_link": "",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "flame_faq": {
+      "type": "flame-faq",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How does the flame work?", "answer": "<p>It's an illusion made of cool mist lit by warm LEDs — no fire, smoke or heat. You get the dancing glow of a flame with none of the risk.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Is it safe to leave on?", "answer": "<p>Yes. There's no real flame, and it automatically shuts off when the water runs low — so it's safe to leave running overnight or around kids and pets.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "Do I need essential oils?", "answer": "<p>Not at all. It works beautifully with water alone for the flame glow and mist. Add a few drops of your favourite oil whenever you'd like some aromatherapy.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "How long does delivery take (UK/IE)?", "answer": "<p>Orders are dispatched within 1–2 business days. Typical delivery is around 7–20 days depending on your location. You'll get tracking as soon as it ships.</p>" } },
+        "f5": { "type": "faq", "settings": { "question": "What's the runtime and tank size?", "answer": "<p>The ~120ml tank gives around 5 hours of continuous cosy glow and mist per fill.</p>" } },
+        "f6": { "type": "faq", "settings": { "question": "What's your return policy?", "answer": "<p>You're covered by our 30-day money-back guarantee. If it's not for you, contact us within 30 days for a full refund.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "settings": { "title": "Frequently Asked Questions", "color_scheme": "scheme-1" }
+    },
+    "flame_final_cta": {
+      "type": "flame-final-cta",
+      "settings": {
+        "overlay_opacity": 55,
+        "title": "Bring the Cosy Home Tonight",
+        "subtitle": "Limited-time 40% off — free UK & Ireland shipping while it lasts.",
+        "button_label": "Shop Now — 40% Off",
+        "button_link": "",
+        "color_scheme": "scheme-3"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "flame_hero",
+    "flame_trustbar",
+    "flame_problem",
+    "flame_featured",
+    "flame_benefits",
+    "flame_how",
+    "flame_comparison",
+    "flame_reviews",
+    "flame_guarantee",
+    "flame_faq",
+    "flame_final_cta"
   ]
 }

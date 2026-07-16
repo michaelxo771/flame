@@ -1,0 +1,96 @@
+{%- comment -%} Lumisca — Reviews / Social Proof {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-rev { padding: 4.4rem 0; }
+  #shopify-section-{{ section.id }} .flame-rev__head { text-align: center; margin-bottom: 2.8rem; }
+  #shopify-section-{{ section.id }} .flame-rev__title { font-size: 2.8rem; margin: 0 0 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-rev__badge {
+    display: inline-flex; align-items: center; gap: .8rem;
+    padding: .8rem 1.6rem; border-radius: 999px;
+    background: rgba(200,98,46,.10); border: 1px solid rgba(200,98,46,.28);
+    font-size: 1.45rem; font-weight: 600;
+  }
+  #shopify-section-{{ section.id }} .flame-rev__badge .stars { color: #F5B841; letter-spacing: .08em; }
+  #shopify-section-{{ section.id }} .flame-rev__grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.8rem;
+  }
+  #shopify-section-{{ section.id }} .flame-rev__card {
+    background: rgba(247,243,238,.55);
+    border: 1px solid rgba(138,128,120,.20);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  #shopify-section-{{ section.id }} .flame-rev__card img {
+    width: 100%; height: auto; border-radius: 10px; display: block; margin-bottom: .4rem;
+  }
+  #shopify-section-{{ section.id }} .flame-rev__stars { color: #F5B841; font-size: 1.6rem; letter-spacing: .08em; }
+  #shopify-section-{{ section.id }} .flame-rev__text { font-size: 1.5rem; line-height: 1.55; margin: 0; }
+  #shopify-section-{{ section.id }} .flame-rev__name { font-size: 1.4rem; font-weight: 700; margin: 0; }
+  #shopify-section-{{ section.id }} .flame-rev__verified { font-size: 1.2rem; opacity: .7; font-weight: 500; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-rev { padding: 6.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-rev__title { font-size: 3.6rem; }
+    #shopify-section-{{ section.id }} .flame-rev__grid { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width flame-rev">
+    <div class="flame-rev__head">
+      {%- if section.settings.title != blank -%}<h2 class="flame-rev__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.badge_text != blank -%}
+        <span class="flame-rev__badge"><span class="stars">★★★★★</span> {{ section.settings.badge_text | escape }}</span>
+      {%- endif -%}
+    </div>
+    <div class="flame-rev__grid">
+      {%- for block in section.blocks -%}
+        <article class="flame-rev__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag:
+                loading: 'lazy', sizes: '(min-width: 750px) 33vw, 100vw', widths: '300, 450, 600',
+                alt: block.settings.name | escape }}
+          {%- endif -%}
+          <div class="flame-rev__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+            {%- assign r = block.settings.rating | at_most: 5 -%}
+            {%- for i in (1..5) -%}{% if i <= r %}★{% else %}☆{% endif %}{%- endfor -%}
+          </div>
+          <p class="flame-rev__text">{{ block.settings.text | escape }}</p>
+          <p class="flame-rev__name">{{ block.settings.name | escape }}{% if block.settings.verified %} <span class="flame-rev__verified">✓ Verified Buyer</span>{% endif %}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Reviews",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Loved in Homes Across the UK & Ireland" },
+    { "type": "text", "id": "badge_text", "label": "Rating badge", "default": "4.8 / 5 from 900+ reviews" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    { "type": "review", "name": "Review", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Photo (optional)" },
+      { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Star rating", "default": 5 },
+      { "type": "textarea", "id": "text", "label": "Review text", "default": "Absolutely obsessed. It makes my living room feel so cosy every evening." },
+      { "type": "text", "id": "name", "label": "Name", "default": "Emma T." },
+      { "type": "checkbox", "id": "verified", "label": "Show \"Verified Buyer\"", "default": true }
+    ] }
+  ],
+  "max_blocks": 12,
+  "presets": [ { "name": "Flame Reviews", "blocks": [
+    { "type": "review", "settings": { "rating": 5, "name": "Emma T.", "text": "Absolutely obsessed. The flame looks so real and my living room feels instantly cosy every evening." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Ciara M.", "text": "Bought one for the bedroom and ended up ordering two more as gifts. The lavender + glow combo is pure calm." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Jack R.", "text": "Whisper quiet and looks premium. Leave it on while I read and drift right off." } },
+    { "type": "review", "settings": { "rating": 4, "name": "Aoife D.", "text": "Lovely ambience and the mist is gentle. Delivery to Ireland was quicker than expected." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Laura B.", "text": "The kids call it our little campfire. Totally safe, no worries leaving it on in the evenings." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Sean K.", "text": "Genuinely surprised by the quality for the price. The 7 colours are gorgeous on the darker settings." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Niamh O.", "text": "My little self-care ritual now. Fill it, pick the amber glow, and the whole room softens." } },
+    { "type": "review", "settings": { "rating": 5, "name": "Tom H.", "text": "Does exactly what it promises. Cosy, quiet, and the auto shut-off gives real peace of mind." } }
+  ] } ]
+}
+{% endschema %}

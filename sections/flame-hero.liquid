@@ -1,0 +1,146 @@
+{%- comment -%}
+  Lumisca — Flame Hero (above the fold)
+  Self-contained, mobile-first. Inherits flame palette via color-scheme wrapper + .button.
+{%- endcomment -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-hero {
+    position: relative;
+    display: flex;
+    align-items: {% if section.settings.content_position == 'top' %}flex-start{% elsif section.settings.content_position == 'center' %}center{% else %}flex-end{% endif %};
+    min-height: {{ section.settings.height_mobile }}px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__media img,
+  #shopify-section-{{ section.id }} .flame-hero__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(14,12,11,{{ section.settings.overlay_opacity | divided_by: 100.0 | times: 0.6 }}) 0%, rgba(14,12,11,{{ section.settings.overlay_opacity | divided_by: 100.0 }}) 100%);
+  }
+  #shopify-section-{{ section.id }} .flame-hero__content {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 20px 44px;
+    text-align: center;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__eyebrow {
+    display: inline-block;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    opacity: .85;
+    margin-bottom: 1.2rem;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__title {
+    font-size: 3.2rem;
+    line-height: 1.08;
+    margin: 0 0 1.4rem;
+    text-wrap: balance;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__subtitle {
+    font-size: 1.7rem;
+    line-height: 1.5;
+    margin: 0 auto 2.2rem;
+    max-width: 46ch;
+    opacity: .92;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__cta {
+    min-width: 240px;
+    font-size: 1.7rem;
+    padding: 1.4rem 2.4rem;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__trust {
+    margin: 1.6rem 0 0;
+    font-size: 1.3rem;
+    opacity: .9;
+  }
+  #shopify-section-{{ section.id }} .flame-hero__stars { color: #F5B841; letter-spacing: .1em; }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-hero { min-height: {{ section.settings.height_desktop }}px; }
+    #shopify-section-{{ section.id }} .flame-hero__content { padding: 48px 30px 64px; max-width: 720px; }
+    #shopify-section-{{ section.id }} .flame-hero__title { font-size: 5.4rem; }
+    #shopify-section-{{ section.id }} .flame-hero__subtitle { font-size: 2rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="flame-hero">
+    <div class="flame-hero__media">
+      {%- if section.settings.video_url != blank -%}
+        <video autoplay muted loop playsinline
+          {% if section.settings.image %}poster="{{ section.settings.image | image_url: width: 1600 }}"{% endif %}>
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      {%- elsif section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag:
+            loading: 'eager', fetchpriority: 'high', sizes: '100vw',
+            widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+            alt: section.settings.image.alt | default: section.settings.title | escape }}
+      {%- else -%}
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'flame-hero__placeholder' }}
+      {%- endif -%}
+    </div>
+    <div class="flame-hero__overlay"></div>
+
+    <div class="flame-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="flame-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h1 class="flame-hero__title">{{ section.settings.title | escape }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="flame-hero__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="button flame-hero__cta">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.trust_line != blank -%}
+        <p class="flame-hero__trust"><span class="flame-hero__stars">★★★★★</span> {{ section.settings.trust_line }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Hero",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "url", "id": "video_url", "label": "Background video URL (.mp4, optional)", "info": "If set, overrides the image. Use a short, muted, looping clip." },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Image darkening overlay", "default": 55 },
+    { "type": "range", "id": "height_mobile", "min": 420, "max": 760, "step": 10, "unit": "px", "label": "Mobile height", "default": 560 },
+    { "type": "range", "id": "height_desktop", "min": 480, "max": 900, "step": 10, "unit": "px", "label": "Desktop height", "default": 680 },
+    { "type": "select", "id": "content_position", "label": "Content position", "options": [
+      { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" }
+    ], "default": "bottom" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Lumisca" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Turn Any Room Into a Cosy, Fire-Lit Escape" },
+    { "type": "richtext", "id": "subtitle", "label": "Subheading", "default": "<p>The calming glow of a real flame — with none of the smoke, soot or danger. Just soothing light, gentle mist, and your favourite scents.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now — 40% Off" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Link to the Mini Flame Aroma Diffuser product page." },
+    { "type": "richtext", "id": "trust_line", "label": "Trust line", "default": "<p>Loved by 900+ happy customers · Free UK/IE shipping</p>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-3" }
+  ],
+  "presets": [ { "name": "Flame Hero" } ]
+}
+{% endschema %}

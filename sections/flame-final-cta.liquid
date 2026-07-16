@@ -1,0 +1,52 @@
+{%- comment -%} Lumisca — Final CTA Banner {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-cta { position: relative; padding: 5.4rem 0; text-align: center; overflow: hidden; isolation: isolate; }
+  #shopify-section-{{ section.id }} .flame-cta__media { position: absolute; inset: 0; z-index: -2; }
+  #shopify-section-{{ section.id }} .flame-cta__media img { width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .flame-cta__overlay { position: absolute; inset: 0; z-index: -1; background: rgba(14,12,11,{{ section.settings.overlay_opacity | divided_by: 100.0 }}); }
+  #shopify-section-{{ section.id }} .flame-cta__title { font-size: 3rem; line-height: 1.12; margin: 0 0 1.6rem; text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-cta__sub { font-size: 1.65rem; margin: 0 auto 2.2rem; max-width: 44ch; opacity: .92; }
+  #shopify-section-{{ section.id }} .flame-cta__btn { min-width: 240px; font-size: 1.75rem; padding: 1.4rem 2.6rem; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-cta { padding: 7.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-cta__title { font-size: 4.4rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="flame-cta">
+    {%- if section.settings.image != blank -%}
+      <div class="flame-cta__media">
+        {{ section.settings.image | image_url: width: 1600 | image_tag:
+            loading: 'lazy', sizes: '100vw', widths: '750, 1100, 1500, 1780',
+            alt: section.settings.title | escape }}
+      </div>
+      <div class="flame-cta__overlay"></div>
+    {%- endif -%}
+    <div class="page-width">
+      {%- if section.settings.title != blank -%}<h2 class="flame-cta__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.subtitle != blank -%}<p class="flame-cta__sub">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="button flame-cta__btn">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Final CTA",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image (optional)" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Image darkening overlay", "default": 55 },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Bring the Cosy Home Tonight" },
+    { "type": "text", "id": "subtitle", "label": "Subheading", "default": "Limited-time 40% off — free UK & Ireland shipping while it lasts." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now — 40% Off" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-3" }
+  ],
+  "presets": [ { "name": "Flame Final CTA" } ]
+}
+{% endschema %}

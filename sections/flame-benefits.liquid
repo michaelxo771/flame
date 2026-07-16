@@ -1,0 +1,76 @@
+{%- comment -%} Lumisca — Benefits (3 columns, icon + heading + text) {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-benefits { padding: 4.4rem 0; }
+  #shopify-section-{{ section.id }} .flame-benefits__head { text-align: center; margin-bottom: 3rem; }
+  #shopify-section-{{ section.id }} .flame-benefits__title { font-size: 2.8rem; line-height: 1.15; margin: 0 0 1rem; }
+  #shopify-section-{{ section.id }} .flame-benefits__intro { font-size: 1.6rem; opacity: .9; max-width: 52ch; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .flame-benefits__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+  #shopify-section-{{ section.id }} .flame-benefit {
+    text-align: center;
+    padding: 2.6rem 2rem;
+    border-radius: 14px;
+    background: rgba(200,98,46,.06);
+    border: 1px solid rgba(200,98,46,.16);
+  }
+  #shopify-section-{{ section.id }} .flame-benefit__icon {
+    font-size: 3.2rem;
+    line-height: 1;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+  #shopify-section-{{ section.id }} .flame-benefit__title { font-size: 2rem; margin: 0 0 .8rem; }
+  #shopify-section-{{ section.id }} .flame-benefit__text { font-size: 1.5rem; line-height: 1.55; opacity: .9; margin: 0; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-benefits { padding: 6.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-benefits__title { font-size: 3.6rem; }
+    #shopify-section-{{ section.id }} .flame-benefits__grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width flame-benefits">
+    <div class="flame-benefits__head">
+      {%- if section.settings.title != blank -%}<h2 class="flame-benefits__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.intro != blank -%}<p class="flame-benefits__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    </div>
+    <div class="flame-benefits__grid">
+      {%- for block in section.blocks -%}
+        <div class="flame-benefit" {{ block.shopify_attributes }}>
+          <span class="flame-benefit__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          <h3 class="flame-benefit__title">{{ block.settings.title | escape }}</h3>
+          <p class="flame-benefit__text">{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Benefits",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Why Homes Love Lumisca" },
+    { "type": "text", "id": "intro", "label": "Intro", "default": "One little diffuser, a whole new atmosphere." },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    { "type": "benefit", "name": "Benefit", "settings": [
+      { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "🔥" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Cosy Ambience" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "A realistic 7-colour flame glow transforms any room into a warm, relaxing retreat." }
+    ] }
+  ],
+  "max_blocks": 6,
+  "presets": [ { "name": "Flame Benefits", "blocks": [
+    { "type": "benefit", "settings": { "icon": "🔥", "title": "Cosy Ambience", "text": "A realistic 7-colour flame glow transforms any room into a warm, relaxing retreat." } },
+    { "type": "benefit", "settings": { "icon": "🌿", "title": "Calming Aromatherapy", "text": "Add a few drops of essential oil and fill your space with soothing scent — melt stress in minutes." } },
+    { "type": "benefit", "settings": { "icon": "🤫", "title": "Whisper-Quiet & Safe", "text": "Silent operation, auto shut-off, and zero real flame — safe to leave on overnight or around kids and pets." } }
+  ] } ]
+}
+{% endschema %}

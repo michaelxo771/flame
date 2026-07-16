@@ -1,0 +1,67 @@
+{%- comment -%} Lumisca — Trust Bar (icons + micro-labels) {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-trustbar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem 0.8rem;
+    padding: 2rem 1.5rem;
+  }
+  #shopify-section-{{ section.id }} .flame-trustbar__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .5rem;
+  }
+  #shopify-section-{{ section.id }} .flame-trustbar__icon { font-size: 2.4rem; line-height: 1; }
+  #shopify-section-{{ section.id }} .flame-trustbar__label {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: .01em;
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-trustbar {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 2.4rem 1.5rem;
+      gap: 1rem;
+    }
+    #shopify-section-{{ section.id }} .flame-trustbar__item { flex-direction: row; gap: .9rem; }
+    #shopify-section-{{ section.id }} .flame-trustbar__label { font-size: 1.4rem; text-align: left; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width flame-trustbar">
+    {%- for block in section.blocks -%}
+      <div class="flame-trustbar__item" {{ block.shopify_attributes }}>
+        <span class="flame-trustbar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+        <span class="flame-trustbar__label">{{ block.settings.label | escape }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame Trust Bar",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Trust item", "settings": [
+      { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "🚚" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Free UK/IE Shipping" }
+    ] }
+  ],
+  "max_blocks": 4,
+  "presets": [ { "name": "Flame Trust Bar", "blocks": [
+    { "type": "item", "settings": { "icon": "🚚", "label": "Free UK/IE Shipping" } },
+    { "type": "item", "settings": { "icon": "🔥", "label": "No Real Flame — 100% Safe" } },
+    { "type": "item", "settings": { "icon": "⏱", "label": "5-Hour Runtime" } },
+    { "type": "item", "settings": { "icon": "↩️", "label": "30-Day Guarantee" } }
+  ] } ]
+}
+{% endschema %}

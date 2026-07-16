@@ -1,0 +1,65 @@
+{%- comment -%} Lumisca — How It Works (3 numbered steps) {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-how { padding: 4.4rem 0; text-align: center; }
+  #shopify-section-{{ section.id }} .flame-how__title { font-size: 2.8rem; margin: 0 0 3rem; }
+  #shopify-section-{{ section.id }} .flame-how__grid {
+    display: grid; grid-template-columns: 1fr; gap: 2.6rem; counter-reset: step;
+  }
+  #shopify-section-{{ section.id }} .flame-how__step { position: relative; }
+  #shopify-section-{{ section.id }} .flame-how__num {
+    counter-increment: step;
+    width: 5.4rem; height: 5.4rem;
+    margin: 0 auto 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: #C8622E; color: #fff;
+    font-size: 2.2rem; font-weight: 700;
+  }
+  #shopify-section-{{ section.id }} .flame-how__num::before { content: counter(step); }
+  #shopify-section-{{ section.id }} .flame-how__step-title { font-size: 2rem; margin: 0 0 .6rem; }
+  #shopify-section-{{ section.id }} .flame-how__step-text { font-size: 1.5rem; line-height: 1.5; opacity: .9; margin: 0 auto; max-width: 34ch; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .flame-how { padding: 6.4rem 0; }
+    #shopify-section-{{ section.id }} .flame-how__title { font-size: 3.6rem; }
+    #shopify-section-{{ section.id }} .flame-how__grid { grid-template-columns: repeat(3, 1fr); gap: 3.2rem; }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width flame-how">
+    {%- if section.settings.title != blank -%}<h2 class="flame-how__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+    <div class="flame-how__grid">
+      {%- for block in section.blocks -%}
+        <div class="flame-how__step" {{ block.shopify_attributes }}>
+          <div class="flame-how__num" aria-hidden="true"></div>
+          <h3 class="flame-how__step-title">{{ block.settings.title | escape }}</h3>
+          <p class="flame-how__step-text">{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flame How It Works",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "How It Works" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Fill" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Add water and a few drops of your favourite essential oil." }
+    ] }
+  ],
+  "max_blocks": 4,
+  "presets": [ { "name": "Flame How It Works", "blocks": [
+    { "type": "step", "settings": { "title": "Fill", "text": "Add water and a few drops of your favourite essential oil." } },
+    { "type": "step", "settings": { "title": "Choose Your Glow", "text": "Tap to cycle through 7 warm flame colours — or lock in your favourite." } },
+    { "type": "step", "settings": { "title": "Relax", "text": "Sit back as gentle mist and cosy light fill the room. Auto shut-off keeps it safe." } }
+  ] } ]
+}
+{% endschema %}
