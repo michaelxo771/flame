@@ -1,0 +1,35 @@
+{%- comment -%} Lumisca — Product story split (editorial). CTA scrolls to buy box. {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .flame-pst { background: var(--bg-deep); }
+  #shopify-section-{{ section.id }} .flame-pst__grid { display: grid; grid-template-columns: 1fr; gap: 3.4rem; align-items: center; }
+  #shopify-section-{{ section.id }} .flame-pst__media { position: relative; justify-self: center; width: 100%; max-width: 520px; }
+  #shopify-section-{{ section.id }} .flame-pst__media::before { content: ''; position: absolute; inset: -12%; background: var(--ember-glow); filter: blur(16px); opacity: .8; }
+  #shopify-section-{{ section.id }} .flame-pst__media img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.22); box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-pst__title { font-size: clamp(2.8rem, 4.6vw, 4rem); line-height: 1.08; color: var(--text-cream); margin: 0 0 2rem; text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-pst__body p { color: var(--text-muted); font-size: 1.65rem; line-height: 1.75; margin: 0 0 1.6rem; }
+  #shopify-section-{{ section.id }} .flame-pst__cta { margin-top: 1.4rem; }
+  @media screen and (min-width: 900px) {
+    #shopify-section-{{ section.id }} .flame-pst__grid { grid-template-columns: 1fr 1fr; gap: 6rem; }
+  }
+{%- endstyle -%}
+
+<div class="flame-pst flame-section flame-grain">
+  <div class="flame-wrap flame-pad flame-pst__grid">
+    <div class="flame-pst__media flame-reveal" data-delay="1">
+      <img src="{{ 'A330e6b8753c74c97b57d60c5f3de4aa6h.webp' | file_url }}" alt="Mini Flame Aroma Diffuser glowing in a calm, dimly lit room" width="800" height="1000" loading="lazy" sizes="(min-width: 900px) 50vw, 100vw">
+    </div>
+    <div class="flame-pst__text flame-reveal">
+      <p class="flame-kicker">The Feeling</p>
+      <h2 class="flame-pst__title">End Stressful Days with Calming Aromas</h2>
+      <div class="flame-pst__body">
+        <p>The front door closes and the noise of the day is still with you. Bright lights and stale air keep you wound up when all you want is to switch off.</p>
+        <p>Lumisca changes the mood in seconds — a soft, dancing flame glow and gentle aromatic mist that tell your body it's finally time to breathe out and unwind.</p>
+      </div>
+      <a href="#buybox" class="flame-btn flame-pst__cta">Get Mine Now</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Flame Product Story", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Product Story" } ] }
+{% endschema %}

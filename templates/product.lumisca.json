@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": { "type": "flame-product-hero" },
+    "trust": { "type": "flame-trust-bar" },
+    "story": { "type": "flame-product-story" },
+    "benefits": { "type": "flame-benefits" },
+    "ritual": { "type": "flame-how-it-works" },
+    "comparison": { "type": "flame-comparison" },
+    "reviews": { "type": "flame-reviews" },
+    "guarantee": { "type": "flame-guarantee" },
+    "faq": { "type": "flame-faq" },
+    "final": { "type": "flame-final-cta" }
+  },
+  "order": ["main", "trust", "story", "benefits", "ritual", "comparison", "reviews", "guarantee", "faq", "final"]
+}
