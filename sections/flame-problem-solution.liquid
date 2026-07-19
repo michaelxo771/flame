@@ -17,7 +17,13 @@
 <div class="flame-ps flame-section flame-grain">
   <div class="flame-wrap flame-pad flame-ps__grid">
     <div class="flame-ps__media flame-reveal" data-delay="1">
-      <img src="{{ 'A330e6b8753c74c97b57d60c5f3de4aa6h.webp' | file_url }}" alt="Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room" width="800" height="1000" loading="lazy" sizes="(min-width: 900px) 50vw, 100vw">
+      {%- if section.settings.feeling_image != blank -%}
+        {{ section.settings.feeling_image | image_url: width: 1000 | image_tag:
+            loading: 'lazy', widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
+            alt: section.settings.feeling_image.alt | default: 'Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room' | escape }}
+      {%- else -%}
+        <img src="{{ 'A330e6b8753c74c97b57d60c5f3de4aa6h.webp' | file_url }}" alt="Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room" width="800" height="1000" loading="lazy" sizes="(min-width: 900px) 50vw, 100vw">
+      {%- endif -%}
     </div>
     <div class="flame-ps__text flame-reveal">
       <p class="flame-kicker">The Feeling</p>
@@ -32,5 +38,13 @@
 </div>
 
 {% schema %}
-{ "name": "Flame Problem/Solution", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Problem/Solution" } ] }
+{
+  "name": "Flame Problem/Solution",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "image_picker", "id": "feeling_image", "label": "Feeling image", "info": "Lifestyle shot beside the copy. Falls back to a default if empty." }
+  ],
+  "presets": [ { "name": "Flame Problem/Solution" } ]
+}
 {% endschema %}

@@ -67,8 +67,8 @@ or holidays are processed the next business day.
 
 **Delivery times**
 Because each Lumisca is shipped directly from our supplier to keep prices low, estimated
-delivery is typically **7–20 business days** from dispatch, depending on your location and
-carrier demand. Most orders arrive well within this window.
+delivery is **4–8 business days for most orders (up to 12 during busy periods)**, depending on
+your location and carrier demand. Most orders arrive well within this window.
 
 **Tracking**
 You'll receive a tracking number by email as soon as your order ships, so you can follow it
@@ -76,7 +76,7 @@ every step of the way. You can also track it on our [Track Order](/pages/track-o
 
 **Delays**
 Occasionally, factors outside our control (customs, carrier backlogs, peak periods, weather)
-can cause delays. If your order hasn't arrived within 25 business days, email
+can cause delays. If your order hasn't arrived within 15 business days, email
 **support@lumisca.co.uk** and we'll investigate right away.
 
 **Wrong address**
