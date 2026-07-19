@@ -1,4 +1,7 @@
-{%- comment -%} Lumisca — Reviews (premium marquee, framed customer photos) {%- endcomment -%}
+{%- comment -%}
+  Lumisca — Reviews (masonry). Renders the shared snippets/review-card.liquid
+  so the homepage and product page reviews stay identical.
+{%- endcomment -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-rv { background: var(--bg-deep); }
   #shopify-section-{{ section.id }} .flame-rv__head { text-align: center; margin-bottom: 3.4rem; }
@@ -7,17 +10,6 @@
   #shopify-section-{{ section.id }} .flame-rv__stat b { font-family: var(--flame-serif); font-size: 4.4rem; color: var(--text-cream); line-height: 1; font-weight: 500; }
   #shopify-section-{{ section.id }} .flame-rv__stat .s { color: var(--gold); font-size: 1.8rem; letter-spacing: .12em; }
   #shopify-section-{{ section.id }} .flame-rv__stat small { color: var(--text-muted); font-size: 1.3rem; letter-spacing: .12em; text-transform: uppercase; }
-  #shopify-section-{{ section.id }} .flame-rv__track { display: flex; gap: 2rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding: 1rem .5rem 2rem; scroll-snap-type: x mandatory; }
-  #shopify-section-{{ section.id }} .flame-rv__track::-webkit-scrollbar { display: none; }
-  #shopify-section-{{ section.id }} .flame-rv__card { flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
-  #shopify-section-{{ section.id }} .flame-rv__fig { position: relative; margin: 0; border-radius: 16px 16px 0 0; overflow: hidden; }
-  #shopify-section-{{ section.id }} .flame-rv__fig img { width: 100%; height: 300px; object-fit: cover; display: block; }
-  #shopify-section-{{ section.id }} .flame-rv__fig figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 3rem 1.6rem 1.2rem; background: linear-gradient(transparent, rgba(11,9,8,.92)); }
-  #shopify-section-{{ section.id }} .flame-rv__nm { color: var(--text-cream); font-weight: 700; font-size: 1.4rem; display: flex; align-items: center; gap: .6rem; }
-  #shopify-section-{{ section.id }} .flame-rv__vf { color: var(--gold); font-size: 1.1rem; font-weight: 500; }
-  #shopify-section-{{ section.id }} .flame-rv__st { color: var(--gold); font-size: 1.4rem; letter-spacing: .08em; }
-  #shopify-section-{{ section.id }} .flame-rv__body { background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); border: 1px solid rgba(244,238,230,.09); border-top: 0; border-radius: 0 0 16px 16px; padding: 1.8rem; }
-  #shopify-section-{{ section.id }} .flame-rv__tx { color: var(--text-muted); font-size: 1.45rem; line-height: 1.6; margin: 0; }
 {%- endstyle -%}
 
 {%- assign r_names = 'Emma T.|Ciara M.|Jack R.|Aoife D.|Laura B.|Sean K.|Niamh O.|Tom H.|Grace M.|Conor D.|Hannah P.|Liam F.|Saoirse B.|Oliver W.|Megan R.|Cathal N.' | split: '|' -%}
@@ -32,21 +24,10 @@
       <h2 class="flame-rv__title">Loved in Homes Across the UK &amp; Ireland</h2>
       <span class="flame-rv__stat"><span class="s">★★★★★</span><b>4.8 / 5</b><small>from 910+ reviews</small></span>
     </div>
-  </div>
-  <div class="flame-wrap">
-    <div class="flame-rv__track flame-reveal" data-flame-marquee>
+    <div class="review-masonry flame-reveal" data-delay="1">
       {%- for name in r_names -%}
         {%- assign i = forloop.index0 -%}
-        <article class="flame-rv__card">
-          <figure class="flame-rv__fig">
-            <img src="{{ r_photos[i] | file_url }}" alt="Lumisca diffuser in {{ name }}'s home" width="300" height="300" loading="lazy">
-            <figcaption>
-              <div class="flame-rv__st" aria-label="{{ r_ratings[i] }} out of 5">{% if r_ratings[i] == '4' %}★★★★☆{% else %}★★★★★{% endif %}</div>
-              <div class="flame-rv__nm">{{ name }} <span class="flame-rv__vf">✓ Verified</span></div>
-            </figcaption>
-          </figure>
-          <div class="flame-rv__body"><p class="flame-rv__tx">{{ r_texts[i] }}</p></div>
-        </article>
+        {% render 'review-card', name: name, text: r_texts[i], photo: r_photos[i], rating: r_ratings[i], verified: true %}
       {%- endfor -%}
     </div>
   </div>

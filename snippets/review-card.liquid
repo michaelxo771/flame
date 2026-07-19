@@ -1,0 +1,32 @@
+{%- comment -%}
+  Lumisca — shared review card (used by homepage + product reviews sections).
+  Params:
+    name     - reviewer name (string)
+    text     - review body (string)
+    photo    - Shopify Files image filename (string, optional)
+    rating   - 1-5 (string or number, default 5)
+    verified - truthy to show the Verified Buyer badge
+{%- endcomment -%}
+{%- liquid
+  assign stars = rating | default: 5 | plus: 0
+  if stars < 1
+    assign stars = 5
+  endif
+-%}
+<article class="review-card">
+  {%- if photo != blank -%}
+    <div class="review-card__media">
+      <img src="{{ photo | file_url }}" alt="Lumisca diffuser in {{ name | escape }}'s home" width="600" height="750" loading="lazy">
+    </div>
+  {%- endif -%}
+  <div class="review-card__body">
+    <div class="review-card__stars" role="img" aria-label="{{ stars }} out of 5 stars">
+      {%- for i in (1..5) -%}{% if i <= stars %}★{% else %}☆{% endif %}{%- endfor -%}
+    </div>
+    {%- if text != blank -%}<p class="review-card__text">{{ text }}</p>{%- endif -%}
+    <p class="review-card__name">
+      {{ name }}
+      {%- if verified -%}<span class="review-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Verified Buyer</span>{%- endif -%}
+    </p>
+  </div>
+</article>
