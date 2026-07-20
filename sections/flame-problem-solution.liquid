@@ -1,13 +1,6 @@
 {%- comment -%} Lumisca — Problem/Solution (dark editorial split) {%- endcomment -%}
 {%- liquid
-  assign fp = collections.all.products.first
-  for p in collections.all.products
-    if p.title contains 'Diffuser' or p.title contains 'Flame' or p.title contains 'Lumisca'
-      assign fp = p
-      break
-    endif
-  endfor
-  assign feeling_alt = section.settings.feeling_image_alt | default: 'Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room'
+  assign feeling_alt = section.settings.feeling_image_alt | default: 'White Lumisca flame diffuser glowing on a bedside table'
 -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-ps { background: var(--bg-dark); }
@@ -31,12 +24,10 @@
         {{ section.settings.feeling_image | image_url: width: 1000 | image_tag:
             loading: 'lazy', widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
             alt: feeling_alt | escape }}
-      {%- elsif fp.featured_image != blank -%}
-        {{ fp.featured_image | image_url: width: 1000 | image_tag:
-            loading: 'lazy', widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
-            alt: feeling_alt | escape }}
       {%- else -%}
-        <img src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="{{ feeling_alt | escape }}" width="800" height="1000" loading="lazy" sizes="(min-width: 900px) 50vw, 100vw">
+        {{ 'ChatGPT_Image_Jul_17_2026_01_11_28_PM.png' | file_url | image_tag:
+            loading: 'lazy', width: 1024, height: 1024, widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
+            alt: feeling_alt | escape }}
       {%- endif -%}
     </div>
     <div class="flame-ps__text flame-reveal">
@@ -61,13 +52,13 @@
       "type": "image_picker",
       "id": "feeling_image",
       "label": "Feeling image",
-      "info": "Lifestyle shot shown beside the copy. Recommended 800×1000 (4:5 portrait). Falls back to the product image if empty."
+      "info": "Lifestyle shot shown beside the copy. Recommended 800×1000 (4:5 portrait). Defaults to the bedside-table image (A) if empty."
     },
     {
       "type": "text",
       "id": "feeling_image_alt",
       "label": "Feeling image alt text",
-      "default": "Mini Flame Aroma Diffuser glowing in a cosy, dimly lit room",
+      "default": "White Lumisca flame diffuser glowing on a bedside table",
       "info": "Describe the image for accessibility and SEO."
     }
   ],

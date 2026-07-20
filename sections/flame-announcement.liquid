@@ -6,9 +6,10 @@
   .flame-announce__item {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 1rem;
     font-family: var(--flame-sans); font-size: 1.15rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--text-cream); opacity: 0; transition: opacity .6s var(--ease); text-align: center; padding: 0 1.5rem;
+    color: var(--text-cream); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility 0s linear .5s; text-align: center; padding: 0 1.5rem;
   }
-  .flame-announce__item.is-active { opacity: 1; }
+  /* Staggered crossfade: outgoing fades out first, incoming fades in after — never two texts at once */
+  .flame-announce__item.is-active { opacity: 1; visibility: visible; transition: opacity .5s var(--ease) .5s, visibility 0s; }
   .flame-announce__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ember); flex: 0 0 auto; }
   /* static fallback when JS off: stack won't work with absolute; show first via :first-child */
   .no-js .flame-announce__item:first-child { opacity: 1; }
