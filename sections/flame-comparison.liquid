@@ -3,10 +3,14 @@
   #shopify-section-{{ section.id }} .flame-cmp { background: var(--bg-dark); }
   #shopify-section-{{ section.id }} .flame-cmp__head { text-align: center; margin-bottom: 4rem; }
   #shopify-section-{{ section.id }} .flame-cmp__title { font-size: clamp(2.8rem, 4.4vw, 3.8rem); color: var(--text-cream); margin: 0; }
-  #shopify-section-{{ section.id }} .flame-cmp__wrap { max-width: 760px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid rgba(244,238,230,.1); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-cmp__wrap { max-width: 760px; margin: 0 auto; border-radius: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(244,238,230,.1); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); box-shadow: var(--shadow-soft); }
   #shopify-section-{{ section.id }} table { width: 100%; border-collapse: collapse; }
-  #shopify-section-{{ section.id }} th, #shopify-section-{{ section.id }} td { padding: 1.8rem 1.4rem; text-align: center; font-size: 1.5rem; }
-  #shopify-section-{{ section.id }} thead th { font-family: var(--flame-serif); font-size: 1.7rem; color: var(--text-cream); font-weight: 500; padding-block: 2.4rem; }
+  #shopify-section-{{ section.id }} th, #shopify-section-{{ section.id }} td { padding: 1.3rem .7rem; text-align: center; font-size: 1.35rem; }
+  #shopify-section-{{ section.id }} thead th { font-family: var(--flame-serif); font-size: 1.4rem; color: var(--text-cream); font-weight: 500; padding-block: 1.8rem; }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} th, #shopify-section-{{ section.id }} td { padding: 1.8rem 1.4rem; font-size: 1.5rem; }
+    #shopify-section-{{ section.id }} thead th { font-size: 1.7rem; padding-block: 2.4rem; }
+  }
   #shopify-section-{{ section.id }} th:first-child, #shopify-section-{{ section.id }} td:first-child { text-align: left; color: var(--text-cream); font-weight: 500; }
   #shopify-section-{{ section.id }} tbody tr { border-top: 1px solid rgba(244,238,230,.07); transition: background .3s var(--ease); }
   #shopify-section-{{ section.id }} tbody tr:hover { background: rgba(244,238,230,.03); }

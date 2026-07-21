@@ -40,18 +40,35 @@
     var burger = document.querySelector('[data-flame-burger]');
     var drawer = document.querySelector('[data-flame-drawer]');
     if (burger && drawer) {
+      var panel = drawer.querySelector('.flame-drawer__panel') || drawer;
+      var getFocusable = function () {
+        return [].slice.call(panel.querySelectorAll('a[href],button:not([disabled])'))
+          .filter(function (el) { return el.offsetParent !== null; });
+      };
       var toggle = function (open) {
         var isOpen = open === undefined ? !drawer.classList.contains('is-open') : open;
         drawer.classList.toggle('is-open', isOpen);
         burger.classList.toggle('is-open', isOpen);
         burger.setAttribute('aria-expanded', String(isOpen));
         document.body.style.overflow = isOpen ? 'hidden' : '';
+        if (isOpen) { var f = getFocusable(); if (f.length) f[0].focus(); }
+        else { burger.focus(); }
       };
       burger.addEventListener('click', function () { toggle(); });
       drawer.addEventListener('click', function (e) {
         if (e.target === drawer || e.target.hasAttribute('data-flame-drawer-close') || e.target.closest('a')) toggle(false);
       });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
+      document.addEventListener('keydown', function (e) {
+        if (!drawer.classList.contains('is-open')) return;
+        if (e.key === 'Escape') { toggle(false); return; }
+        if (e.key === 'Tab') {
+          var f = getFocusable();
+          if (!f.length) return;
+          var first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
     }
 
     /* ---- Reviews marquee: auto-scroll, pause on hover/drag ---- */

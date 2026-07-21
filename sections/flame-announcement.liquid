@@ -2,11 +2,15 @@
 {%- style -%}
   #shopify-section-{{ section.id }} { position: relative; z-index: 60; }
   .flame-announce { background: var(--bg-deep); border-bottom: 1px solid rgba(201,162,75,.28); }
-  .flame-announce__inner { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: .6rem 1.5rem; position: relative; }
+  .flame-announce__inner { display: flex; align-items: center; justify-content: center; min-height: 46px; padding: .6rem 1.4rem; position: relative; }
   .flame-announce__item {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 1rem;
-    font-family: var(--flame-sans); font-size: 1.15rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--text-cream); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility 0s linear .5s; text-align: center; padding: 0 1.5rem;
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: .8rem;
+    font-family: var(--flame-sans); font-size: 1.05rem; font-weight: 500; letter-spacing: .12em; line-height: 1.35; text-transform: uppercase;
+    color: var(--text-cream); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility 0s linear .5s; text-align: center; padding: 0 1.2rem;
+  }
+  @media screen and (min-width: 750px) {
+    .flame-announce__inner { min-height: 40px; }
+    .flame-announce__item { font-size: 1.15rem; letter-spacing: .22em; gap: 1rem; }
   }
   /* Staggered crossfade: outgoing fades out first, incoming fades in after — never two texts at once */
   .flame-announce__item.is-active { opacity: 1; visibility: visible; transition: opacity .5s var(--ease) .5s, visibility 0s; }

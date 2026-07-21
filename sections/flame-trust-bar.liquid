@@ -4,6 +4,7 @@
   #shopify-section-{{ section.id }} .flame-tb__grid { display: grid; grid-template-columns: repeat(2, 1fr); }
   #shopify-section-{{ section.id }} .flame-tb__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 3rem 1.4rem; position: relative; }
   #shopify-section-{{ section.id }} .flame-tb__item + .flame-tb__item::before { content: ''; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px; background: linear-gradient(transparent, rgba(201,162,75,.35), transparent); }
+  #shopify-section-{{ section.id }} .flame-tb__item:nth-child(odd)::before { display: none; }
   #shopify-section-{{ section.id }} .flame-tb__icon { color: var(--gold); }
   #shopify-section-{{ section.id }} .flame-tb__icon svg { width: 30px; height: 30px; }
   #shopify-section-{{ section.id }} .flame-tb__label { font-size: 1.15rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text-cream); }
@@ -11,6 +12,7 @@
     #shopify-section-{{ section.id }} .flame-tb__grid { grid-template-columns: repeat(4, 1fr); }
     #shopify-section-{{ section.id }} .flame-tb__item { flex-direction: row; gap: 1.2rem; padding: 3.4rem 1.6rem; }
     #shopify-section-{{ section.id }} .flame-tb__item + .flame-tb__item::before { top: 28%; bottom: 28%; }
+    #shopify-section-{{ section.id }} .flame-tb__item:nth-child(odd)::before { display: block; }
     #shopify-section-{{ section.id }} .flame-tb__label { font-size: 1.2rem; }
   }
 {%- endstyle -%}
