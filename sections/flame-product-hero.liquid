@@ -14,6 +14,21 @@
   if product.compare_at_price > product.price
     assign save_pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
   endif
+
+  # Delivery estimate — only renders when BOTH lead-time settings are > 0 (calendar days, weekends not skipped)
+  assign show_eta = false
+  if section.settings.min_days > 0 and section.settings.max_days > 0
+    assign show_eta = true
+    assign now_unix = 'now' | date: '%s' | plus: 0
+    assign eta1 = section.settings.min_days | times: 86400 | plus: now_unix
+    assign eta2 = section.settings.max_days | times: 86400 | plus: now_unix
+    assign eta1_d = eta1 | date: '%-d'
+    assign eta2_d = eta2 | date: '%-d'
+    assign eta1_month = eta1 | date: '%B'
+    assign eta2_month = eta2 | date: '%B'
+    assign eta1_mm = eta1 | date: '%m'
+    assign eta2_mm = eta2 | date: '%m'
+  endif
 -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .flame-pdp { background: var(--bg-dark); }
@@ -46,6 +61,8 @@
   #shopify-section-{{ section.id }} .flame-pdp__pill input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
   #shopify-section-{{ section.id }} .flame-pdp__pill.is-soldout span { opacity: .4; text-decoration: line-through; }
   #shopify-section-{{ section.id }} .flame-pdp__atc { width: 100%; }
+  #shopify-section-{{ section.id }} .flame-pdp__eta { display: flex; align-items: center; justify-content: center; gap: .6rem; font-size: 1.3rem; color: var(--text-muted); margin: 1.6rem 0 0; }
+  #shopify-section-{{ section.id }} .flame-pdp__eta svg { width: 16px; height: 16px; color: var(--gold); flex: 0 0 auto; }
   #shopify-section-{{ section.id }} .flame-pdp__reassure { text-align: center; font-size: 1.3rem; color: var(--text-muted); margin: 1.4rem 0 0; }
   #shopify-section-{{ section.id }} .flame-pdp__trust { display: flex; justify-content: center; gap: 2.4rem; margin: 2.4rem 0 0; flex-wrap: wrap; }
   #shopify-section-{{ section.id }} .flame-pdp__trust div { display: flex; align-items: center; gap: .7rem; font-size: 1.2rem; color: var(--text-muted); }
@@ -131,6 +148,13 @@
         </button>
       {%- endform -%}
 
+      {%- if show_eta -%}
+        <p class="flame-pdp__eta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h13v10H1zM14 8h4l3 3v3h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="18" cy="17" r="1.6"/></svg>
+          <span>Order today — estimated delivery {% if eta1_mm == eta2_mm %}{{ eta1_d }}–{{ eta2_d }} {{ eta2_month }}{% else %}{{ eta1_d }} {{ eta1_month }} – {{ eta2_d }} {{ eta2_month }}{% endif %}</span>
+        </p>
+      {%- endif -%}
+
       <p class="flame-pdp__reassure">Free UK &amp; Ireland shipping · 30-day money-back guarantee</p>
 
       <div class="flame-pdp__trust">
@@ -194,5 +218,16 @@
 </script>
 
 {% schema %}
-{ "name": "Flame Product Hero", "tag": "section", "class": "flame-section", "settings": [], "presets": [ { "name": "Flame Product Hero" } ] }
+{
+  "name": "Flame Product Hero",
+  "tag": "section",
+  "class": "flame-section",
+  "settings": [
+    { "type": "header", "content": "Delivery estimate" },
+    { "type": "paragraph", "content": "Shows a line under Add to Cart. Set BOTH values above 0 to display it; leave either at 0 to hide it. Calendar days from today (weekends not skipped)." },
+    { "type": "number", "id": "min_days", "label": "Min lead time (days from today)", "default": 0 },
+    { "type": "number", "id": "max_days", "label": "Max lead time (days from today)", "default": 0 }
+  ],
+  "presets": [ { "name": "Flame Product Hero" } ]
+}
 {% endschema %}

@@ -9,7 +9,18 @@
     "reviews": { "type": "flame-reviews" },
     "guarantee": { "type": "flame-guarantee" },
     "faq": { "type": "flame-faq" },
+    "info": {
+      "type": "flame-product-info",
+      "blocks": {
+        "use": { "type": "item", "settings": { "heading": "How to use the light", "body": "<ul><li>Press the power button once to turn the flame on</li><li>Press again to cycle through flame colours</li><li>Hold for 3 seconds to switch between continuous and intermittent mist</li></ul>" } },
+        "oils": { "type": "item", "settings": { "heading": "Essential oils", "body": "<p>Compatible with any water-soluble essential oil. Add 3–5 drops to a full tank. Do not use fragrance oils, carrier oils or anything oil-based without water — these can damage the ultrasonic plate and will void your warranty. Never run the unit dry.</p>" } },
+        "care": { "type": "item", "settings": { "heading": "Cleaning and care", "body": "<p>Unplug and empty the tank after each use. Wipe the inside with a soft dry cloth. Once a week, clean the ultrasonic plate with a cotton bud dampened with white vinegar, then wipe dry. Do not submerge the unit in water and do not put any part of it in a dishwasher.</p>" } },
+        "warranty": { "type": "item", "settings": { "heading": "Warranty and returns", "body": "<p>Every Lumisca diffuser is covered by a 12-month warranty against manufacturing defects, plus our 30-day money-back guarantee. Email lumiscastore@outlook.com with your order number and we'll sort it.</p>" } }
+      },
+      "block_order": ["use", "oils", "care", "warranty"],
+      "settings": { "heading": "Product Information" }
+    },
     "final": { "type": "flame-final-cta" }
   },
-  "order": ["main", "trust", "story", "benefits", "ritual", "comparison", "reviews", "guarantee", "faq", "final"]
+  "order": ["main", "trust", "story", "benefits", "ritual", "comparison", "reviews", "guarantee", "faq", "info", "final"]
 }
