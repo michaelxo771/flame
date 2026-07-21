@@ -25,9 +25,7 @@
             loading: 'lazy', widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
             alt: feeling_alt | escape }}
       {%- else -%}
-        {{ 'ChatGPT_Image_Jul_17_2026_01_11_28_PM.png' | file_url | image_tag:
-            loading: 'lazy', width: 1024, height: 1024, widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw',
-            alt: feeling_alt | escape }}
+        <img src="{{ 'ChatGPT_Image_Jul_17_2026_01_11_28_PM.png' | file_url }}" alt="{{ feeling_alt | escape }}" width="1024" height="1024" loading="lazy">
       {%- endif -%}
     </div>
     <div class="flame-ps__text flame-reveal">

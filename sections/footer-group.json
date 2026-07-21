@@ -9,32 +9,32 @@
           "type": "text",
           "settings": {
             "heading": "Lumisca",
-            "subtext": "<p>Turn any room into a cosy, fire-lit escape — the calming glow of a flame with none of the smoke, soot or danger.</p>"
+            "subtext": "<p>Cosy, fire-lit ambience for every home — the glow of a flame with none of the smoke, soot or danger.</p><p><a href=\"mailto:lumiscastore@outlook.com\">lumiscastore@outlook.com</a></p>"
           }
         },
         "shop_links": {
           "type": "text",
           "settings": {
             "heading": "Shop",
-            "subtext": "<p><a href=\"/\">Home</a><br><a href=\"/collections/all\">Shop the Diffuser</a><br><a href=\"/#reviews\">Reviews</a><br><a href=\"/#faq\">FAQ</a></p>"
+            "subtext": "<p><a href=\"/products/mini-flame-aroma-diffuser-1\">Mini Flame Aroma Diffuser</a><br><a href=\"/collections/all\">Shop All</a></p>"
           }
         },
-        "support_links": {
+        "help_links": {
           "type": "text",
           "settings": {
-            "heading": "Support",
-            "subtext": "<p><a href=\"/pages/track-order\">Track Order</a><br><a href=\"/pages/contact\">Contact Us</a><br><a href=\"/pages/about\">About Lumisca</a><br><a href=\"mailto:support@lumisca.co.uk\">support@lumisca.co.uk</a></p>"
+            "heading": "Help",
+            "subtext": "<p><a href=\"/pages/track-order\">Track Order</a><br><a href=\"/pages/contact\">Contact</a><br><a href=\"/policies/shipping-policy\">Shipping Policy</a><br><a href=\"/policies/refund-policy\">Refund Policy</a><br><a href=\"/#faq\">FAQ</a></p>"
           }
         },
         "legal_links": {
           "type": "text",
           "settings": {
-            "heading": "Policies",
-            "subtext": "<p><a href=\"/policies/refund-policy\">Refund Policy</a><br><a href=\"/policies/shipping-policy\">Shipping Policy</a><br><a href=\"/policies/privacy-policy\">Privacy Policy</a><br><a href=\"/policies/terms-of-service\">Terms of Service</a></p>"
+            "heading": "Legal",
+            "subtext": "<p><a href=\"/policies/privacy-policy\">Privacy Policy</a><br><a href=\"/policies/terms-of-service\">Terms of Service</a></p>"
           }
         }
       },
-      "block_order": ["brand", "shop_links", "support_links", "legal_links"],
+      "block_order": ["brand", "shop_links", "help_links", "legal_links"],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,

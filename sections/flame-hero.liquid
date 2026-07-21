@@ -25,13 +25,20 @@
   #shopify-section-{{ section.id }} .flame-hero__media::after { content: ''; position: absolute; inset: -14%; z-index: -1; background: var(--ember-glow); filter: blur(14px); }
   #shopify-section-{{ section.id }} .flame-hero__media img { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 60px rgba(212,104,46,.28); }
   #shopify-section-{{ section.id }} .flame-hero__content { color: var(--text-cream); max-width: 620px; }
-  #shopify-section-{{ section.id }} .flame-hero__title { font-family: var(--flame-serif); font-weight: 500; font-size: clamp(3.4rem, 6.6vw, 5rem); line-height: 1.03; letter-spacing: -.02em; margin: 0 0 2rem; text-wrap: balance; }
+  #shopify-section-{{ section.id }} .flame-hero__title { font-family: var(--flame-serif); font-weight: 500; color: var(--text-cream); font-size: clamp(3.4rem, 6.6vw, 5rem); line-height: 1.03; letter-spacing: -.02em; margin: 0 0 2rem; text-wrap: balance; }
   #shopify-section-{{ section.id }} .flame-hero__sub { font-size: clamp(1.6rem, 2vw, 1.9rem); line-height: 1.6; color: var(--text-muted); margin: 0 0 3rem; max-width: 48ch; }
   #shopify-section-{{ section.id }} .flame-hero__trust { display: flex; align-items: center; gap: 1rem; margin-top: 2.6rem; font-size: 1.35rem; color: var(--text-muted); flex-wrap: wrap; }
   #shopify-section-{{ section.id }} .flame-hero__stars { color: var(--gold); letter-spacing: .12em; font-size: 1.6rem; }
   #shopify-section-{{ section.id }} .flame-hero__cue { position: absolute; z-index: 2; left: 50%; bottom: 3rem; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .8rem; color: var(--text-muted); font-size: 1.05rem; letter-spacing: .25em; text-transform: uppercase; }
   #shopify-section-{{ section.id }} .flame-hero__cue span { width: 1px; height: 44px; background: linear-gradient(var(--gold), transparent); animation: flameCue 2s var(--ease) infinite; }
   @keyframes flameCue { 0%,100% { opacity: .3; transform: scaleY(.7); } 50% { opacity: 1; transform: scaleY(1); } }
+  /* Hero entrance: transform only, opacity stays 1 so the headline is fully legible at first paint (no JS) */
+  @keyframes flameHeroRise { from { transform: translateY(24px); } to { transform: translateY(0); } }
+  #shopify-section-{{ section.id }} .flame-hero__content { animation: flameHeroRise .9s var(--ease) both; }
+  #shopify-section-{{ section.id }} .flame-hero__media { animation: flameHeroRise 1s var(--ease) .08s both; }
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .flame-hero__content, #shopify-section-{{ section.id }} .flame-hero__media { animation: none; }
+  }
   @media screen and (min-width: 990px) {
     #shopify-section-{{ section.id }} .flame-hero__grid { grid-template-columns: 1.05fr .95fr; gap: 5rem; padding-block: 14rem; }
     #shopify-section-{{ section.id }} .flame-hero__media { order: 0; justify-self: end; width: min(38vw, 460px); }
@@ -52,14 +59,14 @@
   <div class="flame-hero__vignette"></div>
 
   <div class="flame-wrap flame-hero__grid">
-    <div class="flame-hero__content flame-reveal">
+    <div class="flame-hero__content">
       <p class="flame-kicker">Home Fragrance, Reimagined</p>
       <h1 class="flame-hero__title">Turn Any Room Into a Cosy, Fire-Lit Escape</h1>
       <p class="flame-hero__sub">The calming glow of a real flame — with none of the smoke, soot or danger. Just soothing light, gentle mist, and your favourite scents.</p>
       {% render 'flame-buy-button', label: 'Shop Now — 40% Off' %}
       <div class="flame-hero__trust"><span class="flame-hero__stars">★★★★★</span> Loved by 10,000+ homes · Free UK &amp; Ireland shipping</div>
     </div>
-    <div class="flame-hero__media flame-reveal" data-delay="2">
+    <div class="flame-hero__media">
       {%- if fp.featured_image != blank -%}
         {{ fp.featured_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '340, 460, 680, 900', sizes: '(min-width: 990px) 460px, 74vw', alt: fp.featured_image.alt | default: 'Mini Flame Aroma Diffuser' | escape }}
       {%- else -%}

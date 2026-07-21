@@ -1,0 +1,30 @@
+{%- comment -%}
+  Lumisca — Organization structured data (rendered in <head>).
+
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │ TODO — paste your assets here (ONE place):                            │
+  │   • lumisca_logo_url : full https:// URL to your logo image           │
+  │ Leave '' and the logo is simply omitted (still valid JSON-LD).        │
+  └──────────────────────────────────────────────────────────────────────┘
+{%- endcomment -%}
+{%- liquid
+  assign lumisca_logo_url = ''
+  assign lumisca_name = 'Lumisca'
+  assign lumisca_email = 'lumiscastore@outlook.com'
+  assign lumisca_url = shop.secure_url
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ lumisca_name | json }},
+  "url": {{ lumisca_url | json }},
+  {% if lumisca_logo_url != blank %}"logo": {{ lumisca_logo_url | json }},{% endif %}
+  "email": {{ lumisca_email | json }},
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": {{ lumisca_email | json }},
+    "contactType": "customer support"
+  }
+}
+</script>

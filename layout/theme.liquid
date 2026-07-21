@@ -285,6 +285,7 @@
     {%- comment -%} Lumisca premium design system {%- endcomment -%}
     {{ 'flame.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'flame.js' | asset_url }}" defer="defer"></script>
+    {% render 'flame-structured-data' %}
 
     {%- if settings.cart_type == 'drawer' -%}
       {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}

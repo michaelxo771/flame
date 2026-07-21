@@ -8,7 +8,19 @@
     "comparison": { "type": "flame-comparison" },
     "reviews": { "type": "flame-reviews" },
     "guarantee": { "type": "flame-guarantee" },
-    "faq": { "type": "flame-faq" },
+    "faq": {
+      "type": "flame-product-faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "How long does delivery take?", "answer": "<p>We dispatch orders within 1–2 business days, and delivery typically takes 5–12 business days. You'll receive a tracking link by email as soon as your order ships, so you can follow it the whole way.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Is it safe to leave on overnight?", "answer": "<p>Yes. There's no real flame, and the unit shuts off automatically when the water runs low — so it's safe to leave running overnight or around children and pets.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Does it use a real flame?", "answer": "<p>No. The flame is an illusion made of cool mist lit by warm LEDs — no fire, no heat, no smoke or soot.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "What essential oils can I use?", "answer": "<p>Any water-soluble essential oil. Add 3–5 drops to a full tank. Avoid fragrance oils, carrier oils or anything oil-based without water, as these can damage the ultrasonic plate.</p>" } },
+        "q5": { "type": "qa", "settings": { "question": "How do I change the flame colour?", "answer": "<p>Press the power button once to turn the flame on, then press it again to cycle through the colours until you reach the one you like.</p>" } },
+        "q6": { "type": "qa", "settings": { "question": "Can I return it if I don't like it?", "answer": "<p>Yes — you're covered by our 30-day money-back guarantee. If it's not for you, email lumiscastore@outlook.com within 30 days for a full refund.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": { "heading": "Frequently Asked Questions" }
+    },
     "info": {
       "type": "flame-product-info",
       "blocks": {

@@ -81,6 +81,26 @@
   }
 {%- endstyle -%}
 
+{%- if product != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 400 | json }},
+  {% if product.featured_image %}"image": {{ product.featured_image | image_url: width: 1200 | prepend: "https:" | json }},{% endif %}
+  "brand": { "@type": "Brand", "name": "Lumisca" },
+  {% if product.selected_or_first_available_variant.sku != blank %}"sku": {{ product.selected_or_first_available_variant.sku | json }},{% endif %}
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ product.price | divided_by: 100.0 | round: 2 }}",
+    "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
+    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+    "url": {{ product.url | prepend: shop.secure_url | json }}
+  }
+}
+</script>
+{%- endif -%}
 <section class="flame-pdp flame-section flame-grain" id="buybox" data-flame-buybox>
   <div class="flame-wrap flame-pad flame-pdp__grid">
     <div class="flame-pdp__gallery flame-reveal">
@@ -158,9 +178,9 @@
       <p class="flame-pdp__reassure">Free UK &amp; Ireland shipping · 30-day money-back guarantee</p>
 
       <div class="flame-pdp__trust">
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v10H1zM14 8h4l3 3v3h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="18" cy="17" r="1.6"/></svg> Free Tracked Shipping</div>
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg> 30-Day Guarantee</div>
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 20v-5h5"/></svg> Free Returns</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v10H1zM14 8h4l3 3v3h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="18" cy="17" r="1.6"/></svg> {{ section.settings.trust_1 | default: 'Free UK & IE Shipping' | escape }}</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg> {{ section.settings.trust_2 | default: '30-Day Money-Back Guarantee' | escape }}</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg> {{ section.settings.trust_3 | default: '12-Month Warranty' | escape }}</div>
       </div>
     </div>
   </div>
@@ -201,14 +221,23 @@
         if (satcPrice) satcPrice.textContent = p;
       });
     });
-    /* sticky ATC on mobile */
+    /* sticky ATC on mobile — show when buy box is above the viewport, hide as the footer approaches */
     var box = document.querySelector('[data-flame-buybox]');
     var bar = document.querySelector('[data-flame-satc]');
+    var footer = document.querySelector('.footer');
     if (box && bar && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (ents) {
-        ents.forEach(function (e) { bar.classList.toggle('is-visible', !e.isIntersecting && e.boundingClientRect.top < 0); });
-      }, { threshold: 0 });
-      io.observe(box);
+      var buyboxOut = false, footerNear = false;
+      var updateBar = function () { bar.classList.toggle('is-visible', buyboxOut && !footerNear); };
+      new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) { buyboxOut = !e.isIntersecting && e.boundingClientRect.top < 0; });
+        updateBar();
+      }, { threshold: 0 }).observe(box);
+      if (footer) {
+        new IntersectionObserver(function (ents) {
+          ents.forEach(function (e) { footerNear = e.isIntersecting; });
+          updateBar();
+        }, { threshold: 0, rootMargin: '0px 0px 140px 0px' }).observe(footer);
+      }
     }
     var satcAdd = document.querySelector('[data-flame-satc-add]');
     if (satcAdd && form) satcAdd.addEventListener('click', function () {
@@ -226,7 +255,11 @@
     { "type": "header", "content": "Delivery estimate" },
     { "type": "paragraph", "content": "Shows a line under Add to Cart. Set BOTH values above 0 to display it; leave either at 0 to hide it. Calendar days from today (weekends not skipped)." },
     { "type": "number", "id": "min_days", "label": "Min lead time (days from today)", "default": 0 },
-    { "type": "number", "id": "max_days", "label": "Max lead time (days from today)", "default": 0 }
+    { "type": "number", "id": "max_days", "label": "Max lead time (days from today)", "default": 0 },
+    { "type": "header", "content": "Trust row (under Add to Cart)" },
+    { "type": "text", "id": "trust_1", "label": "Trust item 1", "default": "Free UK & IE Shipping" },
+    { "type": "text", "id": "trust_2", "label": "Trust item 2", "default": "30-Day Money-Back Guarantee" },
+    { "type": "text", "id": "trust_3", "label": "Trust item 3", "default": "12-Month Warranty" }
   ],
   "presets": [ { "name": "Flame Product Hero" } ]
 }

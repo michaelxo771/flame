@@ -153,6 +153,23 @@ html { scroll-behavior: smooth; }
 .review-card__badge svg { width: 14px; height: 14px; }
 
 /* ============================================================
+   Accessibility — visible keyboard focus on custom controls
+   ============================================================ */
+.flame-section a:focus-visible,
+.flame-section button:focus-visible,
+.flame-hd a:focus-visible,
+.flame-hd button:focus-visible,
+.flame-drawer a:focus-visible,
+.flame-satc a:focus-visible,
+.flame-satc button:focus-visible,
+.footer a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.flame-hd__nav a:focus-visible::after { transform: scaleX(1); }
+
+/* ============================================================
    Footer premium overrides (Dawn .footer, scoped)
    ============================================================ */
 .footer { background: var(--bg-deep) !important; color: var(--text-cream); border-top: 1px solid rgba(201,162,75,.22); }
