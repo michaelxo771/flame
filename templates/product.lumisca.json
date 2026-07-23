@@ -6,7 +6,6 @@
     "benefits": { "type": "flame-benefits" },
     "ritual": { "type": "flame-how-it-works" },
     "comparison": { "type": "flame-comparison" },
-    "reviews": { "type": "flame-reviews" },
     "guarantee": { "type": "flame-guarantee" },
     "faq": {
       "type": "flame-product-faq",
@@ -34,5 +33,5 @@
     },
     "final": { "type": "flame-final-cta" }
   },
-  "order": ["main", "trust", "story", "benefits", "ritual", "comparison", "reviews", "guarantee", "faq", "info", "final"]
+  "order": ["main", "trust", "story", "benefits", "ritual", "comparison", "guarantee", "faq", "info", "final"]
 }

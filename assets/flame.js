@@ -23,6 +23,10 @@
         });
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
       revealEls.forEach(function (el) { io.observe(el); });
+      // Fail-safe: settle everything shortly after load even if the observer
+      // never fires (e.g. the theme-editor preview iframe). Content is already
+      // visible (opacity:1); this just clears the 16px slide offset.
+      setTimeout(function () { revealEls.forEach(function (el) { el.classList.add('is-visible'); }); }, 1200);
     }
 
     /* ---- Header: transparent -> solid on scroll ---- */
