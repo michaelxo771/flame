@@ -21,7 +21,7 @@
         entries.forEach(function (e) {
           if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
         });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
       revealEls.forEach(function (el) { io.observe(el); });
     }
 
@@ -69,28 +69,6 @@
           else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
         }
       });
-    }
-
-    /* ---- Reviews marquee: auto-scroll, pause on hover/drag ---- */
-    var track = document.querySelector('[data-flame-marquee]');
-    if (track && !reduce) {
-      var speed = 0.4; // px per frame
-      var paused = false;
-      var raf;
-      // duplicate content for a seamless loop
-      track.innerHTML += track.innerHTML;
-      var step = function () {
-        if (!paused) {
-          track.scrollLeft += speed;
-          if (track.scrollLeft >= track.scrollWidth / 2) track.scrollLeft -= track.scrollWidth / 2;
-        }
-        raf = requestAnimationFrame(step);
-      };
-      track.addEventListener('mouseenter', function () { paused = true; });
-      track.addEventListener('mouseleave', function () { paused = false; });
-      track.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-      track.addEventListener('touchend', function () { paused = false; }, { passive: true });
-      raf = requestAnimationFrame(step);
     }
 
     /* ---- Announcement rotator (fade) ---- */
