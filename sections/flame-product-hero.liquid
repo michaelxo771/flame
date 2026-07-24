@@ -36,11 +36,15 @@
   /* gallery */
   #shopify-section-{{ section.id }} .flame-pdp__stage { position: relative; }
   #shopify-section-{{ section.id }} .flame-pdp__stage::before { content: ''; position: absolute; inset: 6%; z-index: 0; background: var(--ember-glow); filter: blur(24px); opacity: .6; }
-  #shopify-section-{{ section.id }} .flame-pdp__main { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.2); background: #100c0a; box-shadow: var(--shadow-soft); }
+  #shopify-section-{{ section.id }} .flame-pdp__slide { display: none; }
+  #shopify-section-{{ section.id }} .flame-pdp__slide.is-active { display: block; }
+  #shopify-section-{{ section.id }} .flame-pdp__main { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 20px; border: 1px solid rgba(201,162,75,.2); background: #100c0a; box-shadow: var(--shadow-soft); display: block; }
+  #shopify-section-{{ section.id }} iframe.flame-pdp__main { aspect-ratio: 16 / 9; }
   #shopify-section-{{ section.id }} .flame-pdp__thumbs { display: flex; gap: 1rem; margin-top: 1.4rem; flex-wrap: wrap; position: relative; z-index: 1; }
-  #shopify-section-{{ section.id }} .flame-pdp__thumb { border: 1px solid rgba(244,238,230,.14); border-radius: 12px; padding: 0; background: #100c0a; cursor: pointer; overflow: hidden; line-height: 0; transition: border-color .3s var(--ease); }
+  #shopify-section-{{ section.id }} .flame-pdp__thumb { position: relative; border: 1px solid rgba(244,238,230,.14); border-radius: 12px; padding: 0; background: #100c0a; cursor: pointer; overflow: hidden; line-height: 0; transition: border-color .3s var(--ease); }
   #shopify-section-{{ section.id }} .flame-pdp__thumb.is-active { border-color: var(--ember); }
   #shopify-section-{{ section.id }} .flame-pdp__thumb img { width: 70px; height: 70px; object-fit: cover; display: block; }
+  #shopify-section-{{ section.id }} .flame-pdp__thumb--video::after { content: ''; position: absolute; inset: 0; margin: auto; width: 22px; height: 22px; background: rgba(11,9,8,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23F4EEE6'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/12px no-repeat; border-radius: 50%; pointer-events: none; }
   /* buy box */
   #shopify-section-{{ section.id }} .flame-pdp__stars { color: var(--gold); font-size: 1.6rem; letter-spacing: .1em; margin: 0 0 1.2rem; }
   #shopify-section-{{ section.id }} .flame-pdp__stars span { color: var(--text-muted); font-size: 1.3rem; letter-spacing: 0; margin-left: .6rem; }
@@ -61,6 +65,13 @@
   #shopify-section-{{ section.id }} .flame-pdp__pill input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
   #shopify-section-{{ section.id }} .flame-pdp__pill.is-soldout span { opacity: .4; text-decoration: line-through; }
   #shopify-section-{{ section.id }} .flame-pdp__atc { width: 100%; }
+  /* dynamic checkout (Shop Pay / Apple Pay / Google Pay / PayPal) */
+  #shopify-section-{{ section.id }} .flame-pdp__dynamic { margin-top: 1.2rem; }
+  #shopify-section-{{ section.id }} .flame-pdp__dynamic .shopify-payment-button__button { border-radius: 999px !important; font-family: var(--flame-sans) !important; font-size: 1.5rem !important; min-height: 5.2rem; }
+  #shopify-section-{{ section.id }} .flame-pdp__dynamic .shopify-payment-button__more-options { color: var(--text-muted); font-size: 1.25rem; margin-top: .8rem; }
+  /* accepted payment icons */
+  #shopify-section-{{ section.id }} .flame-pdp__pay { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 1.8rem 0 0; }
+  #shopify-section-{{ section.id }} .flame-pdp__pay-icon { width: 40px; height: 25px; border-radius: 4px; opacity: .9; }
   #shopify-section-{{ section.id }} .flame-pdp__eta { display: flex; align-items: center; justify-content: center; gap: .6rem; font-size: 1.3rem; color: var(--text-muted); margin: 1.6rem 0 0; }
   #shopify-section-{{ section.id }} .flame-pdp__eta svg { width: 16px; height: 16px; color: var(--gold); flex: 0 0 auto; }
   #shopify-section-{{ section.id }} .flame-pdp__reassure { text-align: center; font-size: 1.3rem; color: var(--text-muted); margin: 1.4rem 0 0; }
@@ -103,24 +114,41 @@
 {%- endif -%}
 <section class="flame-pdp flame-section flame-grain" id="buybox" data-flame-buybox>
   <div class="flame-wrap flame-pad flame-pdp__grid">
-    <div class="flame-pdp__gallery flame-reveal">
+    <div class="flame-pdp__gallery flame-reveal" data-flame-gallery>
       <div class="flame-pdp__stage">
         {%- if gallery_files.size > 0 -%}
-          <img class="flame-pdp__main" id="flame-pdp-main-{{ section.id }}" src="{{ gallery_files.first | file_url }}" alt="{{ product.title | escape }}" width="1000" height="1000" fetchpriority="high">
-        {%- elsif product.featured_image != blank -%}
-          <img class="flame-pdp__main" id="flame-pdp-main-{{ section.id }}" src="{{ product.featured_image | image_url: width: 1100 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="1100" height="1100" fetchpriority="high">
+          {%- for f in gallery_files -%}
+            <div class="flame-pdp__slide{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.index0 }}">
+              <img class="flame-pdp__main" src="{{ f | file_url }}" alt="{{ product.title | escape }}" width="1000" height="1000"{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+            </div>
+          {%- endfor -%}
+        {%- elsif product.media.size > 0 -%}
+          {%- for media in product.media -%}
+            <div class="flame-pdp__slide{% if forloop.first %} is-active{% endif %}{% if media.media_type == 'video' or media.media_type == 'external_video' %} flame-pdp__slide--video{% endif %}" data-slide="{{ forloop.index0 }}" data-type="{{ media.media_type }}">
+              {%- case media.media_type -%}
+                {%- when 'video' -%}
+                  {{ media | video_tag: image_size: '1100x', loop: true, muted: true, controls: true, preload: 'none', playsinline: true, class: 'flame-pdp__main' }}
+                {%- when 'external_video' -%}
+                  {{ media | external_video_tag: class: 'flame-pdp__main', loading: 'lazy' }}
+                {%- else -%}
+                  <img class="flame-pdp__main" src="{{ media | image_url: width: 1100 }}" alt="{{ media.alt | default: product.title | escape }}" width="1100" height="1100"{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
         {%- else -%}
-          <img class="flame-pdp__main" id="flame-pdp-main-{{ section.id }}" src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="{{ product.title | escape }}" width="1000" height="1000" fetchpriority="high">
+          <div class="flame-pdp__slide is-active" data-slide="0">
+            <img class="flame-pdp__main" src="{{ 'Air-Aroma-Humidifier-Diffuser-Essential-Oils-Humidifiers-Mini-Flame-Automatic-Fragrance-Diffuser-Home-Humidifier-With-LED.webp' | file_url }}" alt="{{ product.title | escape }}" width="1000" height="1000" fetchpriority="high">
+          </div>
         {%- endif -%}
       </div>
       <div class="flame-pdp__thumbs">
         {%- if gallery_files.size > 0 -%}
           {%- for f in gallery_files -%}
-            <button type="button" class="flame-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ f | file_url }}" aria-label="View image {{ forloop.index }}"><img src="{{ f | file_url }}" alt="" width="70" height="70" loading="lazy"></button>
+            <button type="button" class="flame-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-slide-to="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}"><img src="{{ f | file_url }}" alt="" width="70" height="70" loading="lazy"></button>
           {%- endfor -%}
-        {%- else -%}
-          {%- for image in product.images limit: 8 -%}
-            <button type="button" class="flame-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ image | image_url: width: 1100 }}" aria-label="View image {{ forloop.index }}"><img src="{{ image | image_url: width: 150 }}" alt="" width="70" height="70" loading="lazy"></button>
+        {%- elsif product.media.size > 0 -%}
+          {%- for media in product.media limit: 8 -%}
+            <button type="button" class="flame-pdp__thumb{% if forloop.first %} is-active{% endif %}{% if media.media_type == 'video' or media.media_type == 'external_video' %} flame-pdp__thumb--video{% endif %}" data-slide-to="{{ forloop.index0 }}" aria-label="View {% if media.media_type == 'video' or media.media_type == 'external_video' %}video{% else %}image{% endif %} {{ forloop.index }}"><img src="{{ media.preview_image | image_url: width: 150 }}" alt="" width="70" height="70" loading="lazy"></button>
           {%- endfor -%}
         {%- endif -%}
       </div>
@@ -166,7 +194,19 @@
         <button type="submit" name="add" class="flame-btn flame-pdp__atc" data-flame-atc{% unless product.available %} disabled{% endunless %}>
           {%- if product.available -%}Add to Cart — <span data-atc-price>{{ product.price | money }}</span>{%- else -%}Sold Out{%- endif -%}
         </button>
+
+        {%- if product.available and additional_checkout_buttons -%}
+          <div class="flame-pdp__dynamic">{{ form | payment_button }}</div>
+        {%- endif -%}
       {%- endform -%}
+
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <div class="flame-pdp__pay" aria-label="Accepted payment methods">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'flame-pdp__pay-icon' }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
 
       {%- if show_eta -%}
         <p class="flame-pdp__eta">
@@ -197,15 +237,21 @@
 <script>
   (function () {
     var sid = {{ section.id | json }};
-    var main = document.getElementById('flame-pdp-main-' + sid);
     var scope = document.getElementById('shopify-section-' + sid) || document;
-    /* thumbnail swap */
-    scope.querySelectorAll('.flame-pdp__thumb').forEach(function (t) {
-      t.addEventListener('click', function () {
-        if (main && t.dataset.full) main.src = t.dataset.full;
-        scope.querySelectorAll('.flame-pdp__thumb').forEach(function (x) { x.classList.remove('is-active'); });
-        t.classList.add('is-active');
+    /* gallery: switch stacked slides (image or video) by thumbnail */
+    var slides = [].slice.call(scope.querySelectorAll('.flame-pdp__slide'));
+    var thumbs = [].slice.call(scope.querySelectorAll('.flame-pdp__thumb'));
+    function showSlide(idx) {
+      slides.forEach(function (s) {
+        var on = s.getAttribute('data-slide') === String(idx);
+        s.classList.toggle('is-active', on);
+        // pause any video that is being hidden
+        if (!on) { var v = s.querySelector('video'); if (v && !v.paused) { try { v.pause(); } catch (e) {} } }
       });
+      thumbs.forEach(function (t) { t.classList.toggle('is-active', t.getAttribute('data-slide-to') === String(idx)); });
+    }
+    thumbs.forEach(function (t) {
+      t.addEventListener('click', function () { showSlide(t.getAttribute('data-slide-to')); });
     });
     /* variant price sync */
     var form = document.getElementById('flame-pdp-form');
@@ -221,23 +267,29 @@
         if (satcPrice) satcPrice.textContent = p;
       });
     });
-    /* sticky ATC on mobile — show when buy box is above the viewport, hide as the footer approaches */
-    var box = document.querySelector('[data-flame-buybox]');
+    /* sticky ATC on mobile — visible whenever the real Add to Cart button is off-screen
+       (so it shows on first paint, since the ATC sits below the gallery), hide near footer */
+    var atcBtn = scope.querySelector('[data-flame-atc]');
     var bar = document.querySelector('[data-flame-satc]');
     var footer = document.querySelector('.footer');
-    if (box && bar && 'IntersectionObserver' in window) {
-      var buyboxOut = false, footerNear = false;
-      var updateBar = function () { bar.classList.toggle('is-visible', buyboxOut && !footerNear); };
+    if (atcBtn && bar && 'IntersectionObserver' in window) {
+      var atcVisible = false, footerNear = false;
+      var updateBar = function () {
+        var show = !atcVisible && !footerNear;
+        bar.classList.toggle('is-visible', show);
+        bar.setAttribute('aria-hidden', String(!show));
+      };
       new IntersectionObserver(function (ents) {
-        ents.forEach(function (e) { buyboxOut = !e.isIntersecting && e.boundingClientRect.top < 0; });
+        ents.forEach(function (e) { atcVisible = e.isIntersecting; });
         updateBar();
-      }, { threshold: 0 }).observe(box);
+      }, { threshold: 0 }).observe(atcBtn);
       if (footer) {
         new IntersectionObserver(function (ents) {
           ents.forEach(function (e) { footerNear = e.isIntersecting; });
           updateBar();
         }, { threshold: 0, rootMargin: '0px 0px 140px 0px' }).observe(footer);
       }
+      updateBar();
     }
     var satcAdd = document.querySelector('[data-flame-satc-add]');
     if (satcAdd && form) satcAdd.addEventListener('click', function () {
